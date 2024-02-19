@@ -39,23 +39,24 @@ Inside of this ENTER project, you'll see the following folders and files:
 ```
 
 ##  File Descriptions
-Each folder represents a component of the user interface.
 
-### `src/components/` The directory contains the folders that represent each component of the user interface:
-* [../search-section](/src/components/search-section/) -
-* [../recommended-phones-list](/src/components/recommended-phones-list/) -
-* [../phone-details](/src/components/phone-details/) -
-* [../phone-comparison](/src/components/phone-comparison/) -
-* [../navbar](/src/components/navbar/) -
-* [../footer](/src/components/footer/) - 
-* [../filters](/src/components/filters/) -
 
-Within each [/component](/src/components/) folder, there are subfolders and files to handle the logic, the service layer, the data types specific to that component, and the Astro format user interface file (.astro) that describes the structure. of the component.
+#### `src/components/` The directory contains the folders that represent each component of the user interface:
+* `src/components/search-section` - [/search-section](/src/components/search-section/)
+* `src/components/recommended-phones-list` - [../recommended-phones-list](/src/components/recommended-phones-list/)
+* `src/components/phone-details` - [../phone-details](/src/components/phone-details/)
+* `src/components/phone-comparison` - [../phone-comparison](/src/components/phone-comparison/)
+* `src/components/navbar` - [../navbar](/src/components/navbar/)
+* `src/components/footer` - [../footer](/src/components/footer/)
+* `src/components/filters` - [../filters](/src/components/filters/)
+
+ Within eachfolder, there are subfolders and files to handle the logic, the service layer, the data types specific to that component, and the Astro format user interface file (.astro) that describes the structure. of the component.
 
 * Logic files `logic.ts` handle the logic specific to that component.
 * Domain files `domain.ts` can contain interfaces or classes that define the data model or structures used by the component.
 * Service files `service.ts` can contain logic related to obtaining or manipulating data for that component.
 * Type files `type.ts` can contain definitions of specific types used in the component.
+
 
 
 ##  Commands
