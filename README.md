@@ -42,13 +42,13 @@ Inside of this ENTER project, you'll see the following folders and files:
 
 
 #### `src/components/` The directory contains the folders that represent each component of the user interface:
-* `src/components/search-section` - [/search-section](/src/components/search-section/)
-* `src/components/recommended-phones-list` - [../recommended-phones-list](/src/components/recommended-phones-list/)
-* `src/components/phone-details` - [../phone-details](/src/components/phone-details/)
-* `src/components/phone-comparison` - [../phone-comparison](/src/components/phone-comparison/)
-* `src/components/navbar` - [../navbar](/src/components/navbar/)
-* `src/components/footer` - [../footer](/src/components/footer/)
-* `src/components/filters` - [../filters](/src/components/filters/)
+* `src/components/search-section` - [go to folder](/src/components/search-section/)
+* `src/components/recommended-phones-list` - [go to folder](/src/components/recommended-phones-list/)
+* `src/components/phone-details` - [go to folder](/src/components/phone-details/)
+* `src/components/phone-comparison` - [go to folder](/src/components/phone-comparison/)
+* `src/components/navbar` - [go to folder](/src/components/navbar/)
+* `src/components/footer` - [go to folder](/src/components/footer/)
+* `src/components/filters` - [go to folder](/src/components/filters/)
 
  Within eachfolder, there are subfolders and files to handle the logic, the service layer, the data types specific to that component, and the Astro format user interface file (.astro) that describes the structure. of the component.
 
