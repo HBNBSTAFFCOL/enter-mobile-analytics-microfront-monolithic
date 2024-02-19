@@ -38,7 +38,27 @@ Inside of this ENTER project, you'll see the following folders and files:
 └── package.json
 ```
 
-## 🧞 Commands
+##  File Descriptions
+Each folder represents a component of the user interface.
+
+### `src/components/` The directory contains the folders that represent each component of the user interface:
+* [../search-section](/src/components/search-section/) -
+* [../recommended-phones-list](/src/components/recommended-phones-list/) -
+* [../phone-details](/src/components/phone-details/) -
+* [../phone-comparison](/src/components/phone-comparison/) -
+* [../navbar](/src/components/navbar/) -
+* [../footer](/src/components/footer/) - 
+* [../filters](/src/components/filters/) -
+
+Within each [/component](/src/components/) folder, there are subfolders and files to handle the logic, the service layer, the data types specific to that component, and the Astro format user interface file (.astro) that describes the structure. of the component.
+
+* Logic files `logic.ts` handle the logic specific to that component.
+* Domain files `domain.ts` can contain interfaces or classes that define the data model or structures used by the component.
+* Service files `service.ts` can contain logic related to obtaining or manipulating data for that component.
+* Type files `type.ts` can contain definitions of specific types used in the component.
+
+
+##  Commands
 
 All commands are run from the root of the project, from a terminal:
 
@@ -53,10 +73,10 @@ All commands are run from the root of the project, from a terminal:
 
 ## AUTHORS:
 
-- **Juan Avila [technology leader]**: [Perfil de Github](https://github.com/JuanDAC)
-- **Julian Garcia [Frontend manager]**: [Perfil de GitHub](https://github.com/Julibeto84)
-- **Ishay Junnco [backend manager]**: [Perfil de GitHub](https://github.com/IshayJQ)
-- **Harold Suarez [devop manager]**: [Perfil de GitHub](https://github.com/HaroldS10)
+- **Juan Avila [ technology leader ]**: [Github](https://github.com/JuanDAC)
+- **Julian Garcia [ Frontend manager ]**: [GitHub](https://github.com/Julibeto84)
+- **Ishay Junnco [ backend manager ]**: [GitHub](https://github.com/IshayJQ)
+- **Harold Suarez [ devop manager ]**: [GitHub](https://github.com/HaroldS10)
 
 
 # enter-mobile-analytics-microfront-monolithic
