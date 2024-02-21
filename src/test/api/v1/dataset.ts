@@ -1,0 +1,322 @@
+
+import { randomUUID } from "node:crypto";
+
+export interface Mobile { 
+    id: string;
+    name: string; 
+    brand: string; 
+    processor: string; 
+    ram: string; 
+    storage: string; 
+    battery: string; 
+    screenSize: string; 
+    screenResolution: string; 
+    os: string; 
+    frontCamera: string; 
+    rearCamera: string; 
+    features: string[] 
+}
+
+
+export const mobiles:Mobile[] = [
+    {
+        id: randomUUID(),
+        name: "iPhone 13 Pro Max",
+        brand: "Apple",
+        processor: "A15 Bionic",
+        ram: "6GB",
+        storage: "128GB, 256GB, 512GB, 1TB",
+        battery: "4352mAh",
+        screenSize: "6.7 inches",
+        screenResolution: "1284 x 2778 pixels",
+        os: "iOS 15",
+        frontCamera: "12MP",
+        rearCamera: "12MP (Wide) + 12MP (Ultra Wide) + 12MP (Telephoto)",
+        features: ["ProMotion display", "Ceramic Shield", "LiDAR scanner"]
+    },
+    {
+        id: randomUUID(),
+        name: "Samsung Galaxy Z Fold 3",
+        brand: "Samsung",
+        processor: "Snapdragon 888",
+        ram: "12GB",
+        storage: "256GB, 512GB",
+        battery: "4400mAh",
+        screenSize: "Main: 7.6 inches, Cover: 6.2 inches",
+        screenResolution: "Main: 1768 x 2208 pixels, Cover: 832 x 2268 pixels",
+        os: "Android 11, One UI 3.1.1",
+        frontCamera: "10MP",
+        rearCamera: "12MP (Wide) + 12MP (Ultra Wide) + 12MP (Telephoto)",
+        features: ["Foldable display", "S Pen support", "Water resistance"]
+    },
+    {
+        id: randomUUID(),
+        name: "Google Pixel 6 Pro",
+        brand: "Google",
+        processor: "Google Tensor",
+        ram: "12GB",
+        storage: "128GB, 256GB, 512GB",
+        battery: "5003mAh",
+        screenSize: "6.7 inches",
+        screenResolution: "1440 x 3120 pixels",
+        os: "Android 12",
+        frontCamera: "11.1MP",
+        rearCamera: "50MP (Wide) + 12MP (Ultra Wide) + 48MP (Telephoto)",
+        features: ["Tensor chip", "Google Magic Eraser", "Night Sight"]
+    },
+    {
+        id: randomUUID(),
+        name: "OnePlus 9 Pro",
+        brand: "OnePlus",
+        processor: "Snapdragon 888",
+        ram: "8GB, 12GB",
+        storage: "128GB, 256GB",
+        battery: "4500mAh",
+        screenSize: "6.7 inches",
+        screenResolution: "1440 x 3216 pixels",
+        os: "OxygenOS 11, Android 11",
+        frontCamera: "16MP",
+        rearCamera: "48MP (Wide) + 50MP (Ultra Wide) + 8MP (Telephoto) + 2MP (Monochrome)",
+        features: ["Fluid AMOLED display", "Hasselblad camera", "65W fast charging"]
+    },
+    {
+        id: randomUUID(),
+        name: "Xiaomi Redmi Note 10 Pro",
+        brand: "Xiaomi",
+        processor: "Snapdragon 732G",
+        ram: "6GB, 8GB",
+        storage: "64GB, 128GB",
+        battery: "5020mAh",
+        screenSize: "6.67 inches",
+        screenResolution: "1080 x 2400 pixels",
+        os: "MIUI 12, Android 11",
+        frontCamera: "16MP",
+        rearCamera: "108MP (Wide) + 8MP (Ultra Wide) + 5MP (Macro) + 2MP (Depth)",
+        features: ["120Hz refresh rate", "Corning Gorilla Glass 5", "NFC"]
+    },
+    {
+        id: randomUUID(),
+        name: "Sony Xperia 1 III",
+        brand: "Sony",
+        processor: "Snapdragon 888",
+        ram: "12GB",
+        storage: "256GB",
+        battery: "4500mAh",
+        screenSize: "6.5 inches",
+        screenResolution: "1644 x 3840 pixels",
+        os: "Android 11",
+        frontCamera: "8MP",
+        rearCamera: "12MP (Wide) + 12MP (Ultra Wide) + 12MP (Telephoto) + 0.3MP (Depth)",
+        features: ["4K OLED display", "Zeiss optics", "IP65/IP68 water resistance"]
+    },
+    {
+        id: randomUUID(),
+        name: "Asus ROG Phone 5",
+        brand: "Asus",
+        processor: "Snapdragon 888",
+        ram: "8GB, 12GB, 16GB",
+        storage: "128GB, 256GB, 512GB",
+        battery: "6000mAh",
+        screenSize: "6.78 inches",
+        screenResolution: "1080 x 2448 pixels",
+        os: "ROG UI, Android 11",
+        frontCamera: "24MP",
+        rearCamera: "64MP (Wide) + 13MP (Ultra Wide) + 5MP (Macro)",
+        features: ["144Hz AMOLED display", "AirTrigger 5", "RGB light panel"]
+    },
+    {
+        id: randomUUID(),
+        name: "Huawei P40 Pro",
+        brand: "Huawei",
+        processor: "Kirin 990 5G",
+        ram: "8GB",
+        storage: "256GB",
+        battery: "4200mAh",
+        screenSize: "6.58 inches",
+        screenResolution: "1200 x 2640 pixels",
+        os: "EMUI 10.1 (based on Android 10)",
+        frontCamera: "32MP",
+        rearCamera: "50MP (Wide) + 12MP (Periscope Telephoto) + 40MP (Ultra Wide) + ToF 3D",
+        features: ["Leica optics", "In-display fingerprint scanner", "IP68 water and dust resistance"]
+    },
+    {
+        id: randomUUID(),
+        name: "Nokia 8.3 5G",
+        brand: "Nokia",
+        processor: "Snapdragon 765G",
+        ram: "6GB, 8GB",
+        storage: "64GB, 128GB",
+        battery: "4500mAh",
+        screenSize: "6.81 inches",
+        screenResolution: "1080 x 2400 pixels",
+        os: "Android 10, Android One",
+        frontCamera: "24MP",
+        rearCamera: "64MP (Wide) + 12MP (Ultra Wide) + 2MP (Macro) + 2MP (Depth)",
+        features: ["PureDisplay", "ZEISS cinematic effects", "OZO audio"]
+    },
+    {
+        id: randomUUID(),
+        name: "Motorola Moto G Power (2021)",
+        brand: "Motorola",
+        processor: "Snapdragon 662",
+        ram: "3GB, 4GB",
+        storage: "32GB, 64GB",
+        battery: "5000mAh",
+        screenSize: "6.6 inches",
+        screenResolution: "720 x 1600 pixels",
+        os: "Android 10",
+        frontCamera: "8MP",
+        rearCamera: "48MP (Wide) + 2MP (Macro) + 2MP (Depth)",
+        features: ["Water-repellent design", "TurboPower charging", "Stock Android experience"]
+    },
+    {
+        id: randomUUID(),
+        name: "LG Wing",
+        brand: "LG",
+        processor: "Snapdragon 765G",
+        ram: "8GB",
+        storage: "128GB",
+        battery: "4000mAh",
+        screenSize: "Main: 6.8 inches, Secondary: 3.9 inches",
+        screenResolution: "Main: 1080 x 2460 pixels, Secondary: 1080 x 1240 pixels",
+        os: "Android 10",
+        frontCamera: "32MP (Pop-up)",
+        rearCamera: "64MP (Wide) + 13MP (Ultra Wide) + 12MP (Gimbal Motion Camera)",
+        features: ["Swivel display", "Gimbal motion camera", "LG 3D Sound Engine"]
+    },
+    {
+        id: randomUUID(),
+        name: "Oppo Find X3 Pro",
+        brand: "Oppo",
+        processor: "Snapdragon 888",
+        ram: "8GB, 12GB",
+        storage: "256GB",
+        battery: "4500mAh",
+        screenSize: "6.7 inches",
+        screenResolution: "1440 x 3216 pixels",
+        os: "ColorOS 11.2, Android 11",
+        frontCamera: "32MP",
+        rearCamera: "50MP (Wide) + 13MP (Telephoto) + 50MP (Ultra Wide) + 3MP (Microscope)",
+        features: ["120Hz AMOLED display", "65W SuperVOOC 2.0 charging", "IP68 water and dust resistance"]
+    },
+    {
+        id: 'f0d6a00b-a6d2-4b22-8f6d-f2a4fbee0ff6',
+        name: "Realme GT",
+        brand: "Realme",
+        processor: "Snapdragon 888",
+        ram: "8GB, 12GB",
+        storage: "128GB, 256GB",
+        battery: "4500mAh",
+        screenSize: "6.43 inches",
+        screenResolution: "1080 x 2400 pixels",
+        os: "Realme UI 2.0, Android 11",
+        frontCamera: "16MP",
+        rearCamera: "64MP (Wide) + 8MP (Ultra Wide) + 2MP (Macro)",
+        features: ["Super AMOLED display", "65W SuperDart charging", "Dolby Atmos stereo speakers"]
+    },
+    {
+        id: '4e568268-f48a-462e-852f-4e125ed7ecbc',
+        name: "Vivo X60 Pro+",
+        brand: "Vivo",
+        processor: "Snapdragon 888",
+        ram: "8GB, 12GB",
+        storage: "128GB, 256GB",
+        battery: "4200mAh",
+        screenSize: "6.56 inches",
+        screenResolution: "1080 x 2376 pixels",
+        os: "Funtouch OS 11.1, Android 11",
+        frontCamera: "32MP",
+        rearCamera: "50MP (Wide) + 48MP (Ultra Wide) + 32MP (Telephoto) + 8MP (Periscope Telephoto)",
+        features: ["120Hz AMOLED display", "Gimbal stabilization 2.0", "Zeiss optics"]
+    },
+    {
+        id: randomUUID(),
+        name: "Poco X3 Pro",
+        brand: "Poco",
+        processor: "Snapdragon 860",
+        ram: "6GB, 8GB",
+        storage: "128GB, 256GB",
+        battery: "5160mAh",
+        screenSize: "6.67 inches",
+        screenResolution: "1080 x 2400 pixels",
+        os: "MIUI 12 for Poco, Android 11",
+        frontCamera: "20MP",
+        rearCamera: "48MP (Wide) + 8MP (Ultra Wide) + 2MP (Macro) + 2MP (Depth)",
+        features: ["120Hz refresh rate", "LiquidCool Technology", "Stereo speakers"]
+    },
+    {
+        id: randomUUID(),
+        name: "BlackBerry Key2",
+        brand: "BlackBerry",
+        processor: "Snapdragon 660",
+        ram: "6GB",
+        storage: "64GB, 128GB",
+        battery: "3500mAh",
+        screenSize: "4.5 inches",
+        screenResolution: "1080 x 1620 pixels",
+        os: "Android 8.1",
+        frontCamera: "8MP",
+        rearCamera: "12MP (Wide) + 12MP (Telephoto)",
+        features: ["Physical QWERTY keyboard", "DTEK security", "BlackBerry Hub"]
+    },
+    {
+        id: randomUUID(),
+        name: "ZTE Axon 30 Ultra",
+        brand: "ZTE",
+        processor: "Snapdragon 888",
+        ram: "8GB, 12GB",
+        storage: "128GB, 256GB, 1TB",
+        battery: "4600mAh",
+        screenSize: "6.67 inches",
+        screenResolution: "1080 x 2400 pixels",
+        os: "MiFavor UI 12.5, Android 11",
+        frontCamera: "16MP",
+        rearCamera: "64MP (Wide) + 64MP (Periscope Telephoto) + 64MP (Ultra Wide) + 8MP (Macro)",
+        features: ["AMOLED display", "Under-display fingerprint scanner", "AI portrait mode"]
+    },
+    {
+        id: randomUUID(),
+        name: "Nubia Red Magic 6",
+        brand: "Nubia",
+        processor: "Snapdragon 888",
+        ram: "8GB, 12GB, 16GB",
+        storage: "128GB, 256GB",
+        battery: "5050mAh",
+        screenSize: "6.8 inches",
+        screenResolution: "1080 x 2400 pixels",
+        os: "Redmagic 4.0, Android 11",
+        frontCamera: "8MP",
+        rearCamera: "64MP (Wide) + 8MP (Ultra Wide) + 2MP (Macro)",
+        features: ["165Hz AMOLED display", "Active cooling system", "Shoulder triggers"]
+    },
+    {
+        id: randomUUID(),
+        name: "Lenovo Legion Phone Duel 2",
+        brand: "Lenovo",
+        processor: "Snapdragon 888",
+        ram: "12GB, 16GB",
+        storage: "256GB, 512GB",
+        battery: "5500mAh",
+        screenSize: "6.92 inches",
+        screenResolution: "1080 x 2460 pixels",
+        os: "ZUI 12.5 for Legion OS, Android 11",
+        frontCamera: "44MP",
+        rearCamera: "64MP (Wide) + 16MP (Ultra Wide)",
+        features: ["144Hz AMOLED display", "Dual cooling system", "Quad ultrasonic shoulder triggers"]
+    },
+    {
+        id: randomUUID(),
+        name: "CAT S62 Pro",
+        brand: "CAT",
+        processor: "Snapdragon 660",
+        ram: "6GB",
+        storage: "128GB",
+        battery: "4000mAh",
+        screenSize: "5.7 inches",
+        screenResolution: "1080 x 2160 pixels",
+        os: "Android 10",
+        frontCamera: "8MP",
+        rearCamera: "12MP",
+        features: ["Thermal imaging camera", "IP68 water and dust resistance", "MIL-STD-810H compliant"]
+    }
+];
