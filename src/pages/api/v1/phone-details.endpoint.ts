@@ -19,7 +19,7 @@ import type { APIRoute } from "astro";
 import { getMobileById } from "../../../service/fakedb.service";
 
 
-export const GET: APIRoute = async ({params, url}) => {
+export const GET: APIRoute = async ({ url }) => {
     
     const searchParams = url.searchParams;
 
@@ -30,6 +30,17 @@ export const GET: APIRoute = async ({params, url}) => {
                 "Content-Type": "application/json"
               }
         })
+    }
+
+    const mobileId = searchParams.get("mobile");
+    
+    if (!mobileId) {
+        return new Response(JSON.stringify({ error: 'No se proporcionó un ID para obtener detalles' }), {
+            status: 400,
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
     }
 
     const mobile = await getMobileById(searchParams.get("mobile")!);

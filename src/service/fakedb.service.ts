@@ -1,22 +1,11 @@
 import { mobiles, type Mobile } from "../test/api/v1/dataset";
 
-// Interfaz que define los criterios de filtrado para buscar teléfonos móviles.
-// Cada propiedad es opcional y representa un criterio de filtrado diferente.
-export interface FilterOptions {
-    priceMin?: number;
-    priceMax?: number;
-    screenType?: string;
-    screenResolution?: string;
-    ram?: string;
-    storage?: string;
-    os?: string;
-}
-
 
 // Obtiene el movil por el id proporcionado
 // Retorna el objeto Mobile correspondiente al ID proporcionado,
 // o undefined si no se encuentra.
 export const getMobileById = (id: string): Mobile | undefined => {
+    console.log(mobiles);
     return mobiles.find(mobile => mobile.id === id);
 };
 
@@ -38,16 +27,37 @@ export const searchMobiles = async (searchTerm: string): Promise<Mobile[]> => {
 
 // Filtra la lista de teléfonos móviles según los criterios especificados en el objeto FilterOptions.
 // Retorna una lista de móviles que cumplen con todos los criterios de filtrado.
-export const filterMobiles = async (filterOptions: FilterOptions): Promise<Mobile[]> => {
-    return mobiles.filter(mobile => {
-        return (
-            (filterOptions.priceMin === undefined || mobile.price >= filterOptions.priceMin) &&
-            (filterOptions.priceMax === undefined || mobile.price <= filterOptions.priceMax) &&
-            (filterOptions.screenType === undefined || mobile.screenType.toLowerCase() === filterOptions.screenType.toLowerCase()) &&
-            (filterOptions.screenResolution === undefined || mobile.screenResolution.toLowerCase() === filterOptions.screenResolution.toLowerCase()) &&
-            (filterOptions.ram === undefined || mobile.ram.toLowerCase() === filterOptions.ram.toLowerCase()) &&
-            (filterOptions.storage === undefined || mobile.storage.toLowerCase() === filterOptions.storage.toLowerCase()) &&
-            (filterOptions.os === undefined || mobile.os.toLowerCase() === filterOptions.os.toLowerCase())
-        );
+
+export const filterMobiles = async (filterOptions: Mobile): Promise<Mobile[]> => {
+   // console.log('Filtros aplicados:', filterOptions);
+    
+    const invalidParams = Object.keys(filterOptions).filter(param =>
+        !Object.keys(mobiles[0] as Mobile).includes(param)
+    );
+
+   // console.log(`parametros que son invalidos: ${invalidParams}`);
+
+    if (invalidParams.length > 0) {
+       throw new Error(`Parámetros no admitidos: ${invalidParams.join(', ')}`);
+    }
+    
+    const validParams = Object.entries(filterOptions).filter(([param, value]) =>
+        value !== undefined
+    );
+
+    //console.log('Parámetros válidos:', validParams);
+        
+    const filteredMobiles = mobiles.filter(mobile => {
+        return validParams.every(([param, optionValue]) => {
+            if (Array.isArray((mobile as Mobile)[param])) {
+                return (mobile as Mobile)[param].includes(optionValue);
+            } else {
+                const mobileValue = (mobile as Mobile)[param];
+                return mobileValue !== undefined && mobileValue.toString().toLowerCase() === optionValue.toString().toLowerCase();
+            }
+        });
     });
+
+   // console.log('Teléfonos encontrados:', filteredMobiles);
+    return filteredMobiles;
 };

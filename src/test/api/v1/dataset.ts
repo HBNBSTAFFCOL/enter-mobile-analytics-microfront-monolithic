@@ -4,7 +4,8 @@ export interface Mobile {
     id: string;
     name: string; 
     brand: string; 
-    processor: string; 
+    processor: string;
+   // prueba: string;
     ram: string; 
     storage: string; 
     battery: string; 
@@ -25,14 +26,15 @@ export interface Mobile {
     colors: string[]; 
     simCapacity: string; 
     ports: string[]; 
-    sensors: string[]; 
+    sensors: string[];
 }
 
 export const mobiles: Mobile[] = [
     {
-        id: randomUUID(),
+        id: "7a1917ca-a94b-47c9-a726-cd43b7cb9d94",
         name: "iPhone 13 Pro Max",
         brand: "Apple",
+       // prueba: "buscar",
         processor: "A15 Bionic",
         ram: "6GB",
         storage: "128GB, 256GB, 512GB, 1TB",
@@ -57,7 +59,7 @@ export const mobiles: Mobile[] = [
         sensors: ["Face ID", "Accelerometer", "Gyroscope", "Barometer"]
     },
     {
-        id: randomUUID(),
+        id: "80629a36-4b83-4d27-9cd3-dbf4e569f748",
         name: "Samsung Galaxy Z Fold 3",
         brand: "Samsung",
         processor: "Snapdragon 888",

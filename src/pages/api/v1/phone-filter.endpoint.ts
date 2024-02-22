@@ -15,40 +15,50 @@
 
 
 import type { APIRoute } from "astro";
-import { filterMobiles, type FilterOptions } from "../../../service/fakedb.service";
+import { filterMobiles } from "../../../service/fakedb.service";
+import type { Mobile } from "../../../test/api/v1/dataset";
 
 export const GET: APIRoute = async ({ url }) => {
     const searchParams = url.searchParams;
 
-    const filterOptions: FilterOptions = {};
-    if (searchParams.has("priceMin")) {
-        filterOptions.priceMin = parseFloat(searchParams.get("priceMin")!);
-    }
-    if (searchParams.has("priceMax")) {
-        filterOptions.priceMax = parseFloat(searchParams.get("priceMax")!);
-    }
-    if (searchParams.has("screenType")) {
-        filterOptions.screenType = searchParams.get("screenType")!;
-    }
-    if (searchParams.has("screenResolution")) {
-        filterOptions.screenResolution = searchParams.get("screenResolution")!;
-    }
-    if (searchParams.has("ram")) {
-        filterOptions.ram = searchParams.get("ram")!;
-    }
-    if (searchParams.has("storage")) {
-        filterOptions.storage = searchParams.get("storage")!;
-    }
-    if (searchParams.has("os")) {
-        filterOptions.os = searchParams.get("os")!;
+    if (!searchParams || searchParams.toString().length === 0) {
+        return new Response(JSON.stringify({ error: 'No se proporcionaron parámetros de búsqueda' }), {
+            status: 400,
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
     }
 
-    const results = await filterMobiles(filterOptions);
-
-    return new Response(JSON.stringify(results), {
-        status: 200,
-        headers: {
-            "Content-Type": "application/json"
+    try {
+        const filterOptions: Partial<Mobile> = {};
+        for (const [key, value] of searchParams.entries()) {
+            filterOptions[key] = value;
         }
-    });
+        const results = await filterMobiles(filterOptions);
+
+        if (results.length === 0) {
+            return new Response(JSON.stringify({ error: 'No se encontró ningún teléfono con los parámetros de búsqueda proporcionados' }), {
+                status: 404,
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            });
+        }
+
+        return new Response(JSON.stringify(results), {
+            status: 200,
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+    } catch (error: any) {
+        return new Response(JSON.stringify({ error: error.message }), {
+            status: 400,
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+    }
 };
+ 

@@ -19,7 +19,7 @@ export const GET: APIRoute = async ({ url }) => {
     const searchParams = url.searchParams;
 
     if (!searchParams.has("src")) {
-        return new Response(JSON.stringify({ error: 'Falta el parámetro `term` para la búsqueda' }), {
+        return new Response(JSON.stringify({ error: 'Falta el parámetro `src` para la búsqueda' }), {
             status: 400,
             headers: {
                 "Content-Type": "application/json"
