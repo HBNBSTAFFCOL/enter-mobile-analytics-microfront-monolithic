@@ -1,7 +1,17 @@
-//
 
+ // Este endpoint permite comparar información de múltiples teléfonos móviles utilizando sus IDs.
+ // Se espera que se proporcione al menos dos IDs de teléfonos móviles como parámetros de consulta.
+ // Retorna la información de los teléfonos móviles encontrados para los IDs proporcionados, o un mensaje de error si no se encuentra información para alguno de los IDs.
+ //
+ // Parámetros de consulta admitidos:
+ // - mobiles: Una lista de IDs de teléfonos móviles separados por comas para comparar.
+ // Si no se proporcionan los parámetros necesarios o si alguno de los IDs no tiene información asociada, se devuelve un mensaje de error correspondiente.
+ //
+ // La respuesta del endpoint es un objeto JSON que contiene la información de los teléfonos móviles encontrados para los IDs proporcionados.
+
+
+ 
 import type { APIRoute } from "astro";
-import { string } from "astro/zod";
 import { getMobileById, searchMobiles } from "../../../service/fakedb.service";
 
 
@@ -30,7 +40,7 @@ export const GET: APIRoute = async ({ url }) => {
     }
 
     const mobilesInfo = mobileIds.map(async (mobileId) => {
-        const info = await getMobileById(mobileId);
+        const info = await searchMobiles(mobileId);
         console.log(info)
         if (!info) {
             return { id: mobileId, error: 'No se encontró información para este móvil' };
