@@ -15,6 +15,7 @@
 import type { APIRoute } from "astro";
 import { searchMobiles } from "../../../service/fakedb.service";
 
+
 export const GET: APIRoute = async ({ url }) => {
     const searchParams = url.searchParams;
 
@@ -28,6 +29,17 @@ export const GET: APIRoute = async ({ url }) => {
     }
 
     const searchTerm = searchParams.get("src")!;
+
+
+    if (!searchTerm) {
+        return new Response(JSON.stringify({error: 'No se proporciono un parametro de busqueda'}), {
+            status: 404,
+            headers: { 
+                "Content-Type": "application/json"
+            }
+        });
+    }
+
     const results = await searchMobiles(searchTerm);
 
     return new Response(JSON.stringify(results), {

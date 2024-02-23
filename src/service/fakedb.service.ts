@@ -35,7 +35,7 @@ export const filterMobiles = async (filterOptions: Mobile): Promise<Mobile[]> =>
         !Object.keys(mobiles[0] as Mobile).includes(param)
     );
 
-   // console.log(`parametros que son invalidos: ${invalidParams}`);
+    console.log(`parametros que son invalidos: ${invalidParams}`);
 
     if (invalidParams.length > 0) {
        throw new Error(`Parámetros no admitidos: ${invalidParams.join(', ')}`);
@@ -45,7 +45,7 @@ export const filterMobiles = async (filterOptions: Mobile): Promise<Mobile[]> =>
         value !== undefined
     );
 
-    //console.log('Parámetros válidos:', validParams);
+    console.log('Parámetros válidos:', validParams);
         
     const filteredMobiles = mobiles.filter(mobile => {
         return validParams.every(([param, optionValue]) => {
