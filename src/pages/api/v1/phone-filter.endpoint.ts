@@ -4,25 +4,20 @@
 // El endpoint acepta parámetros de consulta en la URL para especificar los criterios de filtrado,
 // y devuelve una lista de teléfonos que cumplen con esos criterios en formato JSON.
 // 
-// Parámetros de consulta admitidos:
-// - priceMin: Precio mínimo del teléfono.
-// - priceMax: Precio máximo del teléfono.
-// - screenType: Tipo de pantalla del teléfono (por ejemplo, AMOLED, LCD).
-// - screenResolution: Resolución de la pantalla del teléfono.
-// - ram: Cantidad de RAM del teléfono.
-// - storage: Capacidad de almacenamiento del teléfono.
-// - os: Sistema operativo del teléfono.
-
 
 import type { APIRoute } from "astro";
 import { filterMobiles } from "../../../service/fakedb.service";
 import type { Mobile } from "../../../test/api/v1/dataset";
+import { errorCodes } from "./errorCodes";
 
 export const GET: APIRoute = async ({ url }) => {
     const searchParams = url.searchParams;
 
+    // Validar si se proporcionaron parámetros de búsqueda
     if (!searchParams || searchParams.toString().length === 0) {
-        return new Response(JSON.stringify({ error: 'No se proporcionaron parámetros de búsqueda' }), {
+        return new Response(JSON.stringify({
+            error: `${errorCodes.INVALID_PARAMETERS.code} - ${errorCodes.INVALID_PARAMETERS.message}`
+        }), {
             status: 400,
             headers: {
                 "Content-Type": "application/json"
@@ -35,10 +30,13 @@ export const GET: APIRoute = async ({ url }) => {
         for (const [key, value] of searchParams.entries()) {
             filterOptions[key] = value;
         }
+
         const results = await filterMobiles(filterOptions);
 
         if (results.length === 0) {
-            return new Response(JSON.stringify({ error: 'No se encontró ningún teléfono con los parámetros de búsqueda proporcionados' }), {
+            return new Response(JSON.stringify({
+                error: `${errorCodes.NO_RESULTS_FOUND.code} - ${errorCodes.NO_RESULTS_FOUND.message}: Quizás has sido demasiado estricto con los filtros`
+            }), {
                 status: 404,
                 headers: {
                     "Content-Type": "application/json"
@@ -53,12 +51,13 @@ export const GET: APIRoute = async ({ url }) => {
             }
         });
     } catch (error: any) {
-        return new Response(JSON.stringify({ error: error.message }), {
-            status: 400,
+        return new Response(JSON.stringify({
+            error: `${errorCodes.SERVER_ERROR.code}-${errorCodes.SERVER_ERROR.message}`
+        }), {
+            status: 500,
             headers: {
                 "Content-Type": "application/json"
             }
         });
     }
 };
- 

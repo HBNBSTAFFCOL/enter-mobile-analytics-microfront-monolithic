@@ -1,3 +1,4 @@
+import { log } from "console";
 import { mobiles, type Mobile } from "../test/api/v1/dataset";
 
 
@@ -5,7 +6,6 @@ import { mobiles, type Mobile } from "../test/api/v1/dataset";
 // Retorna el objeto Mobile correspondiente al ID proporcionado,
 // o undefined si no se encuentra.
 export const getMobileById = (id: string): Mobile | undefined => {
-    console.log(mobiles);
     return mobiles.find(mobile => mobile.id === id);
 };
 
@@ -14,13 +14,20 @@ export const getMobileById = (id: string): Mobile | undefined => {
 // Busca teléfonos móviles que coincidan con el término de búsqueda especificado.
 // Retorna una lista de móviles que contienen el término de búsqueda en cualquier propiedad o característica.
 export const searchMobiles = async (searchTerm: string): Promise<Mobile[]> => {
-    const normalizedSearchTerm = searchTerm.toLowerCase().trim();
+    const normalizedSearchTerm = searchTerm.toLowerCase().trim().replace(/\s/g, '');
     return mobiles.filter(mobile =>
-        Object.values(mobile).some(value =>
-            typeof value === 'string' && value.toLowerCase().includes(normalizedSearchTerm)
-        ) || mobile.features.some(feature => feature.toLowerCase().includes(normalizedSearchTerm))
+        Object.values(mobile).some(value => {
+            if (Array.isArray(value)) {
+                return value.some(val => typeof val === 'string' && val.toLowerCase().replace(/\s/g, '').includes(normalizedSearchTerm));
+            } else if (typeof value === 'string') {
+                return value.toLowerCase().replace(/\s/g, '').includes(normalizedSearchTerm);
+            }
+            return false;
+        })
     );
-};
+}
+
+
 
 
 
@@ -28,25 +35,10 @@ export const searchMobiles = async (searchTerm: string): Promise<Mobile[]> => {
 // Filtra la lista de teléfonos móviles según los criterios especificados en el objeto FilterOptions.
 // Retorna una lista de móviles que cumplen con todos los criterios de filtrado.
 
-export const filterMobiles = async (filterOptions: Mobile): Promise<Mobile[]> => {
-   // console.log('Filtros aplicados:', filterOptions);
-    
-    const invalidParams = Object.keys(filterOptions).filter(param =>
-        !Object.keys(mobiles[0] as Mobile).includes(param)
-    );
-
-    console.log(`parametros que son invalidos: ${invalidParams}`);
-
-    if (invalidParams.length > 0) {
-       throw new Error(`Parámetros no admitidos: ${invalidParams.join(', ')}`);
-    }
-    
+export const filterMobiles = (filterOptions: Mobile): Mobile[] => {
     const validParams = Object.entries(filterOptions).filter(([param, value]) =>
         value !== undefined
-    );
-
-    console.log('Parámetros válidos:', validParams);
-        
+    );        
     const filteredMobiles = mobiles.filter(mobile => {
         return validParams.every(([param, optionValue]) => {
             if (Array.isArray((mobile as Mobile)[param])) {
@@ -57,7 +49,5 @@ export const filterMobiles = async (filterOptions: Mobile): Promise<Mobile[]> =>
             }
         });
     });
-
-   // console.log('Teléfonos encontrados:', filteredMobiles);
     return filteredMobiles;
 };
