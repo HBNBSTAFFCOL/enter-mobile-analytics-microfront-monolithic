@@ -1,0 +1,60 @@
+---
+interface Props {
+    text: string;
+    icon: string;
+    id: string;
+    type: "fake-input" | "filters-navigation";
+    detail?: string;
+}
+
+const { text, id, icon, detail, type } = Astro.props;
+---
+
+{
+    type === "fake-input" && (
+        <button
+            id={id}
+            type="button"
+            class="button button--fake-input header__search-button"
+        >
+            <span class="button__text">{text}</span>
+            <figure class="button__icon">
+                <img class="button__icon-image" src={icon} alt={text} />
+            </figure>
+        </button>
+    )
+}
+
+{
+    type === "filters-navigation" && (
+        <button id={id} type="button" class="button button--filters-navigation">
+            <figure class="button__icon">
+                <img class="button__icon-image" src={icon} alt={text} />
+            </figure>
+            <span class="button__text">{text}</span>
+            {typeof detail !== "undefined" && (
+                <small class="button__details">{detail}</small>
+            )}
+        </button>
+    )
+}
+
+
+
+
+<style>
+    .button--fake-input{
+        background-color: var(--color-action--success);
+        color: var(--color-action--text);
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .button--fake-input:hover{
+        background-color: var(--color-action--log);
+        
+    }
+</style>
