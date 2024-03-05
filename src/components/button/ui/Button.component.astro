@@ -43,5 +43,18 @@ const { text, id, icon, detail, type } = Astro.props;
 
 
 <style>
-    
+    .button--fake-input{
+        background-color: var(--color-action--success);
+        color: var(--color-action--text);
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .button--fake-input:hover{
+        background-color: var(--color-action--log);
+        
+    }
 </style>
