@@ -155,11 +155,11 @@ const { title } = Astro.props;
 	/* Variables for search button CSS properties. */
     const searchButton = document.getElementById('button-fake-input');
     const filtersContainer = document.getElementById('filters-container');
-	const searchContainer = document.getElementById('search-container');
+	
 
     searchButton?.addEventListener('click', () => {
         filtersContainer?.classList.toggle('show-filters');
-		searchContainer?.classList.toggle('search-visible');
+		
 
     });
 </script>
