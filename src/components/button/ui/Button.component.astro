@@ -44,17 +44,46 @@ const { text, id, icon, detail, type } = Astro.props;
 
 <style>
     .button--fake-input{
-        background-color: var(--color-action--success);
-        color: var(--color-action--text);
+        background-color: transparent;
+        color: var(--color-brand--text);
+        background-color: aliceblue;
         border: none;
-        border-radius: 5px;
-        padding: 10px 20px;
         cursor: pointer;
-        transition: background-color 0.3s ease;
+        width: 50%;
+        min-width: 125px;
+        height: 2rem;
+        border-radius: 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        box-sizing: border-box;
+        transition: all 100ms;
+    }
+
+    .button__text {
+        margin: unset;
+        padding: unset;
+        line-height: 1rem;
+    }
+
+    .button__icon {
+        background-color: var(--color-action--success);
+        width: 2rem;
+        height: 2rem;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        position: relative;
+        right: -1rem;
+    }
+
+    .button__icon-image {
+        width: 50%;
+        filter: invert(1);
     }
 
     .button--fake-input:hover{
-        background-color: var(--color-action--log);
-        
+        width: 100%;
     }
 </style>
