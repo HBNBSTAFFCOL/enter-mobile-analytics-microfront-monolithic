@@ -1,99 +1,220 @@
 ---
-import Button from "../../button/ui/Button.component.astro"
-
+import Button from "../../button/ui/Button.component.astro";
 ---
 
 <header class="header">
     <figure class="header__icon">
-        <img class="header__icon-image" src="https://www.enter.co/wp-content/uploads/2020/03/logo.svg" alt="">
+        <img
+            class="header__icon-image"
+            src="/images_Enter/logoEnter.png"
+            alt=""
+        />
     </figure>
-    <section class="header__search-section" >
-        <Button type="fake-input" id="button-fake-input" icon="" text=""  />
+    <section class="header__search-section">
+        <Button
+            type="fake-input"
+            id="button-fake-input"
+            icon="/search-svgrepo-com.svg"
+            text="Buscar"
+        />
     </section>
-    
+
     <section class="search header__search-real" id="search-container">
-        <article class="search__serachbar">
-            <input type="text" name="" class="search__serachbar-input" id="filters__search-input" placeholder="Buscar">
-            <label class="search__serachbar-icon" for="filters__search-input">
-                <figure class="search__serachbar-icon">
-                    <img class="search__serachbar-icon-image" src="" alt="">
-                </figure>
-            </label>
-        </article>
+        <input
+            type="text"
+            name=""
+            class="search__serachbar-input"
+            id="filters__search-input"
+            placeholder="Buscar"
+        />
+
+        <figure class="search__serachbar-icon">
+            <img
+                class="search__serachbar-icon-image"
+                src="/search-svgrepo-com.svg"
+                alt=""
+            />
+        </figure>
     </section>
-    <section class="filters header__filters"  id="filters-container">
+    <section class="filters header__filters" id="filters-container">
         <nav class="filters__navigation">
-            <Button type="filters-navigation" id="button-filters-navigation-camara" icon="" text="Camara" detail="Selfie 100 MPX / Main Camara 200 MPX" />
-            <Button type="filters-navigation" id="button-filters-navigation-battery" icon="" text="Bateria" detail="1000 MHP" />
-            <Button type="filters-navigation" id="button-filters-navigation-screen" icon="" text="Pantalla" detail="7 Pulgadas" />
-            <Button type="filters-navigation" id="button-filters-navigation-memory" icon="" text="Memoria" detail="8 RAM / 256 GB ALMACENAMIENTO" />
+            <Button
+                type="filters-navigation"
+                id="button-filters-navigation-camara"
+                icon=""
+                text="Camara"
+                detail="Selfie 100 MPX / Main Camara 200 MPX"
+            />
+            <Button
+                type="filters-navigation"
+                id="button-filters-navigation-battery"
+                icon=""
+                text="Bateria"
+                detail="1000 MHP"
+            />
+            <Button
+                type="filters-navigation"
+                id="button-filters-navigation-screen"
+                icon=""
+                text="Pantalla"
+                detail="7 Pulgadas"
+            />
+            <Button
+                type="filters-navigation"
+                id="button-filters-navigation-memory"
+                icon=""
+                text="Memoria"
+                detail="8 RAM / 256 GB ALMACENAMIENTO"
+            />
         </nav>
-            <section class="filters__modal">
-                <article class="filters__camara-modal" id="camara-modal">
-                    <section>
-                        <h3>Selfie MPX Range</h3>
-                        <label for="filters__camara--mpx-range"></label>
-                        <input type="range" id="filters__camara--mpx-range" name="mpxRange" min="2" max="150" step="1" value="50">
-                    </section>
+        <section class="filters__modal">
+            <article class="filters__camara-modal" id="camara-modal">
+                <section>
+                    <h3>Selfie MPX Range</h3>
+                    <label for="filters__camara--mpx-range"></label>
+                    <input
+                        type="range"
+                        id="filters__camara--mpx-range"
+                        name="mpxRange"
+                        min="2"
+                        max="150"
+                        step="1"
+                        value="50"
+                    />
+                </section>
 
-                    <section>
-                        <h3>Principal MPX Range</h3>
-                        <label for="filters__camara--mpx-range"></label>
-                        <input type="range" id="filters__camara--mpx-range" name="mpxRange" min="2" max="300" step="1" value="50">
-                    </section>
-                </article>
+                <section>
+                    <h3>Principal MPX Range</h3>
+                    <label for="filters__camara--mpx-range"></label>
+                    <input
+                        type="range"
+                        id="filters__camara--mpx-range"
+                        name="mpxRange"
+                        min="2"
+                        max="300"
+                        step="1"
+                        value="50"
+                    />
+                </section>
+            </article>
 
-                <article class="filters__battery-modal" id="battery-modal">
-                    <section>
-                        <h3>Bateria</h3>
-                        <label for="filters__battery--mAh-range"></label>
-                        <input type="range" id="filters__battery--mAh-range" name="mAhRange" min="2" max="150" step="1" value="50">
-                    </section>
-                </article>
+            <article class="filters__battery-modal" id="battery-modal">
+                <section>
+                    <h3>Bateria</h3>
+                    <label for="filters__battery--mAh-range"></label>
+                    <input
+                        type="range"
+                        id="filters__battery--mAh-range"
+                        name="mAhRange"
+                        min="2"
+                        max="150"
+                        step="1"
+                        value="50"
+                    />
+                </section>
+            </article>
 
-                <article class="filters__screen-modal" id="screen-modal">
-                    <section>
-                        <h3>Pantalla</h3>
-                        <label for="filters__screen--inches-range"></label>
-                        <input type="range" id="filters__screen--inches-range" name="inchesRange" min="2" max="150" step="1" value="50">
-                    </section>
-                </article>
+            <article class="filters__screen-modal" id="screen-modal">
+                <section>
+                    <h3>Pantalla</h3>
+                    <label for="filters__screen--inches-range"></label>
+                    <input
+                        type="range"
+                        id="filters__screen--inches-range"
+                        name="inchesRange"
+                        min="2"
+                        max="150"
+                        step="1"
+                        value="50"
+                    />
+                </section>
+            </article>
 
+            <article class="filters__memory-modal" id="memory-modal">
+                <section>
+                    <h3 title="Pa que sea rapidito">Memoria RAM</h3>
+                    <label for="filters__memory--gb-range"></label>
+                    <input
+                        type="range"
+                        id="filters__memory--gb-range"
+                        name="gbRange"
+                        min="2"
+                        max="150"
+                        step="1"
+                        value="50"
+                    />
+                </section>
 
-                <article class="filters__memory-modal" id="memory-modal">
-                    <section>
-                        <h3 title="Pa que sea rapidito">Memoria RAM</h3>
-                        <label for="filters__memory--gb-range"></label>
-                        <input type="range" id="filters__memory--gb-range" name="gbRange" min="2" max="150" step="1" value="50">
-                    </section>
-
-                    <section>
-                        <h3>Almacenamiento</h3>
-                        <input type="text" name="" id="" list="almacenaminto-list">
-                        <datalist id="almacenaminto-list">
-                            <option value="MB"></option>
-                            <option value="GB"></option>
-                            <option value="TB"></option>
-                        </datalist>
-                        <label for="filters__memory--gb-range"></label>
-                        <input type="range" id="filters__memory--gb-range" name="gbRange" min="2" max="300" step="1" value="50">
-                    </section>
-                </article>
-            </section>
-    </section>    
+                <section>
+                    <h3>Almacenamiento</h3>
+                    <input
+                        type="text"
+                        name=""
+                        id=""
+                        list="almacenaminto-list"
+                    />
+                    <datalist id="almacenaminto-list">
+                        <option value="MB"></option>
+                        <option value="GB"></option>
+                        <option value="TB"></option>
+                    </datalist>
+                    <label for="filters__memory--gb-range"></label>
+                    <input
+                        type="range"
+                        id="filters__memory--gb-range"
+                        name="gbRange"
+                        min="2"
+                        max="300"
+                        step="1"
+                        value="50"
+                    />
+                </section>
+            </article>
+        </section>
+    </section>
     <button class="bubble header__bubble-comparation">
-        
         <span class="bubble__counter">3</span>
-        
+
         <figure class="bubble__stock">
-            <img class="bubble__stock-image" src="" alt="">
+            <img class="bubble__stock-image" src="" alt="" />
         </figure>
         <figure class="bubble__icon">
-            <img class="bubble__icon-image" src="" alt="">
+            <img class="bubble__icon-image" src="" alt="" />
         </figure>
     </button>
 </header>
 
+<script>
+    const DOMService = {
+        littenerSearchButonActive() {
+            const $searchButton = document.getElementById("button-fake-input");
+            const $filtersContainer = document.getElementById("filters-container");
+            const $searchContainer = document.getElementById("search-container");
+        
+            if (!($searchButton instanceof HTMLElement)) return;
+            if (!($filtersContainer instanceof HTMLElement)) return;
+            if (!($searchContainer instanceof HTMLElement)) return;
+
+            $searchButton.addEventListener("click", () => {
+                $searchButton.classList.add("hidden-button-fake-search");
+                $filtersContainer.classList.add("show-filters");
+                $searchContainer.classList.add("show-button-search");
+                $searchContainer.querySelector("input")?.focus();
+            });
+        },
+        ittenerSearchButonInactive() {
+            //codigo...
+        }
+    }
+
+
+
+
+    window.addEventListener("DOMContentLoaded", () => {
+        DOMService.littenerSearchButonActive()
+
+    });
+</script>
 
 <style>
     .header {
@@ -106,9 +227,8 @@ import Button from "../../button/ui/Button.component.astro"
         grid-template-rows: 100px 60px 300px;
         gap: 1rem;
         position: relative;
-        
+        align-items: center;
     }
-    
 
     .header__icon {
         grid-column: 1 / 2;
@@ -117,28 +237,65 @@ import Button from "../../button/ui/Button.component.astro"
         justify-content: center;
     }
 
-    
-
     .header__search-section {
         grid-column: 2 / 3;
-        grid-row: 1 / 2 ;
+        grid-row: 1 / 2;
         display: flex;
         align-items: center;
         justify-content: center;
-
     }
 
     .header__search-real {
         grid-column: 2 / 3;
-        grid-row: 1 / 2 ;
+        grid-row: 1 / 2;
+        background-color: transparent;
+        color: var(--color-brand--text);
+        background-color: aliceblue;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        height: 2rem;
+        border-radius: 1rem;
+        display: none;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        box-sizing: border-box;
+        flex-direction: row;
+    }
+
+    .search__serachbar-input {
+        margin: unset;
+        padding: unset;
+        line-height: 1rem;
+        width: calc(100% - 2rem);
+        background-color: transparent;
+    }
+
+    .search__serachbar-icon {
+        background-color: var(--color-action--success);
+        width: 2rem;
+        height: 2rem;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        position: relative;
+        right: -1rem;
+    }
+
+    .search__serachbar-icon img {
+        width: 50%;
+        filter: invert(1);
+    }
+
+    .button--fake-input:hover {
     }
 
     .header__bubble-comparation {
         grid-column: 3 / 4;
-        grid-row: 1 / 2 ;
+        grid-row: 1 / 2;
     }
 
-    
     .header__filters {
         grid-column: 2 / 3;
         grid-row: 3 / 4;
@@ -158,20 +315,8 @@ import Button from "../../button/ui/Button.component.astro"
     }
 
     .filters__navigation {
-    display: flex;
-    gap: 10px; /* Espacio entre los botones */
-    }
-
-    .search {
-        display: none; 
-        position: absolute; 
-        top: calc(100% + 10px);
-        left: 50%; 
-        transform: translateX(-50%);
-        padding: 1rem;
-        background-color: rgba(255, 255, 255, 0.9);
-        box-shadow: 0px 5px 10px rgba(51, 51, 51, 0.2);
-        
+        display: flex;
+        gap: 10px; /* Espacio entre los botones */
     }
 
     .search-visible {
@@ -181,6 +326,29 @@ import Button from "../../button/ui/Button.component.astro"
     .search--show {
         display: none;
     }
-    
 
+    .header__icon-image {
+        width: 170px;
+        max-width: unset;
+        margin-left: 1rem;
+    }
+
+
+
+
+
+</style>
+
+
+
+<style is:global>
+
+    .hidden-button-fake-search { 
+        display: none !important;
+    }
+
+    .show-button-search {
+        display: flex !important;
+
+    }
 </style>
