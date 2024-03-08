@@ -172,16 +172,15 @@ import Button from "../../button/ui/Button.component.astro";
             </article>
         </section>
     </section>
-    <button class="bubble header__bubble-comparation">
-        <span class="bubble__counter">3</span>
-
-        <figure class="bubble__stock">
-            <img class="bubble__stock-image" src="" alt="" />
-        </figure>
-        <figure class="bubble__icon">
-            <img class="bubble__icon-image" src="" alt="" />
-        </figure>
+    <section class="header__comparition-section">
+    <Button 
+        type="bubble-comparation"
+        id="button-bubble-comparition"
+        icon="/bubble-cart-com.svg"
+        text="3"
+        >
     </button>
+    </section>
 </header>
 
 <script>
@@ -235,6 +234,12 @@ import Button from "../../button/ui/Button.component.astro";
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+
+    .header__icon-image {
+        width: 170px;
+        max-width: unset;
+        margin-left: 1rem;
     }
 
     .header__search-section {
@@ -291,9 +296,23 @@ import Button from "../../button/ui/Button.component.astro";
     .button--fake-input:hover {
     }
 
+    .header__comparition-section{
+        justify-content: center;
+        display: flex;
+        margin-inline-end: 1rem;
+    }
+
     .header__bubble-comparation {
         grid-column: 3 / 4;
         grid-row: 1 / 2;
+    }
+
+    .search-visible {
+        display: grid;
+    }
+
+    .search--show {
+        display: none;
     }
 
     .header__filters {
@@ -316,25 +335,8 @@ import Button from "../../button/ui/Button.component.astro";
 
     .filters__navigation {
         display: flex;
-        gap: 10px; /* Espacio entre los botones */
+        gap: 10px;
     }
-
-    .search-visible {
-        display: grid;
-    }
-
-    .search--show {
-        display: none;
-    }
-
-    .header__icon-image {
-        width: 170px;
-        max-width: unset;
-        margin-left: 1rem;
-    }
-
-
-
 
 
 </style>
