@@ -172,71 +172,95 @@ import Button from "../../button/ui/Button.component.astro";
             </article>
         </section>
     </section>
-    <button class="bubble header__bubble-comparation">
-        <span class="bubble__counter">3</span>
-
-        <figure class="bubble__stock">
-            <img class="bubble__stock-image" src="" alt="" />
-        </figure>
-        <figure class="bubble__icon">
-            <img class="bubble__icon-image" src="" alt="" />
-        </figure>
-    </button>
+    <section class="header__comparition-section">
+        <Button
+            type="bubble-comparation"
+            id="button-bubble-comparition"
+            icon="/bubble-cart-com.svg"
+            text="3"
+        />
+    </section>
 </header>
 
 <script>
-  const DOMService = {
-    listenerDocumentClick(event: MouseEvent) {
-      const $filtersContainer = document.getElementById("filters-container");
-      const $searchButton = document.getElementById("button-fake-input");
-      const $searchContainer = document.getElementById("search-container");
-  
-      if (!($filtersContainer instanceof HTMLElement) || !($searchButton instanceof HTMLElement) || !($searchContainer instanceof HTMLElement)) return;
-  
-      const targetElement = event.target as HTMLElement;
-  
-      // Verifica si el clic ocurrió fuera del contenedor de filtros y si los filtros están visibles
-      if (!targetElement.closest("#filters-container") && $filtersContainer.classList.contains("show-filters")) {
-        $filtersContainer.classList.remove("show-filters");
-        $searchButton.classList.remove("hidden-button-fake-search");
-        $searchContainer.classList.remove("show-button-search");
-  
-        // Elimina el manejador de clic al documento cuando el menú de filtros está inactivo
-        document.removeEventListener("click", DOMService.listenerDocumentClick);
-      }
-    },
-  
-    listenerSearchButtonActive() {
-      const $searchButton = document.getElementById("button-fake-input");
-      const $filtersContainer = document.getElementById("filters-container");
-      const $searchContainer = document.getElementById("search-container");
-  
-      if (!($searchButton instanceof HTMLElement) || !($filtersContainer instanceof HTMLElement) || !($searchContainer instanceof HTMLElement)) return;
-  
-      $searchButton.addEventListener("click", (event) => {
-        event.stopPropagation(); // Evita que el clic llegue al documento y active listenerDocumentClick
-        $searchButton.classList.add("hidden-button-fake-search");
-        $filtersContainer.classList.add("show-filters");
-        $searchContainer.classList.add("show-button-search");
-        $searchContainer.querySelector("input")?.focus();
-  
-        // Agrega el manejador de clic al documento cuando se muestra el menú de filtros
-        document.addEventListener("click", DOMService.listenerDocumentClick);
-      });
-  
-      // Verifica el llamado a listenersSearchButtonInactive al desmontar el componente
-      window.addEventListener("beforeunload", () => {
-        document.removeEventListener("click", DOMService.listenerDocumentClick);
-      });
-    },
-  };
-  
-  window.addEventListener("DOMContentLoaded", () => {
-    DOMService.listenerSearchButtonActive();
-  });
-  </script>
-  
-  
+    const DOMService = {
+        listenerDocumentClick(event: MouseEvent) {
+            const $filtersContainer =
+                document.getElementById("filters-container");
+            const $searchButton = document.getElementById("button-fake-input");
+            const $searchContainer =
+                document.getElementById("search-container");
+
+            if (
+                !($filtersContainer instanceof HTMLElement) ||
+                !($searchButton instanceof HTMLElement) ||
+                !($searchContainer instanceof HTMLElement)
+            )
+                return;
+
+            const targetElement = event.target as HTMLElement;
+
+            // Verifica si el clic ocurrió fuera del contenedor de filtros y si los filtros están visibles
+            if (
+            !targetElement.closest("#filters-container") &&
+            $filtersContainer.classList.contains("show-filters") &&
+            !targetElement.closest("#search-container")
+        ) {
+            $filtersContainer.classList.remove("show-filters");
+            $searchButton.classList.remove("hidden-button-fake-search");
+            $searchContainer.classList.remove("show-button-search");
+
+            // Elimina el manejador de clic al documento cuando el menú de filtros está inactivo
+            document.removeEventListener(
+                "click",
+                DOMService.listenerDocumentClick,
+    );
+            }
+        },
+
+        listenerSearchButtonActive() {
+            const $searchButton = document.getElementById("button-fake-input");
+            const $filtersContainer =
+                document.getElementById("filters-container");
+            const $searchContainer =
+                document.getElementById("search-container");
+
+            if (
+                !($searchButton instanceof HTMLElement) ||
+                !($filtersContainer instanceof HTMLElement) ||
+                !($searchContainer instanceof HTMLElement)
+            )
+                return;
+
+            $searchButton.addEventListener("click", (event) => {
+                event.stopPropagation(); // Evita que el clic llegue al documento y active listenerDocumentClick
+                $searchButton.classList.add("hidden-button-fake-search");
+                $filtersContainer.classList.add("show-filters");
+                $searchContainer.classList.add("show-button-search");
+                $searchContainer.querySelector("input")?.focus();
+
+                // Agrega el manejador de clic al documento cuando se muestra el menú de filtros
+                document.addEventListener(
+                    "click",
+                    DOMService.listenerDocumentClick,
+                );
+            });
+
+            // Verifica el llamado a listenersSearchButtonInactive al desmontar el componente
+            window.addEventListener("beforeunload", () => {
+                document.removeEventListener(
+                    "click",
+                    DOMService.listenerDocumentClick,
+                );
+            });
+        },
+    };
+
+    window.addEventListener("DOMContentLoaded", () => {
+        DOMService.listenerSearchButtonActive();
+    });
+</script>
+
 <style>
     .header {
         background-color: var(--color-brand--secondary);
@@ -323,22 +347,26 @@ import Button from "../../button/ui/Button.component.astro";
     }
 
     #filters-container {
+        display: none;
+    }
+
+    .filters__navigation {
         background-color: white;
         border: 1px solid #ddd;
         border-radius: 8px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         position: fixed;
-        left: 50%;
-        top: 60px; /* Ajusta la posición según la altura de tu barra de búsqueda */
+        left: 0%;
+        top: 80px; /* Ajusta la posición según la altura de tu barra de búsqueda */
         right: 10px; /* Ajusta la posición según la posición deseada */
-        padding: 15px;
+        padding: 18px;
         display: none;
         z-index: 2; /* Asegura que esté por encima de otros elementos */
         width: 80%; /* Ajusta el ancho según tus necesidades */
-        max-width: 400px; /* Asegura que no sea más ancho que la pantalla */
+        max-width: 800px; /* Asegura que no sea más ancho que la pantalla */
         box-sizing: border-box;
-        
-  }
+        justify-self: center;
+    }
 
     #filters-container.show-filters {
         display: block;
@@ -347,8 +375,9 @@ import Button from "../../button/ui/Button.component.astro";
     .filters__modal {
         grid-column: 2 / 3;
         grid-row: 3 / 4;
-        display: grid;
-       
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .filters__modal article {
@@ -364,7 +393,7 @@ import Button from "../../button/ui/Button.component.astro";
 
     .filters__modal input[type="range"] {
         width: 100%;
-  }
+    }
 
     .filters__navigation {
         display: flex;
@@ -384,23 +413,14 @@ import Button from "../../button/ui/Button.component.astro";
         max-width: unset;
         margin-left: 1rem;
     }
-
-
-
-
-
 </style>
 
-
-
 <style is:global>
-
-    .hidden-button-fake-search { 
+    .hidden-button-fake-search {
         display: none !important;
     }
 
     .show-button-search {
         display: flex !important;
-
     }
 </style>

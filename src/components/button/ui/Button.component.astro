@@ -1,9 +1,9 @@
 ---
 interface Props {
-    text: string;
+    text?: string;
     icon: string;
     id: string;
-    type: "fake-input" | "filters-navigation";
+    type: "fake-input" | "filters-navigation" | "bubble-comparation";
     detail?: string;
 }
 
@@ -27,7 +27,10 @@ const { text, id, icon, detail, type } = Astro.props;
 
 {
     type === "filters-navigation" && (
-        <button id={id} type="button" class="button button--filters-navigation">
+        <button 
+        id={id} 
+        type="button" 
+        class="button button--filters-navigation">
             <figure class="button__icon">
                 <img class="button__icon-image" src={icon} alt={text} />
             </figure>
@@ -37,6 +40,23 @@ const { text, id, icon, detail, type } = Astro.props;
             )}
         </button>
     )
+}
+
+{
+    type === "bubble-comparation" && (
+        <button 
+        id={id}
+        type="button"
+        class="button button--bubble-comparation header__comparition-section"
+        >
+            <span class="bubble__counter">{text}</span>
+            <figure class="button__icon-bubble">
+                <img class="button__icon-bubble-image" src={icon} alt=""/>
+            </figure>
+        </button>
+
+    )
+
 }
 
 
@@ -85,5 +105,50 @@ const { text, id, icon, detail, type } = Astro.props;
 
     .button--fake-input:hover{
         width: 100%;
+    }
+
+
+    .button--bubble-comparation {
+        background-color: var(--color-action--success);
+        border: none;
+        cursor: pointer;
+        position: relative;
+        width: 3rem;
+        height: 3rem;
+        display: flex;
+        flex-direction: column;
+        transition: all 100ms;
+        border-radius: 50%;
+        align-items: center;
+        justify-content: center;
+        justify-self: flex-end;
+    }
+
+    .button__icon-bubble {
+        width: 60%;
+        height: 60%;
+        display: grid;
+        position: relative;
+        border: none;
+    }
+
+    .bubble__counter{
+        position: absolute;
+        background-color: red;
+        color: white;
+        top:-5px;
+        left: -5px;
+        border-radius: 50%;
+        width: 1.2rem;
+        height: 1.2rem;
+        text-align: center;
+        align-items: center;
+        line-height: 1.2rem;
+        font-size: 0.9rem;
+    }
+
+    .button__icon-bubble-image{
+        width: 100%;
+        height: 100%;
     }
 </style>
