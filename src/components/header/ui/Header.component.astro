@@ -3,13 +3,15 @@ import Button from "../../button/ui/Button.component.astro";
 ---
 
 <header class="header">
-    <figure class="header__icon">
-        <img
-            class="header__icon-image"
-            src="/images_Enter/logoEnter.png"
-            alt=""
-        />
-    </figure>
+    <section class="header__logo">
+        <figure class="header__logo-icon">
+            <img
+                class="header__icon-image"
+                src="/images_Enter/logoEnter.png"
+                alt=""
+            />
+        </figure>
+    </section>
     <section class="header__search-section">
         <Button
             type="fake-input"
@@ -38,6 +40,7 @@ import Button from "../../button/ui/Button.component.astro";
     </section>
     <section class="filters header__filters" id="filters-container">
         <nav class="filters__navigation">
+            <article class="filters__navigation-contain">
             <Button
                 type="filters-navigation"
                 id="button-filters-navigation-camara"
@@ -45,6 +48,8 @@ import Button from "../../button/ui/Button.component.astro";
                 text="Camara"
                 detail="Selfie 100 MPX / Main Camara 200 MPX"
             />
+        </article>
+        <article class="filters__navigation-contain">
             <Button
                 type="filters-navigation"
                 id="button-filters-navigation-battery"
@@ -52,6 +57,8 @@ import Button from "../../button/ui/Button.component.astro";
                 text="Bateria"
                 detail="1000 MHP"
             />
+        </article>
+        <article class="filters__navigation-contain">
             <Button
                 type="filters-navigation"
                 id="button-filters-navigation-screen"
@@ -59,6 +66,8 @@ import Button from "../../button/ui/Button.component.astro";
                 text="Pantalla"
                 detail="7 Pulgadas"
             />
+        </article>
+        <article class="filters__navigation-contain">
             <Button
                 type="filters-navigation"
                 id="button-filters-navigation-memory"
@@ -66,6 +75,7 @@ import Button from "../../button/ui/Button.component.astro";
                 text="Memoria"
                 detail="8 RAM / 256 GB ALMACENAMIENTO"
             />
+        </article>
         </nav>
         <section class="filters__modal">
             <article class="filters__camara-modal" id="camara-modal">
@@ -275,7 +285,7 @@ import Button from "../../button/ui/Button.component.astro";
         align-items: center;
     }
 
-    .header__icon {
+    .header__logo-icon {
         grid-column: 1 / 2;
         display: flex;
         align-items: center;
@@ -334,6 +344,7 @@ import Button from "../../button/ui/Button.component.astro";
     }
 
     .button--fake-input:hover {
+        width: 70%;
     }
 
     .header__bubble-comparation {
@@ -422,5 +433,5 @@ import Button from "../../button/ui/Button.component.astro";
 
     .show-button-search {
         display: flex !important;
-    }
+    } 
 </style>

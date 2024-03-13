@@ -1,0 +1,300 @@
+---
+function changeImage(src: string): void {
+    throw new Error("Function not implemented.");
+}
+
+import ColorNavButton from "../../button/ui/ColorButton.astro";
+interface Props {
+    title: string;
+    cameraResolution: string;
+    internalMemory: string;
+    ramMemory: string;
+    batteryCapacity: string;
+    colors: { color: string; src: string }[];
+    src: string;
+}
+
+const {
+    title,
+    cameraResolution,
+    internalMemory,
+    ramMemory,
+    batteryCapacity,
+    colors,
+    src,
+} = Astro.props;
+---
+
+<li class="card__contain">
+    <article class="card" id={title.replace(/\s+/g, "-").toLowerCase()}>
+        <div class="card__left">
+            <picture class="card__picture" id="phonePicture">
+                <img
+                    class="card__picture-img"
+                    src={src}
+                    alt="Imagen del movil"
+                />
+            </picture>
+        </div>
+            <footer class="card__footer">
+                <button class="card__button">Comparar</button>
+            </footer>
+        <main class="card__contain-main">
+            <h2 class="card__title">{title}</h2>
+            <ul class="card__tech-list">
+                <li class="card__tech-list-item">
+                    <figure class="card__item-icon">
+                        <img
+                            class="card__item-icon-img"
+                            src="public/icons/icons_items/icon-camera.svg"
+                            alt="Icono de camara"
+                        />
+                    </figure>
+                    <div class="card__item-info">
+                        <span class="card__item-title"
+                            >Resolución de Cámara Principal</span
+                        >
+                        <span class="card__item-value">{cameraResolution}</span>
+                    </div>
+                </li>
+                <li class="card__tech-list-item">
+                    <figure class="card__item-icon">
+                        <img
+                            class="card__item-icon-img"
+                            src="public/icons/icons_items/icon-memory-internal.svg"
+                            alt="Icono de memoria interna"
+                        />
+                    </figure>
+                    <div class="card__item-info">
+                        <span class="card__item-title">Memoria interna</span>
+                        <span class="card__item-value">{internalMemory}</span>
+                    </div>
+                </li>
+                <li class="card__tech-list-item">
+                    <figure class="card__item-icon">
+                        <img
+                            class="card__item-icon-img"
+                            src="public/icons/icons_items/icon-memory-ram.svg"
+                            alt="Icono de memoria ram"
+                        />
+                    </figure>
+                    <div class="card__item-info">
+                        <span class="card__item-title">Memoria RAM</span>
+                        <span class="card__item-value">{ramMemory}</span>
+                    </div>
+                </li>
+                <li class="card__tech-list-item">
+                    <figure class="card__item-icon">
+                        <img
+                            class="card__item-icon-img"
+                            src="public/icons/icons_items/icon-battery.svg"
+                            alt="Icono de bateria"
+                        />
+                    </figure>
+                    <div class="card__item-info">
+                        <span class="card__item-title"
+                            >Capacidad de la Bateria</span
+                        >
+                        <span class="card__item-value">{batteryCapacity}</span>
+                    </div>
+                </li>
+            </ul>
+        </main>
+            <nav class="card__nav">
+                {
+                    colors &&
+                        colors.map((colorItem) => (
+                            <ColorNavButton
+                                backgroundColor={colorItem.color}
+                                dataImageSrc={colorItem.src}
+                                onClick={() => changeImage(colorItem.src)}
+                                cardTitle={title}
+                            />
+                        ))
+                }
+            </nav>
+    </article>
+</li>
+
+<script>
+    export function changeImage(imageSrc: string, cardId: string) {
+        const pictureElement = document.querySelector(`#${cardId} .card__picture`) as HTMLElement;
+        const imageElement = pictureElement.querySelector('.card__picture-img') as HTMLImageElement;
+        if (imageElement) {
+            imageElement.style.opacity = "0";
+            setTimeout(() => {
+                imageElement.src = imageSrc; 
+                imageElement.style.opacity = "1";
+            }, 300); 
+        }
+        if (pictureElement) {
+            pictureElement.style.boxShadow = "none";
+            setTimeout(() => {
+                pictureElement.style.boxShadow = "-12px 12px 20px 0px rgba(0, 0, 0, 0.48)";
+            }, 300); 
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const colorButtons = document.querySelectorAll(".card__nav-button") as NodeListOf<HTMLElement>;
+        colorButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+                const imageSrc = button.dataset.imageSrc;
+                const cardId = button.dataset.cardId;
+                if (imageSrc && cardId) {
+                    changeImage(imageSrc, cardId);
+                }
+            });
+        });
+    });
+
+</script>
+
+
+
+<style>
+
+    .card__contain {
+        display: inline-block;
+        scroll-snap-align: center;
+        margin-right: 10px;
+        width: 100%
+    }
+
+    .card {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 80% 15%;
+        background-color: #ffffff;
+        padding: 20px;
+        gap: 1rem;
+    }
+
+    .card__left {
+        display: grid;
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+        align-content: center;
+        justify-content: center;
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+
+    .card__picture {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        border-radius: 9% 0 0 9% ;
+        background-color: transparent;
+        transition: box-shadow 300ms ease 0s;
+        box-shadow: -27px 18px 20px 0px rgba(0, 0, 0, 0.48);
+    }
+
+    .card__picture-img {
+        width: 100%;
+        height: auto;
+        transition: opacity 500ms ease 0s;
+        background-color: transparent;        
+    }
+
+    .card__footer {
+        display: grid;
+        grid-row: 2 / 3;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .card__button {
+        padding: 1rem 2rem;
+        background-color: var(--color-action--log);
+        color: #ffffff;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        font-size: 1rem;
+        display: inline-block;
+        text-align: center;
+        box-shadow: -12px 12px 20px 0px rgba(0, 0, 0, 0.48);
+    }
+
+
+
+    .card__contain-main {
+        display: grid;
+        grid-row: 1 / 2;
+        gap: 1rem;
+        width: 100%;
+        align-items: center;
+    }
+
+    .card__title {
+        font-size: 3rem;
+        font-weight: bold;
+        text-wrap: wrap;
+    }
+
+
+
+    .card__tech-list {
+        display: flex;
+        height: 100%;
+        align-items: flex-start;
+        justify-content: space-evenly;
+        flex-direction: column;
+    }
+
+    .card__tech-list-item {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .card__item-icon {
+        margin-right: 10px;
+        width: 2.5rem;
+        height: 2.5em;
+    }
+
+
+    .card__item-info {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .card__item-title {
+        font-weight: bold;
+        margin-bottom: 5px;
+        text-wrap: wrap;
+    }
+
+    .card__item-value {
+        font-size: 0.9rem;
+    }
+
+
+    .card__item-icon-img {
+        width: 100%;
+        height: 100%;
+    }
+
+
+
+    .card__nav {
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    @media (max-width: 768px) {
+    .card__title {
+        font-size: 2rem; /* Ajusta el tamaño de la fuente para pantallas más pequeñas */
+    }
+}
+
+@media (max-width: 576px) {
+    .card__title {
+        font-size: 2rem; /* Ajusta el tamaño de la fuente para pantallas aún más pequeñas */
+    }
+}
+</style>
