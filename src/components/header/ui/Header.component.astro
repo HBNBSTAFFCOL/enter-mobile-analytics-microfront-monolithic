@@ -3,13 +3,15 @@ import Button from "../../button/ui/Button.component.astro";
 ---
 
 <header class="header">
-    <figure class="header__icon">
-        <img
-            class="header__icon-image"
-            src="/images_Enter/logoEnter.png"
-            alt=""
-        />
-    </figure>
+    <section class="header__logo">
+        <figure class="header__logo-icon">
+            <img
+                class="header__icon-image"
+                src="/images_Enter/logoEnter.png"
+                alt=""
+            />
+        </figure>
+    </section>
     <section class="header__search-section">
         <Button
             type="fake-input"
@@ -38,7 +40,7 @@ import Button from "../../button/ui/Button.component.astro";
     </section>
     <section class="filters header__filters" id="filters-container">
         <nav class="filters__navigation">
-            <article class="filter_vavigation-container">
+            <article class="filter_navigation-container">
                 <Button
                     type="filters-navigation"
                     id="button-filters-navigation-camara"
@@ -47,7 +49,7 @@ import Button from "../../button/ui/Button.component.astro";
                     detail="Selfie 100 MPX / Main Camara 200 MPX"
                 />
             </article>
-            <article class="filter_vavigation-container">
+            <article class="filter_navigation-container">
                 <Button
                     type="filters-navigation"
                     id="button-filters-navigation-battery"
@@ -56,7 +58,7 @@ import Button from "../../button/ui/Button.component.astro";
                     detail="1000 MHP"
                 />
             </article>
-            <article class="filter_vavigation-container">
+            <article class="filter_navigation-container">
                 <Button
                     type="filters-navigation"
                     id="button-filters-navigation-screen"
@@ -65,7 +67,7 @@ import Button from "../../button/ui/Button.component.astro";
                     detail="7 Pulgadas"
                 />
             </article>
-            <article class="filter_vavigation-container">
+            <article class="filter_navigation-container">
                 <Button
                     type="filters-navigation"
                     id="button-filters-navigation-memory"
@@ -317,7 +319,7 @@ import Button from "../../button/ui/Button.component.astro";
         align-items: center;
     }
 
-    .header__icon {
+    .header__logo-icon {
         grid-column: 1 / 2;
         display: flex;
         align-items: center;
@@ -376,6 +378,7 @@ import Button from "../../button/ui/Button.component.astro";
     }
 
     .button--fake-input:hover {
+        width: 70%;
     }
 
     .header__bubble-comparation {
@@ -524,7 +527,7 @@ import Button from "../../button/ui/Button.component.astro";
         display: grid !important;
     }
 
-    .filter_vavigation-container {
+    .filter_navigation-container {
         grid-template-columns: 50% 50%;
         display: flex;
         flex-direction: row;
