@@ -34,7 +34,9 @@ const { text, id, icon, detail, type } = Astro.props;
             <figure class="button__icon-nav">
                 <img class="button__icon-image-nav" src={icon} alt={text} />
             </figure>
-            <span class="button__text">{text}</span>
+            {typeof text !== "undefined" && (
+                <span class="button__text">{text}</span>
+            )}
             {typeof detail !== "undefined" && (
                 <small class="button__details">{detail}</small>
             )}
@@ -164,6 +166,70 @@ const { text, id, icon, detail, type } = Astro.props;
 
     .button__icon-image-nav{
 
+    }
+
+
+    .button--filters-navigation {
+        display: grid;
+        grid-template-columns: 2.1rem 1fr;
+        grid-template-rows: 1fr 1fr 16px 1fr;
+        height: 100%;
+        width: 100%;
+        grid-template-areas: 
+            "figure _"
+            "figure title"
+            "figure detail"
+            "figure __"
+            ;
+        justify-content: flex-start;
+        align-items: center;
+        gap: .3rem 1rem;
+    }
+
+    .button--filters-navigation .button__icon-nav {
+        grid-area: figure;
+        text-align: start;
+        transform: translateX(-1.5rem);
+        opacity: 0;
+        transition: all 200ms;
+    }
+
+    .button--filters-navigation .button__text {
+        grid-area: title;
+        opacity: 0.8;
+        transform: translateX(-.3rem);
+        transition: all 200ms;
+        text-align: start;
+    }
+    .button--filters-navigation .button__details {
+        grid-area: detail;
+        text-wrap: nowrap;
+        opacity: 0.8;
+        width: 100%;
+        transform: translateX(-.3rem);
+        text-align: start;
+        overflow-x:hidden;
+        transition: all 200ms;
+        text-overflow: ellipsis;
+    }
+
+    .button--filters-navigation:hover {
+        color: var(--color-brand--secondary);
+    }
+
+
+    .button--filters-navigation:hover .button__icon-nav {
+        transform: translateX(-1rem);
+        opacity: 1;
+    }
+    
+    .button--filters-navigation:hover .button__text {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    
+    .button--filters-navigation:hover .button__details {
+        transform: translateX(0);
     }
     
 </style>
