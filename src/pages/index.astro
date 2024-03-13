@@ -1,15 +1,62 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/header/ui/Header.component.astro";
+import Button from "../components/button/ui/Button.component.astro";
 ---
 
 <Layout title="ENTER.CO MOBILE">
 	<main>
 		<Header />
-		<!--
-			<MainFilters/>
-			<MobileStock/>
-		 -->
+		
+		<nav class="brands_filters">
+
+
+            <Button
+                type="filters-navigation"
+                id="button-filters-navigation-camara"
+                icon=""
+                text="Camara"
+                detail="Selfie 100 MPX / Main Camara 200 MPX"
+            />
+            <Button
+                type="filters-navigation"
+                id="button-filters-navigation-battery"
+                icon=""
+                text="Bateria"
+                detail="1000 MHP"
+            />
+            <Button
+                type="filters-navigation"
+                id="button-filters-navigation-screen"
+                icon=""
+                text="Pantalla"
+                detail="7 Pulgadas"
+            />
+            <Button
+                type="filters-navigation"
+                id="button-filters-navigation-memory"
+                icon=""
+                text="Memoria"
+                detail="8 RAM / 256 GB ALMACENAMIENTO"
+            />
+        </nav>
+		
+		<article class="filters__battery-modal" id="battery-modal">
+			<section>
+				<h3>Bateria</h3>
+				<label for="filters__battery--mAh-range"></label>
+				<input
+					type="range"
+					id="filters__battery--mAh-range"
+					name="mAhRange"
+					min="2"
+					max="150"
+					step="1"
+					value="50"
+				/>
+			</section>
+		</article>
+		 
 	</main>
 </Layout>
 

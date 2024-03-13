@@ -31,8 +31,8 @@ const { text, id, icon, detail, type } = Astro.props;
         id={id} 
         type="button" 
         class="button button--filters-navigation">
-            <figure class="button__icon">
-                <img class="button__icon-image" src={icon} alt={text} />
+            <figure class="button__icon-nav">
+                <img class="button__icon-image-nav" src={icon} alt={text} />
             </figure>
             <span class="button__text">{text}</span>
             {typeof detail !== "undefined" && (
@@ -151,4 +151,19 @@ const { text, id, icon, detail, type } = Astro.props;
         width: 100%;
         height: 100%;
     }
+
+    .button__icon-nav{
+        background-color: transparent;
+        width: 2rem;
+        height: 2rem;
+        display: grid;
+        place-items: center;
+        position: relative;
+        right: -1rem;
+    }
+
+    .button__icon-image-nav{
+
+    }
+    
 </style>
