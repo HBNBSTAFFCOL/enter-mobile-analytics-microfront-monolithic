@@ -5,66 +5,41 @@ import Button from "../components/button/ui/Button.component.astro";
 ---
 
 <Layout title="ENTER.CO MOBILE">
-	<main>
-		<Header />
-		
-		<nav class="brands_filters">
+    <main>
+        <Header />
 
-
+        <nav class="brands_container">
             <Button
-                type="filters-navigation"
-                id="button-filters-navigation-camara"
-                icon=""
-                text="Camara"
-                detail="Selfie 100 MPX / Main Camara 200 MPX"
-            />
-            <Button
-                type="filters-navigation"
-                id="button-filters-navigation-battery"
-                icon=""
-                text="Bateria"
-                detail="1000 MHP"
-            />
-            <Button
-                type="filters-navigation"
-                id="button-filters-navigation-screen"
-                icon=""
-                text="Pantalla"
-                detail="7 Pulgadas"
-            />
-            <Button
-                type="filters-navigation"
-                id="button-filters-navigation-memory"
-                icon=""
-                text="Memoria"
-                detail="8 RAM / 256 GB ALMACENAMIENTO"
+                type="brands-navigation"
+                id="button-brands-navigation-Apple"
+                icon="public/icons/icon-Apple.svg"
             />
         </nav>
-		
-		<article class="filters__battery-modal" id="battery-modal">
-			<section>
-				<h3>Bateria</h3>
-				<label for="filters__battery--mAh-range"></label>
-				<input
-					type="range"
-					id="filters__battery--mAh-range"
-					name="mAhRange"
-					min="2"
-					max="150"
-					step="1"
-					value="50"
-				/>
-			</section>
-		</article>
-		 
-	</main>
+
+        <div class="price-filter-container">
+            <input
+                type="number"
+                id="min-price"
+                name="min-price"
+                placeholder="Mínimo"
+            />
+
+            <input
+                type="number"
+                id="max-price"
+                name="max-price"
+                placeholder="Máximo"
+            />
+            <button type="button" class="price-filter-button">Aplicar</button>
+        </div>
+    </main>
 </Layout>
 
 <style>
-	main {
-		margin: auto;
-		padding: unset;
-		width: unset;
-		max-width: unset;
-	}
+    main {
+        margin: auto;
+        padding: unset;
+        width: unset;
+        max-width: unset;
+    }
 </style>

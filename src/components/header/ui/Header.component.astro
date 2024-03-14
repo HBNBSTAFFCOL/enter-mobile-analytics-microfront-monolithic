@@ -82,7 +82,7 @@ import Button from "../../button/ui/Button.component.astro";
                     <label for="filters__camara--mpx-range"></label>
                     <input
                         type="range"
-                        id="filters__camara--mpx-range"
+                        id="filters__camara--mpx-range" 
                         name="mpxRange"
                         min="2"
                         max="150"
@@ -122,7 +122,7 @@ import Button from "../../button/ui/Button.component.astro";
                 </section>
             </article>
 
-            <article class="filters__screen-modal" id="screen-modal">
+            <article class="filters__screen-modal" id="screen-modal" data-for="button-filters-navigation-screen">
                 <section>
                     <h3>Pantalla</h3>
                     <label for="filters__screen--inches-range"></label>
@@ -138,7 +138,7 @@ import Button from "../../button/ui/Button.component.astro";
                 </section>
             </article>
 
-            <article class="filters__memory-modal" id="memory-modal">
+            <article class="filters__memory-modal" id="memory-modal" data-for="button-filters-navigation-memory">
                 <section>
                     <h3 title="Pa que sea rapidito">Memoria RAM</h3>
                     <label for="filters__memory--gb-range"></label>
@@ -509,9 +509,6 @@ import Button from "../../button/ui/Button.component.astro";
         max-width: unset;
         margin-left: 1rem;
     }
-</style>
-
-<style is:global>
     .hidden-button-fake-search {
         display: none !important;
     }
@@ -531,5 +528,11 @@ import Button from "../../button/ui/Button.component.astro";
         justify-content: center;
         align-items: center;
         height: 80px;
+    }
+
+    @media screen (max-width: 835px) {
+        .filters__modal {
+            margin-block-start: 30rem!important;
+        }
     }
 </style>

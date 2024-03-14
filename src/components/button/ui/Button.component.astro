@@ -3,7 +3,11 @@ interface Props {
     text?: string;
     icon: string;
     id: string;
-    type: "fake-input" | "filters-navigation" | "bubble-comparation";
+    type:
+        | "fake-input"
+        | "filters-navigation"
+        | "bubble-comparation"
+        | "brands-navigation";
     detail?: string;
 }
 
@@ -27,10 +31,7 @@ const { text, id, icon, detail, type } = Astro.props;
 
 {
     type === "filters-navigation" && (
-        <button 
-        id={id} 
-        type="button" 
-        class="button button--filters-navigation">
+        <button id={id} type="button" class="button button--filters-navigation">
             <figure class="button__icon-nav">
                 <img class="button__icon-image-nav" src={icon} alt={text} />
             </figure>
@@ -46,26 +47,31 @@ const { text, id, icon, detail, type } = Astro.props;
 
 {
     type === "bubble-comparation" && (
-        <button 
-        id={id}
-        type="button"
-        class="button button--bubble-comparation header__comparition-section"
+        <button
+            id={id}
+            type="button"
+            class="button button--bubble-comparation header__comparition-section"
         >
             <span class="bubble__counter">{text}</span>
             <figure class="button__icon-bubble">
-                <img class="button__icon-bubble-image" src={icon} alt=""/>
+                <img class="button__icon-bubble-image" src={icon} alt="" />
             </figure>
         </button>
-
     )
-
 }
 
-
-
+{
+    type === "brands-navigation" && (
+        <button id={id} type="button" class="button button--brands-navigation">
+            <figure class="button__icon-nav">
+                <img class="button__icon-image-nav" src={icon} alt={text} />
+            </figure>
+        </button>
+    )
+}
 
 <style>
-    .button--fake-input{
+    .button--fake-input {
         background-color: transparent;
         color: var(--color-brand--text);
         background-color: aliceblue;
@@ -105,10 +111,9 @@ const { text, id, icon, detail, type } = Astro.props;
         filter: invert(1);
     }
 
-    .button--fake-input:hover{
+    .button--fake-input:hover {
         width: 100%;
     }
-
 
     .button--bubble-comparation {
         background-color: var(--color-action--success);
@@ -134,11 +139,11 @@ const { text, id, icon, detail, type } = Astro.props;
         border: none;
     }
 
-    .bubble__counter{
+    .bubble__counter {
         position: absolute;
         background-color: red;
         color: white;
-        top:-5px;
+        top: -5px;
         left: -5px;
         border-radius: 50%;
         width: 1.2rem;
@@ -149,12 +154,12 @@ const { text, id, icon, detail, type } = Astro.props;
         font-size: 0.9rem;
     }
 
-    .button__icon-bubble-image{
+    .button__icon-bubble-image {
         width: 100%;
         height: 100%;
     }
 
-    .button__icon-nav{
+    .button__icon-nav {
         background-color: transparent;
         width: 2rem;
         height: 2rem;
@@ -164,10 +169,8 @@ const { text, id, icon, detail, type } = Astro.props;
         right: -1rem;
     }
 
-    .button__icon-image-nav{
-
+    .button__icon-image-nav {
     }
-
 
     .button--filters-navigation {
         display: grid;
@@ -175,15 +178,14 @@ const { text, id, icon, detail, type } = Astro.props;
         grid-template-rows: 1fr 1fr 16px 1fr;
         height: 100%;
         width: 100%;
-        grid-template-areas: 
+        grid-template-areas:
             "figure _"
             "figure title"
             "figure detail"
-            "figure __"
-            ;
+            "figure __";
         justify-content: flex-start;
         align-items: center;
-        gap: .3rem 1rem;
+        gap: 0.3rem 1rem;
     }
 
     .button--filters-navigation .button__icon-nav {
@@ -197,7 +199,7 @@ const { text, id, icon, detail, type } = Astro.props;
     .button--filters-navigation .button__text {
         grid-area: title;
         opacity: 0.8;
-        transform: translateX(-.3rem);
+        transform: translateX(-0.3rem);
         transition: all 200ms;
         text-align: start;
     }
@@ -206,9 +208,9 @@ const { text, id, icon, detail, type } = Astro.props;
         text-wrap: nowrap;
         opacity: 0.8;
         width: 100%;
-        transform: translateX(-.3rem);
+        transform: translateX(-0.3rem);
         text-align: start;
-        overflow-x:hidden;
+        overflow-x: hidden;
         transition: all 200ms;
         text-overflow: ellipsis;
     }
@@ -217,19 +219,45 @@ const { text, id, icon, detail, type } = Astro.props;
         color: var(--color-brand--secondary);
     }
 
-
     .button--filters-navigation:hover .button__icon-nav {
         transform: translateX(-1rem);
         opacity: 1;
     }
-    
+
     .button--filters-navigation:hover .button__text {
         transform: translateX(0);
         opacity: 1;
     }
-    
+
     .button--filters-navigation:hover .button__details {
         transform: translateX(0);
     }
-    
+
+    .button--brands-navigation {
+        border: none;
+        background: none;
+        padding: 0;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        transition:
+            background-color 0.3s,
+            transform 0.3s;
+    }
+
+    .button__icon-nav {
+        width: 80%; 
+        height: 80%;
+    }
+
+    .button__icon-image-nav {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        border-radius: 50%;
+    }
 </style>
