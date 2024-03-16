@@ -1,5 +1,6 @@
 ---
 import Button from "../../button/ui/Button.component.astro";
+import Range from "../../range/ui/Range.component.astro";
 ---
 
 <header class="header">
@@ -78,34 +79,10 @@ import Button from "../../button/ui/Button.component.astro";
             </article>
         </nav>
         <section class="filters__modal">
+            
             <article class="filters__camara-modal" id="camara-modal" data-for="button-filters-navigation-camara">
-                <section>
-                    <h3>Selfie MPX Range</h3>
-                    <label for="filters__camara--mpx-range"></label>
-                    <input
-                        type="range"
-                        id="filters__camara--mpx-range"
-                        name="mpxRange"
-                        min="2"
-                        max="150"
-                        step="1"
-                        value="50"
-                    />
-                </section>
-
-                <section>
-                    <h3>Principal MPX Range</h3>
-                    <label for="filters__camara--mpx-range"></label>
-                    <input
-                        type="range"
-                        id="filters__camara--mpx-range"
-                        name="mpxRange"
-                        min="2"
-                        max="300"
-                        step="1"
-                        value="50"
-                    />
-                </section>
+                <Range name="mpxRangeSelf" title="Selfie MPX Range" unit="MP" start={8} step={4} type="single" end={150} initial={60} id="filters__camara-back--mpx-range" />
+                <Range name="mpxRangePrimary" title="Principal MPX Range" unit="MP" start={8} step={4} type="single" end={150} initial={60} id="filters__camara-main--mpx-range" />
             </article>
 
             <article class="filters__battery-modal" id="battery-modal" data-for="button-filters-navigation-battery">
@@ -124,7 +101,7 @@ import Button from "../../button/ui/Button.component.astro";
                 </section>
             </article>
 
-            <article class="filters__screen-modal" id="screen-modal">
+            <article class="filters__screen-modal" id="screen-modal" data-for="button-filters-navigation-screen">
                 <section>
                     <h3>Pantalla</h3>
                     <label for="filters__screen--inches-range"></label>
@@ -140,7 +117,7 @@ import Button from "../../button/ui/Button.component.astro";
                 </section>
             </article>
 
-            <article class="filters__memory-modal" id="memory-modal">
+            <article class="filters__memory-modal" id="memory-modal" data-for="button-filters-navigation-memory">
                 <section>
                     <h3 title="Pa que sea rapidito">Memoria RAM</h3>
                     <label for="filters__memory--gb-range"></label>
@@ -287,11 +264,42 @@ import Button from "../../button/ui/Button.component.astro";
             // Verifica el llamado a listenersSearchButtonInactive al desmontar el componente
             window.addEventListener("beforeunload", () => {
                 document.removeEventListener(
-                    "click",
+                    "mouseenter",
                     DOMService.listenerDocumentClick,
                 );
             });
         },
+
+
+        rangeUpdate() {
+            const rages = Array.from(document.querySelectorAll(".range__container"));
+
+            rages.forEach(($element) => {
+                const $label = $element.querySelector("label");
+                if (!$label) return;
+                const id = $label.getAttribute("for") ?? ""
+                
+                const $input = $element.querySelector(`input#${id}`) as HTMLInputElement;
+                const $i = $label.querySelector("i");
+                if (!$input || !$i) return;
+
+                const { step, end, start } = $label.dataset;
+
+                const less =  Number(start) * 100 /  Number(end);
+                    const position =  Number($input.value) * 100 /  Number(end);
+                    $label.style.setProperty("--value", `${position - less}%`);
+
+                $input.addEventListener("mousemove", () => {
+
+                    const less =  Number(start) * 100 /  Number(end);
+                    const position =  Number($input.value) * 100 /  Number(end);
+                    $label.style.setProperty("--value", `${position - less}%`);
+                    $i.textContent = `${$input.value}${$label.dataset.unit}`;
+
+                })
+
+            })
+        }
     };
 
 
@@ -302,6 +310,7 @@ import Button from "../../button/ui/Button.component.astro";
     window.addEventListener("DOMContentLoaded", () => {
         DOMService.listenerSearchButtonActive();
         DOMService.listenerFilterShowButton();
+        DOMService.rangeUpdate();
     });
 </script>
 
@@ -512,9 +521,6 @@ import Button from "../../button/ui/Button.component.astro";
         max-width: unset;
         margin-left: 1rem;
     }
-</style>
-
-<style is:global>
     .hidden-button-fake-search {
         display: none !important;
     }
@@ -535,4 +541,14 @@ import Button from "../../button/ui/Button.component.astro";
         align-items: center;
         height: 80px;
     }
+
+    @media screen (max-width: 835px) {
+        .filters__modal {
+            margin-block-start: 30rem!important;
+        }
+    }
+.header__search-real{
+    z-index: 10;
+}
+    
 </style>

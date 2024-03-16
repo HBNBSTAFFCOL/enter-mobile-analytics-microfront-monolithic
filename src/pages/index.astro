@@ -8,38 +8,40 @@ import Card from "../components/card-detail/ui/Card.component.astro";
 <Layout title="ENTER.CO MOBILE">
 	<main>
 		<Header />
-
+		
 		<nav class="brands_filters">
-			<Button
-				type="filters-navigation"
-				id="button-filters-navigation-camara"
-				icon=""
-				text="Camara"
-				detail="Selfie 100 MPX / Main Camara 200 MPX"
-			/>
-			<Button
-				type="filters-navigation"
-				id="button-filters-navigation-battery"
-				icon=""
-				text="Bateria"
-				detail="1000 MHP"
-			/>
-			<Button
-				type="filters-navigation"
-				id="button-filters-navigation-screen"
-				icon=""
-				text="Pantalla"
-				detail="7 Pulgadas"
-			/>
-			<Button
-				type="filters-navigation"
-				id="button-filters-navigation-memory"
-				icon=""
-				text="Memoria"
-				detail="8 RAM / 256 GB ALMACENAMIENTO"
-			/>
-		</nav>
 
+
+            <Button
+                type="filters-navigation"
+                id="button-filters-navigation-camara"
+                icon=""
+                text="Camara"
+                detail="Selfie 100 MPX / Main Camara 200 MPX"
+            />
+            <Button
+                type="filters-navigation"
+                id="button-filters-navigation-battery"
+                icon=""
+                text="Bateria"
+                detail="1000 MHP"
+            />
+            <Button
+                type="filters-navigation"
+                id="button-filters-navigation-screen"
+                icon=""
+                text="Pantalla"
+                detail="7 Pulgadas"
+            />
+            <Button
+                type="filters-navigation"
+                id="button-filters-navigation-memory"
+                icon=""
+                text="Memoria"
+                detail="8 RAM / 256 GB ALMACENAMIENTO"
+            />
+        </nav>
+		
 		<article class="filters__battery-modal" id="battery-modal">
 			<section>
 				<h3>Bateria</h3>
@@ -55,10 +57,6 @@ import Card from "../components/card-detail/ui/Card.component.astro";
 				/>
 			</section>
 		</article>
-
-		<!--
-			<MainFilters/>
-				 -->
 		<section>
 			<ul class="slide__cards">
 				<Card
@@ -163,16 +161,48 @@ import Card from "../components/card-detail/ui/Card.component.astro";
 </Layout>
 
 <style>
-	main {
-		margin: auto;
-		padding: unset;
-		width: unset;
-		max-width: unset;
-	}
+	 main {
+        margin: auto;
+        padding: unset;
+        width: unset;
+        max-width: unset;
+        .price-filter {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+    }
 
-	.slide__cards {
+    .container-price {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+}
+
+.price-filter-container {
+    display: flex;
+    align-items: center;
+}
+
+.price-input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 150px;
+}
+
+.separator {
+    margin: 0 10px;
+    font-size: 20px;
+}
+
+
+.slide__cards {
 		white-space: nowrap;
 		overflow-x: auto;
 		scroll-snap-type: x mandatory;
 	}
+
 </style>

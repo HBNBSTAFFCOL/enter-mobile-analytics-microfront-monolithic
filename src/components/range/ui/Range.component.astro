@@ -1,0 +1,174 @@
+---
+interface Props {
+    name: string;
+    id: string;
+    title: string;
+    unit: string;
+    start: number;
+    step: number;
+    end: number;
+    initial: number;
+    type: "single" | "single-input" | "multiple-input" | "multiple";
+}
+
+const { name, title, unit, start, step, type, end, initial, id } = Astro.props;
+---
+
+{
+    type === "single" && (
+        <section class="range__container">
+            <h3>{title}</h3>
+            <label
+                class="range__label"
+                for={id}
+                data-unit={unit}
+                data-start={start}
+                data-step={step}
+                data-end={end}
+            >
+                <i></i>
+            </label>
+            <input
+                type="range"
+                id={id}
+                name={name}
+                min={start}
+                step={step}
+                max={end}
+                value={initial}
+            />
+        </section>
+    )
+}
+
+<style>
+    /*********** Baseline, reset styles ***********/
+    input[type="range"] {
+        -webkit-appearance: none;
+        appearance: none;
+        background: transparent;
+        cursor: pointer;
+        width: 24.5rem;
+    }
+
+    /* Removes default focus */
+    input[type="range"]:focus {
+        outline: none;
+    }
+
+    /******** Chrome, Safari, Opera and Edge Chromium styles ********/
+    /* slider track */
+    input[type="range"]::-webkit-slider-runnable-track {
+        background-color: var(--color-background--dark);
+        border-radius: 0.5rem;
+        height: 0.5rem;
+    }
+
+    /* slider thumb */
+    input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none; /* Override default look */
+        appearance: none;
+        margin-top: -0.25rem; /* Centers thumb on the track */
+        background-color: var(--color-action--log);
+        border-radius: 50%;
+        height: 1rem;
+        width: 1rem;
+        outline-offset: 0rem;
+        outline: 0px solid var(--color-action--log);
+        transition: all 80ms;
+    }
+
+    /* slider thumb */
+    input[type="range"]:focus::-webkit-slider-thumb {
+        background-color: var(--color-action--success);
+        outline: 3px solid var(--color-action--log);
+        outline-offset: 0.125rem;
+    }
+
+    /*********** Firefox styles ***********/
+    /* slider track */
+    input[type="range"]::-moz-range-track {
+        background-color: var(--color-background--dark);
+        border-radius: 0.5rem;
+        height: 0.5rem;
+    }
+
+    /* slider thumb */
+    input[type="range"]::-moz-range-thumb {
+        background-color: var(--color-action--success);
+        border: none; /*Removes extra border that FF applies*/
+        border-radius: 50%;
+        height: 1rem;
+        width: 1rem;
+    }
+
+    input[type="range"]:focus::-moz-range-thumb {
+        background-color: var(--color-action--success);
+        outline: 3px solid var(--color-action--log);
+        outline-offset: 0.125rem;
+    }
+
+    .range__container {
+        position: relative;
+        padding: 15px;
+        border-radius: 8px;
+    }
+
+    .range__container h3 {
+        margin-bottom: 10px;
+        font-size: 18px;
+    }
+
+    .range__container input[type="range"] {
+        width: 100%;
+    }
+    .range__label {
+        position: absolute;
+        bottom: 3rem;
+        transition: all 20ms;
+        left: calc(var(--value, 0%) + .25rem);
+        display: block;
+    }
+    .range__label i {
+        display: block;
+        position: relative;
+        left: 0px;
+        top: 0px;
+        width: 1.8rem;
+        height: 1.8rem;
+        background-color: var(--color-action--success);
+        border-radius: 50%;
+        z-index: 10;
+        font-size: 8px;
+        font-weight: 600;
+        color: var(--color-background--light);
+        display: grid;
+        place-items: center;
+        transform: scale(0) translateY(100%);
+        transition: all 200ms;
+
+    }
+
+    .range__label i::before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: calc(100% - (.6rem )); 
+        left: calc(50% - (.6rem / 2));  
+        width: .7rem;
+        height: .7rem;
+        background-color: var(--color-action--success);
+        transform: rotate(45deg) ;
+        z-index: 9;
+
+    }
+
+
+
+    .range__container:hover i {
+        
+        transform: scale(1.5) translate(0);
+
+    }
+
+</style>
