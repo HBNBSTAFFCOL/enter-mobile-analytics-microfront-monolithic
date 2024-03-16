@@ -9,29 +9,41 @@ import Button from "../components/button/ui/Button.component.astro";
         <Header />
 
         <nav class="brands_container">
-            <Button
-                type="brands-navigation"
-                id="button-brands-navigation-Apple"
-                icon="public/icons/icon-Apple.svg"
-            />
+            <li>
+                <Button
+                    type="brands-navigation"
+                    id="button-brands-navigation-Apple"
+                    icon="public/icons/icon-Apple.svg"
+                />
+            </li>
         </nav>
+        <section class="container-price">
+            <div class="price-filter-container">
+                <input
+                    id="min-price-input"
+                    type="text"
+                    class="price-input"
+                    name="price-filter-min"
+                    placeholder="Mínimo"
+                    min="39000"
+                    max="1200000"
+                    step="1000"
+                />
 
-        <div class="price-filter-container">
-            <input
-                type="number"
-                id="min-price"
-                name="min-price"
-                placeholder="Mínimo"
-            />
+                <span class="separator">-</span>
 
-            <input
-                type="number"
-                id="max-price"
-                name="max-price"
-                placeholder="Máximo"
-            />
-            <button type="button" class="price-filter-button">Aplicar</button>
-        </div>
+                <input
+                    id="max-price-input"
+                    type="text"
+                    class="price-input"
+                    name="price-filter-max"
+                    placeholder="Máximo"
+                    min="39000"
+                    max="1200000"
+                    step="1000"
+                />
+            </div>
+        </section>
     </main>
 </Layout>
 
@@ -41,5 +53,38 @@ import Button from "../components/button/ui/Button.component.astro";
         padding: unset;
         width: unset;
         max-width: unset;
+        .price-filter {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
     }
+
+    .container-price {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+}
+
+.price-filter-container {
+    display: flex;
+    align-items: center;
+}
+
+.price-input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 150px;
+}
+
+.separator {
+    margin: 0 10px;
+    font-size: 20px;
+}
+
+
+    
 </style>
