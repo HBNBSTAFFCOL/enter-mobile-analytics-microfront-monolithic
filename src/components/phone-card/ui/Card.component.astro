@@ -5,6 +5,7 @@ function changeImage(src: string): void {
 
 import ColorNavButton from "../../button/ui/ColorButton.astro";
 interface Props {
+    id: string;
     title: string;
     cameraResolution: string;
     internalMemory: string;
@@ -15,6 +16,7 @@ interface Props {
 }
 
 const {
+    id,
     title,
     cameraResolution,
     internalMemory,
@@ -25,8 +27,8 @@ const {
 } = Astro.props;
 ---
 
-<li class="card__contain">
-    <article class="card" id={title.replace(/\s+/g, "-").toLowerCase()}>
+<li class="card">
+    <article class="card__contain" id={id.replace(/\s+/g, "-").toLowerCase()}>
         <div class="card__left">
             <picture class="card__picture" id="phonePicture">
                 <img
@@ -36,11 +38,14 @@ const {
                 />
             </picture>
         </div>
-            <footer class="card__footer">
-                <button class="card__button">Comparar</button>
-            </footer>
+        <footer class="card__footer">
+            <button class="card__button-compaire">Comparar</button>
+            <button class="card__button-details">Detalles</button>
+        </footer>
         <main class="card__contain-main">
-            <h2 class="card__title">{title}</h2>
+            <div class="card__contain-tittle">
+                <h2 class="card__title">{title}</h2>
+            </div>
             <ul class="card__tech-list">
                 <li class="card__tech-list-item">
                     <figure class="card__item-icon">
@@ -100,43 +105,61 @@ const {
                 </li>
             </ul>
         </main>
-            <nav class="card__nav">
-                {
-                    colors &&
-                        colors.map((colorItem) => (
-                            <ColorNavButton
-                                backgroundColor={colorItem.color}
-                                dataImageSrc={colorItem.src}
-                                onClick={() => changeImage(colorItem.src)}
-                                cardTitle={title}
-                            />
-                        ))
-                }
-            </nav>
+        <nav class="card__nav">
+            {
+                colors &&
+                    colors.map((colorItem) => (
+                        <ColorNavButton
+                            backgroundColor={colorItem.color}
+                            dataImageSrc={colorItem.src}
+                            onClick={() => changeImage(colorItem.src)}
+                            cardTitle={id}
+                            id= {`${id}-${colorItem.color}`}
+                        />
+                    ))
+            }
+        </nav>
     </article>
 </li>
-
 <script>
     export function changeImage(imageSrc: string, cardId: string) {
-        const pictureElement = document.querySelector(`#${cardId} .card__picture`) as HTMLElement;
-        const imageElement = pictureElement.querySelector('.card__picture-img') as HTMLImageElement;
+        const pictureElement = document.querySelector(
+            `#${cardId} .card__picture`,
+        ) as HTMLElement;
+        const imageElement = pictureElement.querySelector(
+            ".card__picture-img",
+        ) as HTMLImageElement;
+        /*const figureButton = document.querySelector(
+            `#${cardId} .card__nav-color`,
+        ) as HTMLDivElement;*/
         if (imageElement) {
             imageElement.style.opacity = "0";
             setTimeout(() => {
-                imageElement.src = imageSrc; 
+                imageElement.src = imageSrc;
                 imageElement.style.opacity = "1";
-            }, 300); 
+            }, 300);
         }
         if (pictureElement) {
             pictureElement.style.boxShadow = "none";
             setTimeout(() => {
-                pictureElement.style.boxShadow = "-12px 12px 20px 0px rgba(0, 0, 0, 0.48)";
-            }, 300); 
+                pictureElement.style.boxShadow =
+                    "-12px 12px 20px 0px rgba(0, 0, 0, 0.48)";
+            }, 300);
         }
+        /*if (figureButton) {
+            figureButton.style.boxShadow = "none"; // Eliminar el efecto de sombra del figure
+            setTimeout(() => {
+                figureButton.style.boxShadow =
+                    "inset 0px -3px 3px 0px";
+            }, 300);
+        } */
     }
 
     document.addEventListener("DOMContentLoaded", () => {
-        const colorButtons = document.querySelectorAll(".card__nav-button") as NodeListOf<HTMLElement>;
+        const colorButtons = document.querySelectorAll(
+            ".card__nav-button",
+        ) as NodeListOf<HTMLElement>;
+       
         colorButtons.forEach((button) => {
             button.addEventListener("click", () => {
                 const imageSrc = button.dataset.imageSrc;
@@ -147,25 +170,22 @@ const {
             });
         });
     });
-
 </script>
 
-
-
 <style>
-
-    .card__contain {
+    .card {
         display: inline-block;
+        /*aspect-ratio: 5 / 2.5; */
         scroll-snap-align: center;
-        margin-right: 10px;
-        width: 100%
+        margin-right: 20%;
     }
 
-    .card {
+    .card__contain {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 80% 15%;
-        background-color: #ffffff;
+        height: 100%;
+        width: 100%;
+        grid-template-columns: auto auto;
+        grid-template-rows: 82% 14%;
         padding: 20px;
         gap: 1rem;
     }
@@ -174,10 +194,10 @@ const {
         display: grid;
         grid-column: 1 / 2;
         grid-row: 1 / 2;
-        align-content: center;
+        align-content: flex-end;
         justify-content: center;
         position: relative;
-        width: 100%;
+        width: 333px;
         height: 100%;
     }
 
@@ -185,9 +205,8 @@ const {
         width: 100%;
         height: 100%;
         position: relative;
-        border-radius: 9% 0 0 9% ;
+        border-radius: 9% 0 9% 9%;
         background-color: transparent;
-        transition: box-shadow 300ms ease 0s;
         box-shadow: -27px 18px 20px 0px rgba(0, 0, 0, 0.48);
     }
 
@@ -195,17 +214,31 @@ const {
         width: 100%;
         height: auto;
         transition: opacity 500ms ease 0s;
-        background-color: transparent;        
+        background-color: transparent;
     }
 
     .card__footer {
-        display: grid;
+        display: flex;
         grid-row: 2 / 3;
-        justify-content: center;
+        grid-column: 2 / 3;
+        justify-content: space-around;
         align-items: center;
     }
 
-    .card__button {
+    .card__button-compaire {
+        padding: 1rem 2rem;
+        background-color: var(--color-action--success);
+        color: #ffffff;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        font-size: 1rem;
+        display: inline-block;
+        text-align: center;
+        box-shadow: -12px 12px 20px 0px rgba(0, 0, 0, 0.48);
+    }
+
+    .card__button-details {
         padding: 1rem 2rem;
         background-color: var(--color-action--log);
         color: #ffffff;
@@ -218,23 +251,28 @@ const {
         box-shadow: -12px 12px 20px 0px rgba(0, 0, 0, 0.48);
     }
 
-
-
     .card__contain-main {
         display: grid;
         grid-row: 1 / 2;
+        grid-template-rows: 30% auto;
         gap: 1rem;
         width: 100%;
         align-items: center;
     }
 
+    .card__contain-tittle {
+        display: flex;
+        height: 100%;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+
     .card__title {
-        font-size: 3rem;
+        font-size: 2rem;
         font-weight: bold;
         text-wrap: wrap;
     }
-
-
 
     .card__tech-list {
         display: flex;
@@ -255,7 +293,6 @@ const {
         height: 2.5em;
     }
 
-
     .card__item-info {
         display: flex;
         flex-direction: column;
@@ -264,37 +301,65 @@ const {
     .card__item-title {
         font-weight: bold;
         margin-bottom: 5px;
-        text-wrap: wrap;
+        text-wrap: nowrap;
     }
 
     .card__item-value {
         font-size: 0.9rem;
     }
 
-
     .card__item-icon-img {
         width: 100%;
         height: 100%;
     }
 
-
-
     .card__nav {
         display: flex;
-        justify-content: flex-start;
-        flex-wrap: wrap;
+        justify-content: center;
+        flex-wrap: nowrap;
         gap: 0.5rem;
     }
 
-    @media (max-width: 768px) {
-    .card__title {
-        font-size: 2rem; /* Ajusta el tamaño de la fuente para pantallas más pequeñas */
-    }
-}
 
-@media (max-width: 576px) {
-    .card__title {
-        font-size: 2rem; /* Ajusta el tamaño de la fuente para pantallas aún más pequeñas */
+    @media (max-width: 576px) {
+        .card__contain-main {
+            scroll-snap-align: center; /* Ajusta el tamaño de la fuente para pantallas aún más pequeñas */
+        }
+
+        .card__left {
+            scroll-snap-align: center;
+            width: 390px;
+            border-right: 2px solid #868686;
+        }
+
+        .card__picture{
+            width: 250px;
+        }
+
+        .card {
+            scroll-snap-align: none;
+        }
+
+        .card__title {
+            font-size: 1.8rem;
+        }
+
+        .card__item-title, .card__item-value {
+            font-size: 0.8rem;
+        }
+
+        .card__button-details, .card__button-compaire{
+            padding: 0.5rem 1rem;
+        }
+
+        .card__item-icon{
+            width: 1.5rem;
+            height: 2.5rem;
+        }
+
+        .card__contain-main {
+            gap: 0.5rem;
+        }
     }
-}
+
 </style>

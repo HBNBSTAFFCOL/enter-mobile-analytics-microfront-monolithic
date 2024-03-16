@@ -1,0 +1,28 @@
+<ul class="slide__cards">
+    <slot />
+</ul>
+
+<style>
+    .slide__cards {
+        height: 100%;
+        width: 100%;
+        border: solid black 2px;
+        margin: auto;
+        white-space: nowrap;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-snap-type: x mandatory;
+        display: flex;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .slide__cards > * {
+        /* display: inline-block;
+      scroll-snap-align: center;
+      margin-right: 10px;
+      width: 100%;
+      */
+    }
+</style>
