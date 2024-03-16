@@ -1,0 +1,63 @@
+---
+interface Props {
+    backgroundColor:string;
+    dataImageSrc: string;
+    cardTitle: string;
+    onClick: (imageSrc: string, cardTitle: string) => void;
+}
+
+const { backgroundColor, dataImageSrc, cardTitle, onClick } = Astro.props;
+---
+
+<button
+    class="card__nav-button"
+    data-image-src={dataImageSrc}
+    data-card-id={cardTitle.replace(/\s+/g, '-').toLowerCase()}
+    onclick = `{onClick}`
+>
+    <figure
+        class="card__nav-color"
+        style={`background-color: ${backgroundColor};`}
+    ></figure>
+</button>
+
+<style define:vars={{backgroundColor}}>
+    .card__nav-button {
+        background-color: transparent;
+        display: flex;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        margin: 0.5rem;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        cursor: pointer;
+        box-shadow: 0px 5px 13px rgb(0 0 0 / 70%);
+        max-width: 100%;
+    }
+
+    .card__nav-button:hover {
+        background-color: var(--color-action--log);
+    }
+
+    .card__nav-color {
+        width: 80%;
+        height: 80%;
+        border-radius: 50%;
+        background-color: var(--backgroundColor);
+    }
+
+    @media (max-width: 768px) {
+    .card__nav-button {
+        width: calc(50% - 1rem); 
+    }
+}
+
+@media (max-width: 576px) {
+    .card__nav-button {
+        width: calc(33.33% - 1rem);
+    }
+}
+
+</style>

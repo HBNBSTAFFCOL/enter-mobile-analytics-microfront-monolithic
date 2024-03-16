@@ -4,13 +4,15 @@ import Range from "../../range/ui/Range.component.astro";
 ---
 
 <header class="header">
-    <figure class="header__icon">
-        <img
-            class="header__icon-image"
-            src="/images_Enter/logoEnter.png"
-            alt=""
-        />
-    </figure>
+    <section class="header__logo">
+        <figure class="header__logo-icon">
+            <img
+                class="header__icon-image"
+                src="/images_Enter/logoEnter.png"
+                alt=""
+            />
+        </figure>
+    </section>
     <section class="header__search-section">
         <Button
             type="fake-input"
@@ -39,42 +41,44 @@ import Range from "../../range/ui/Range.component.astro";
     </section>
     <section class="filters header__filters" id="filters-container">
         <nav class="filters__navigation">
-            <article class="filter_vavigation-container">
-                <Button
-                    type="filters-navigation"
-                    id="button-filters-navigation-camara"
-                    icon="public/icons/icon-camera.svg"
-                    text="Camara"
-                    detail="Selfie 100 MPX / Main Camara 200 MPX"
-                />
-            </article>
-            <article class="filter_vavigation-container">
-                <Button
-                    type="filters-navigation"
-                    id="button-filters-navigation-battery"
-                    icon="public/icons/icon-battery.svg"
-                    text="Bateria"
-                    detail="1000 MHP"
-                />
-            </article>
-            <article class="filter_vavigation-container">
-                <Button
-                    type="filters-navigation"
-                    id="button-filters-navigation-screen"
-                    icon="public/icons/icon-screen.svg"
-                    text="Pantalla"
-                    detail="7 Pulgadas"
-                />
-            </article>
-            <article class="filter_vavigation-container">
-                <Button
-                    type="filters-navigation"
-                    id="button-filters-navigation-memory"
-                    icon="public/icons/icon-memory-ram.svg"
-                    text="Memoria"
-                    detail="8 RAM / 256 GB ALMACENAMIENTO"
-                />
-            </article>
+            <article class="filters__navigation-contain">
+            <Button
+                type="filters-navigation"
+                id="button-filters-navigation-camara"
+                icon="/icons/icon-camera.svg"
+                text="Camara"
+                detail="Selfie 100 MPX / Main Camara 200 MPX"
+            />
+            
+        </article>
+        <article class="filter_navigation-container">
+            <Button
+                type="filters-navigation"
+                id="button-filters-navigation-screen"
+                icon=/icons/icon-battery.svg"
+                text="Pantalla"
+                detail="7 Pulgadas"
+            />
+        </article>
+        <article class="filter_navigation-container">
+            <Button
+                type="filters-navigation"
+                id="button-filters-navigation-memory"
+                icon=/icons/icon-screen.svg"
+                text="Memoria"
+                detail="8 RAM / 256 GB ALMACENAMIENTO"
+            />
+
+        </article>
+        <article class="filter_navigation-container">
+            <Button
+                type="filters-navigation"
+                id="button-filters-navigation-battery"
+                icon="/icons/icon-memory-ram.svg"
+                text="Bateria"
+                detail="1000 MHP"
+            />
+        </article>
         </nav>
         <section class="filters__modal">
             
@@ -326,7 +330,7 @@ import Range from "../../range/ui/Range.component.astro";
         align-items: center;
     }
 
-    .header__icon {
+    .header__logo-icon {
         grid-column: 1 / 2;
         display: flex;
         align-items: center;
@@ -385,6 +389,7 @@ import Range from "../../range/ui/Range.component.astro";
     }
 
     .button--fake-input:hover {
+        width: 70%;
     }
 
     .header__bubble-comparation {
@@ -405,6 +410,10 @@ import Range from "../../range/ui/Range.component.astro";
         display: none;
     }
 
+    .filters {
+        z-index: 10;
+    }
+
     .filters__navigation {
         background-color: white;
         border-radius: 1rem;
@@ -417,7 +426,7 @@ import Range from "../../range/ui/Range.component.astro";
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
         gap: 10px;
-        z-index: 2; /* Se asegura que esté por encima de otros elementos */
+        z-index: 1; /* Se asegura que esté por encima de otros elementos */
         width: 80%; /* Ajusta el ancho según tus necesidades */
         max-width: 800px; /* Asegura que no sea más ancho que la pantalla */
         box-sizing: border-box;
@@ -480,7 +489,7 @@ import Range from "../../range/ui/Range.component.astro";
         
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
         gap: 10px;
-        z-index: 2; /* Se asegura que esté por encima de otros elementos */
+        z-index: 1; /* Se asegura que esté por encima de otros elementos */
         box-sizing: border-box;
         justify-self: center;
     }
@@ -491,9 +500,6 @@ import Range from "../../range/ui/Range.component.astro";
         display: none;
     }
 
-    .filters__modal > article > * {
-        
-    }
 
     .filters__modal h3 {
         margin-bottom: 10px;
@@ -544,8 +550,8 @@ import Range from "../../range/ui/Range.component.astro";
             margin-block-start: 30rem!important;
         }
     }
-.header__search-real{
-    z-index: 10;
-}
+    .header__search-real{
+        z-index: 10;
+    }
     
 </style>
