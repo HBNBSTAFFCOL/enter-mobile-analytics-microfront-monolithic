@@ -10,9 +10,10 @@ interface Props {
         | "brands-navigation"
         | "price-filter";
     detail?: string;
+    brand?: {src: string}[];
 }
 
-const { text, id, icon, detail, type } = Astro.props;
+const { text, id, icon, detail, type, brand } = Astro.props;
 ---
 
 {
@@ -275,3 +276,4 @@ const { text, id, icon, detail, type } = Astro.props;
         border-radius: 50%;
     }
 </style>
+

@@ -4,20 +4,64 @@ import Header from "../components/header/ui/Header.component.astro";
 import Card from "../components/phone-card/ui/Card.component.astro";
 import Slide from "../components/button/ui/slide.component.astro";
 import Button from "../components/button/ui/Button.component.astro";
+
+const brand = [
+    "/icons-brands/icon-Apple.svg",
+    "/icons-brands/blackview.png",
+    "/icons-brands/Cubot_Logo.png",
+    "/icons-brands/icon-asus.svg",
+    "/icons-brands/icon-Balckberry.svg",
+    "/icons-brands/icon-Cat.svg",
+    "/icons-brands/icon-Google.svg",
+    "/icons-brands/icon-honor.svg",
+    "/icons-brands/icon-HTC.png",
+    "/icons-brands/icon-Huawei.svg",
+    "/icons-brands/icon-Lenovo.svg",
+    "/icons-brands/icon-LG.svg",
+    "/icons-brands/meizuo.png",
+    "/icons-brands/icon-microsoft.svg",
+    "/icons-brands/icon-Motorola.svg",
+    "/icons-brands/nokia.png",
+    "/icons-brands/icon-oneplus.svg",
+    "/icons-brands/icon-realme.svg",
+    "/icons-brands/icon-Samsung.svg",
+    "/icons-brands/icon-sony.svg",
+    "/icons-brands/icon-vivo.svg",
+    "/icons-brands/icon-vodafone.svg",
+    "/icons-brands/icon-Xiaomi.svg",
+    "/icons-brands/iocn-Energizer.png",
+    "/icons-brands/iocon-oppo.svg",
+    "/icons-brands/Itel_Mobile_logo.png",
+    "/icons-brands/Logo-Alcatel.png",
+    "/icons-brands/logo-doodgee.png",
+    "/icons-brands/MEIZU.png",
+    "/icons-brands/micromax.png",
+    "/icons-brands/oukitel.png",
+    "/icons-brands/SHARP.png",
+    "/icons-brands/tecno.PNG",
+    "/icons-brands/Tlc.png",
+    "/icons-brands/ulefone.png",
+    "/icons-brands/ZTE-logo.svg.png",
+];
 ---
 
 <Layout title="ENTER.CO MOBILE">
-	<main>
+    <main>
         <Header />
-
         <nav class="brands_container">
-            <li>
-                <Button
-                    type="brands-navigation"
-                    id="/icons-brands/icon-Apple.svg"
-                    icon="/icons-brands/icon-Apple.svg"
-                />
-            </li>
+            <Slide>
+                {
+                    brand.map((icon, index) => (
+                        <li class="brand-self-container">
+                            <Button
+                                type="brands-navigation"
+                                icon={icon}
+                                id={`brand-${index}`}
+                            />
+                        </li>
+                    ))
+                }
+            </Slide>
         </nav>
         <section class="container-price">
             <div class="price-filter-container">
@@ -46,284 +90,286 @@ import Button from "../components/button/ui/Button.component.astro";
                 />
             </div>
         </section>
-		<!--
+        <!--
 			<MainFilters/>
 				 -->
-		<section class="slide-section">
-			<div class="slide-container">
-				<Slide>
-					<Card
-						id="Iphoneone"
-						title="Iphone 15 Pro Max"
-						cameraResolution="48MP"
-						internalMemory="256GB | 512GB | 1TB"
-						ramMemory="8GB"
-						batteryCapacity="4441mAh"
-						colors={[
-							{
-								color: "#f7f4ed",
-								src: "public/phone_images/Apple/iphone15ProMax-White.png",
-							},
-							{
-								color: "#97968d",
-								src: "public/phone_images/Apple/Iphone15ProMax-Natural.png",
-							},
-							{
-								color: "#585f6f",
-								src: "public/phone_images/Apple/iphone15ProMax-Blue.png",
-							},
-							{
-								color: "#545454",
-								src: "public/phone_images/Apple/iphone15ProMax-Black.png",
-							},
-						]}
-						src="/phone_images/Apple/iphone15ProMax-White.png"
-					/>
-					<Card
-						id="Xiaomione"
-						title=" Xiaomi 14 Ultra"
-						cameraResolution="50MP"
-						internalMemory="256GB | 512GB | 1TB"
-						ramMemory="12GB | 16GB "
-						batteryCapacity="5000mAh"
-						colors={[
-							{
-								color: "#DEDEE0",
-								src: "public/phone_images/Xiaomi/Xiaomi14Ultra-White.png",
-							},
-							{
-								color: "#2A2A2C",
-								src: "public/phone_images/Xiaomi/Xiaomi14Ultra-Black.png",
-							},
-						]}
-						src="public/phone_images/Xiaomi/Xiaomi14Ultra-White.png"
-					/>
-					<Card
-						id="Samnsungone"
-						title="Samsung Galaxy S23 Ultra"
-						cameraResolution="200MP"
-						internalMemory="256GB | 512GB | 1TB"
-						ramMemory="8GB | 12GB "
-						batteryCapacity="5000mAh"
-						colors={[
-							{
-								color: "#F1EAE0",
-								src: "public/phone_images/samsung/SamsungS23Ultra-White.png",
-							},
-							{
-								color: "#D4C7D9",
-								src: "public/phone_images/samsung/SamsungS23Ultra-Pink.png",
-							},
-							{
-								color: "#5E645A",
-								src: "public/phone_images/samsung/SamsungS23Ultra-Green.png",
-							},
-							{
-								color: "#211E15",
-								src: "public/phone_images/samsung/SamsungS23Ultra-Black.png",
-							},
-						]}
-						src="public/phone_images/samsung/SamsungS23Ultra-White.png"
-					/>
-					<Card
-						id="Huaweione"
-						title="Huawei P60 Pro"
-						cameraResolution="50MP"
-						internalMemory="256GB | 512GB | 1TB"
-						ramMemory="12GB "
-						batteryCapacity="5000mAh"
-						colors={[
-							{
-								color: "#EAE8E9",
-								src: "public/phone_images/Huawei/HuaweiP60Pro-White.png",
-							},
-							{
-								color: "#BFB2D6",
-								src: "public/phone_images/Huawei/HuaweiP60Pro-Pink.png",
-							},
-							{
-								color: "#2D3E34",
-								src: "public/phone_images/Huawei/HuaweiP60Pro-Green.png",
-							},
-							{
-								color: "#1E1E20",
-								src: "public/phone_images/Huawei/HuaweiP60Pro-Black.png",
-							},
-						]}
-						src="public/phone_images/Huawei/HuaweiP60Pro-White.png"
-					/>
-				</Slide>
-			</div>
-		</section>
-		<section class="slide-section">
-			<div class="slide-container">
-				<Slide>
-					<Card
-						id="Pixelone"
-						title="Pixel 8 Pro"
-						cameraResolution="50MP"
-						internalMemory="128GB | 256GB | 512GB | 1TB"
-						ramMemory="12GB"
-						batteryCapacity="5050mAh"
-						colors={[
-							{
-								color: "#e5dbd3",
-								src: "public/phone_images/Pixel/Pixel8Pro-Porcelain.png",
-							},
-							{
-								color: "#8bbfed",
-								src: "public/phone_images/Pixel/Pixel8Pro-Blue.png",
-							},
-							{
-								color: "#242424",
-								src: "public/phone_images/Pixel/Pixel8Pro-Black.png",
-							},
-						]}
-						src = "public/phone_images/Pixel/Pixel8Pro-Porcelain.png"
-					/>
-					<Card
-						id="Honorone"
-						title="Honor Magic 6 Pro"
-						cameraResolution="180MP"
-						internalMemory="256GB | 512GB | 1TB"
-						ramMemory="12GB | 16GB "
-						batteryCapacity="5600mAh"
-						colors={[
-							{
-								color: "#DEDEE0",
-								src: "public/phone_images/Honor/HonorM6Pro-White.png",
-							},
+        <section class="slide-section">
+            <div class="slide-container">
+                <Slide>
+                    <Card
+                        id="Iphoneone"
+                        title="Iphone 15 Pro Max"
+                        cameraResolution="48MP"
+                        internalMemory="256GB | 512GB | 1TB"
+                        ramMemory="8GB"
+                        batteryCapacity="4441mAh"
+                        colors={[
                             {
-								color: "#a7b2d3",
-								src: "public/phone_images/Honor/HonorM6Pro-Purple.png",
-							},
+                                color: "#f7f4ed",
+                                src: "public/phone_images/Apple/iphone15ProMax-White.png",
+                            },
                             {
-								color: "#99aa9a",
-								src: "public/phone_images/Honor/HonorM6Pro-Green.png",
-							},
+                                color: "#97968d",
+                                src: "public/phone_images/Apple/Iphone15ProMax-Natural.png",
+                            },
                             {
-								color: "#86a7ac",
-								src: "public/phone_images/Honor/HonorM6Pro-Blue.png",
-							},
-							{
-								color: "#2A2A2C",
-								src: "public/phone_images/Honor/HonorM6Pro-Black.png",
-							},
-						]}
-						src = "public/phone_images/Honor/HonorM6Pro-White.png"
-					/>
-					<Card
-						id="Samnsungtwo"
-						title="Samsung Galaxy S23 Ultra"
-						cameraResolution="200MP"
-						internalMemory="256GB | 512GB | 1TB"
-						ramMemory="8GB | 12GB "
-						batteryCapacity="5000mAh"
-						colors={[
-							{
-								color: "#F1EAE0",
-								src: "public/phone_images/samsung/SamsungS23Ultra-White.png",
-							},
-							{
-								color: "#D4C7D9",
-								src: "public/phone_images/samsung/SamsungS23Ultra-Pink.png",
-							},
-							{
-								color: "#5E645A",
-								src: "public/phone_images/samsung/SamsungS23Ultra-Green.png",
-							},
-							{
-								color: "#211E15",
-								src: "public/phone_images/samsung/SamsungS23Ultra-Black.png",
-							},
-						]}
-						src="public/phone_images/samsung/SamsungS23Ultra-White.png"
-					/>
-					<Card
-						id="Huaweitwo"
-						title="Huawei P60 Pro"
-						cameraResolution="50MP"
-						internalMemory="256GB | 512GB | 1TB"
-						ramMemory="12GB "
-						batteryCapacity="5000mAh"
-						colors={[
-							{
-								color: "#EAE8E9",
-								src: "public/phone_images/Huawei/HuaweiP60Pro-White.png",
-							},
-							{
-								color: "#BFB2D6",
-								src: "public/phone_images/Huawei/HuaweiP60Pro-Pink.png",
-							},
-							{
-								color: "#2D3E34",
-								src: "public/phone_images/Huawei/HuaweiP60Pro-Green.png",
-							},
-							{
-								color: "#1E1E20",
-								src: "public/phone_images/Huawei/HuaweiP60Pro-Black.png",
-							},
-						]}
-						src="public/phone_images/Huawei/HuaweiP60Pro-White.png"
-					/>
-				</Slide>
-			</div>
-		</section>
-	</main>
+                                color: "#585f6f",
+                                src: "public/phone_images/Apple/iphone15ProMax-Blue.png",
+                            },
+                            {
+                                color: "#545454",
+                                src: "public/phone_images/Apple/iphone15ProMax-Black.png",
+                            },
+                        ]}
+                        src="/phone_images/Apple/iphone15ProMax-White.png"
+                    />
+                    <Card
+                        id="Xiaomione"
+                        title=" Xiaomi 14 Ultra"
+                        cameraResolution="50MP"
+                        internalMemory="256GB | 512GB | 1TB"
+                        ramMemory="12GB | 16GB "
+                        batteryCapacity="5000mAh"
+                        colors={[
+                            {
+                                color: "#DEDEE0",
+                                src: "public/phone_images/Xiaomi/Xiaomi14Ultra-White.png",
+                            },
+                            {
+                                color: "#2A2A2C",
+                                src: "public/phone_images/Xiaomi/Xiaomi14Ultra-Black.png",
+                            },
+                        ]}
+                        src="public/phone_images/Xiaomi/Xiaomi14Ultra-White.png"
+                    />
+                    <Card
+                        id="Samnsungone"
+                        title="Samsung Galaxy S23 Ultra"
+                        cameraResolution="200MP"
+                        internalMemory="256GB | 512GB | 1TB"
+                        ramMemory="8GB | 12GB "
+                        batteryCapacity="5000mAh"
+                        colors={[
+                            {
+                                color: "#F1EAE0",
+                                src: "public/phone_images/samsung/SamsungS23Ultra-White.png",
+                            },
+                            {
+                                color: "#D4C7D9",
+                                src: "public/phone_images/samsung/SamsungS23Ultra-Pink.png",
+                            },
+                            {
+                                color: "#5E645A",
+                                src: "public/phone_images/samsung/SamsungS23Ultra-Green.png",
+                            },
+                            {
+                                color: "#211E15",
+                                src: "public/phone_images/samsung/SamsungS23Ultra-Black.png",
+                            },
+                        ]}
+                        src="public/phone_images/samsung/SamsungS23Ultra-White.png"
+                    />
+                    <Card
+                        id="Huaweione"
+                        title="Huawei P60 Pro"
+                        cameraResolution="50MP"
+                        internalMemory="256GB | 512GB | 1TB"
+                        ramMemory="12GB "
+                        batteryCapacity="5000mAh"
+                        colors={[
+                            {
+                                color: "#EAE8E9",
+                                src: "public/phone_images/Huawei/HuaweiP60Pro-White.png",
+                            },
+                            {
+                                color: "#BFB2D6",
+                                src: "public/phone_images/Huawei/HuaweiP60Pro-Pink.png",
+                            },
+                            {
+                                color: "#2D3E34",
+                                src: "public/phone_images/Huawei/HuaweiP60Pro-Green.png",
+                            },
+                            {
+                                color: "#1E1E20",
+                                src: "public/phone_images/Huawei/HuaweiP60Pro-Black.png",
+                            },
+                        ]}
+                        src="public/phone_images/Huawei/HuaweiP60Pro-White.png"
+                    />
+                </Slide>
+            </div>
+        </section>
+        <section class="slide-section">
+            <div class="slide-container">
+                <Slide>
+                    <Card
+                        id="Pixelone"
+                        title="Pixel 8 Pro"
+                        cameraResolution="50MP"
+                        internalMemory="128GB | 256GB | 512GB | 1TB"
+                        ramMemory="12GB"
+                        batteryCapacity="5050mAh"
+                        colors={[
+                            {
+                                color: "#e5dbd3",
+                                src: "public/phone_images/Pixel/Pixel8Pro-Porcelain.png",
+                            },
+                            {
+                                color: "#8bbfed",
+                                src: "public/phone_images/Pixel/Pixel8Pro-Blue.png",
+                            },
+                            {
+                                color: "#242424",
+                                src: "public/phone_images/Pixel/Pixel8Pro-Black.png",
+                            },
+                        ]}
+                        src="public/phone_images/Pixel/Pixel8Pro-Porcelain.png"
+                    />
+                    <Card
+                        id="Honorone"
+                        title="Honor Magic 6 Pro"
+                        cameraResolution="180MP"
+                        internalMemory="256GB | 512GB | 1TB"
+                        ramMemory="12GB | 16GB "
+                        batteryCapacity="5600mAh"
+                        colors={[
+                            {
+                                color: "#DEDEE0",
+                                src: "public/phone_images/Honor/HonorM6Pro-White.png",
+                            },
+                            {
+                                color: "#a7b2d3",
+                                src: "public/phone_images/Honor/HonorM6Pro-Purple.png",
+                            },
+                            {
+                                color: "#99aa9a",
+                                src: "public/phone_images/Honor/HonorM6Pro-Green.png",
+                            },
+                            {
+                                color: "#86a7ac",
+                                src: "public/phone_images/Honor/HonorM6Pro-Blue.png",
+                            },
+                            {
+                                color: "#2A2A2C",
+                                src: "public/phone_images/Honor/HonorM6Pro-Black.png",
+                            },
+                        ]}
+                        src="public/phone_images/Honor/HonorM6Pro-White.png"
+                    />
+                    <Card
+                        id="Samnsungtwo"
+                        title="Samsung Galaxy S23 Ultra"
+                        cameraResolution="200MP"
+                        internalMemory="256GB | 512GB | 1TB"
+                        ramMemory="8GB | 12GB "
+                        batteryCapacity="5000mAh"
+                        colors={[
+                            {
+                                color: "#F1EAE0",
+                                src: "public/phone_images/samsung/SamsungS23Ultra-White.png",
+                            },
+                            {
+                                color: "#D4C7D9",
+                                src: "public/phone_images/samsung/SamsungS23Ultra-Pink.png",
+                            },
+                            {
+                                color: "#5E645A",
+                                src: "public/phone_images/samsung/SamsungS23Ultra-Green.png",
+                            },
+                            {
+                                color: "#211E15",
+                                src: "public/phone_images/samsung/SamsungS23Ultra-Black.png",
+                            },
+                        ]}
+                        src="public/phone_images/samsung/SamsungS23Ultra-White.png"
+                    />
+                    <Card
+                        id="Huaweitwo"
+                        title="Huawei P60 Pro"
+                        cameraResolution="50MP"
+                        internalMemory="256GB | 512GB | 1TB"
+                        ramMemory="12GB "
+                        batteryCapacity="5000mAh"
+                        colors={[
+                            {
+                                color: "#EAE8E9",
+                                src: "public/phone_images/Huawei/HuaweiP60Pro-White.png",
+                            },
+                            {
+                                color: "#BFB2D6",
+                                src: "public/phone_images/Huawei/HuaweiP60Pro-Pink.png",
+                            },
+                            {
+                                color: "#2D3E34",
+                                src: "public/phone_images/Huawei/HuaweiP60Pro-Green.png",
+                            },
+                            {
+                                color: "#1E1E20",
+                                src: "public/phone_images/Huawei/HuaweiP60Pro-Black.png",
+                            },
+                        ]}
+                        src="public/phone_images/Huawei/HuaweiP60Pro-White.png"
+                    />
+                </Slide>
+            </div>
+        </section>
+    </main>
 </Layout>
 
 <style>
-	main {
-		margin: auto;
-		padding: unset;
-		width: unset;
-		max-width: unset;
+    main {
+        margin: auto;
+        padding: unset;
+        width: unset;
+        max-width: unset;
         .price-filter {
             display: flex;
             align-items: center;
             margin-bottom: 10px;
         }
-	}
+    }
+
+  
     .container-price {
-    margin-top: 20px;
-    display: flex;
-    justify-content: center; /* Centrar horizontalmente */
-    align-items: center; /* Centrar verticalmente */
-}
+        margin-top: 20px;
+        display: flex;
+        justify-content: center; /* Centrar horizontalmente */
+        align-items: center; /* Centrar verticalmente */
+    }
 
-.price-filter-container {
-    display: flex;
-    align-items: center;
-}
+    .price-filter-container {
+        display: flex;
+        align-items: center;
+    }
 
-.price-input {
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 150px;
-}
+    .price-input {
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 150px;
+    }
 
-.separator {
-    margin: 0 10px;
-    font-size: 20px;
-}
+    .separator {
+        margin: 0 10px;
+        font-size: 20px;
+    }
 
-	.slide-section {
-		height: 580px;
-		overflow: hidden;
-		position: relative;
-		margin-top: 80px;
-	}
+    .slide-section {
+        height: 580px;
+        overflow: hidden;
+        position: relative;
+        margin-top: 80px;
+    }
 
-	.slide-container {
-		height: 100%;
-		width: 100%;
-	}
+    .slide-container {
+        height: 100%;
+        width: 100%;
+    }
 
-	@media (max-width: 576px){
-		.slide-section{
-			height: 420px;
-		}
-	}
+    @media (max-width: 576px) {
+        .slide-section {
+            height: 420px;
+        }
+    }
 </style>
