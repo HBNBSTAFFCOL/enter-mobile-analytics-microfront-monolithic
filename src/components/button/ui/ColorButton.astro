@@ -46,17 +46,13 @@ const { backgroundColor, dataImageSrc, cardTitle, onClick } = Astro.props;
         height: 80%;
         border-radius: 50%;
         background-color: var(--backgroundColor);
+        border: 1px solid #919191;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 576px) {
     .card__nav-button {
-        width: calc(50% - 1rem); 
-    }
-}
-
-@media (max-width: 576px) {
-    .card__nav-button {
-        width: calc(33.33% - 1rem);
+        width: 2rem;
+        height: 2rem;
     }
 }
 
