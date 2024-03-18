@@ -1,20 +1,19 @@
-# Astro Starter Kit: Basics
+# enter-mobile-analytics-microfront-monolithic
 
-```sh
-npm create astro@latest -- --template basics
-```
+## Description
+This project consists of creating a monolithic microfrontend for [ENTER](https://www.enter.co/). The main goal is to provide users with an interactive experience on the page, especially when they want to purchase a new mobile device. Key features include the ability to compare devices, view specific details for each device, and filter searches based on user preferences.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+## Used technology
+The project makes use of the following technologies:
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+- [Astro](https://astro.build/)
+- [BEM (Block, Element, Modifier)](http://getbem.com/)
+- [NODE.js](https://nodejs.org/en)
+- [Puppeteer](https://pptr.dev/)
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+##  Project Structure
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
+Inside of this ENTER project, you'll see the following folders and files:
 
 ```text
 /
@@ -22,21 +21,45 @@ Inside of your Astro project, you'll see the following folders and files:
 │   └── favicon.svg
 ├── src/
 │   ├── components/
-│   │   └── Card.astro
+│   │   ├── navbar/
+│   │   ├── search-section/
+│   │   ├── filters/
+│   │   ├── recommended-phones-list/
+│   │   ├── phone-comparison/
+│   │   ├── phone-details/
+│   │   ├── footer/
+│   │
 │   ├── layouts/
-│   │   └── Layout.astro
+│   │   ├── Layout.astro
+│   │   ├── api/
+│   │
 │   └── pages/
 │       └── index.astro
 └── package.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+##  File Descriptions
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
 
-Any static assets, like images, can be placed in the `public/` directory.
+#### `src/components/` The directory contains the folders that represent each component of the user interface:
+* `src/components/search-section` - [go to folder](/src/components/search-section/)
+* `src/components/recommended-phones-list` - [go to folder](/src/components/recommended-phones-list/)
+* `src/components/phone-details` - [go to folder](/src/components/phone-details/)
+* `src/components/phone-comparison` - [go to folder](/src/components/phone-comparison/)
+* `src/components/navbar` - [go to folder](/src/components/navbar/)
+* `src/components/footer` - [go to folder](/src/components/footer/)
+* `src/components/filters` - [go to folder](/src/components/filters/)
 
-## 🧞 Commands
+ Within eachfolder, there are subfolders and files to handle the logic, the service layer, the data types specific to that component, and the Astro format user interface file (.astro) that describes the structure. of the component.
+
+* Logic files `logic.ts` handle the logic specific to that component.
+* Domain files `domain.ts` can contain interfaces or classes that define the data model or structures used by the component.
+* Service files `service.ts` can contain logic related to obtaining or manipulating data for that component.
+* Type files `type.ts` can contain definitions of specific types used in the component.
+
+
+
+##  Commands
 
 All commands are run from the root of the project, from a terminal:
 
@@ -49,7 +72,12 @@ All commands are run from the root of the project, from a terminal:
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
 
-## 👀 Want to learn more?
+## AUTHORS:
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- **Juan Avila [ technology leader ]**: [Github](https://github.com/JuanDAC)
+- **Julian Garcia [ Frontend manager ]**: [GitHub](https://github.com/Julibeto84)
+- **Ishay Junnco [ backend manager ]**: [GitHub](https://github.com/IshayJQ)
+- **Harold Suarez [ devop manager ]**: [GitHub](https://github.com/HaroldS10)
+
+
 # enter-mobile-analytics-microfront-monolithic

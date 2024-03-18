@@ -339,12 +339,26 @@ import Range from "../../range/ui/Range.component.astro";
         width: 70%;
     }
 
+    .header__comparition-section{
+        justify-content: center;
+        display: flex;
+        margin-inline-end: 1rem;
+    }
+
     .header__comparation-section {
         grid-column: 3 / 4;
         grid-row: 1 / 2;
         align-self: center;
         justify-self: flex-end;
         padding: 10px;
+    }
+
+    .search-visible {
+        display: grid;
+    }
+
+    .search--show {
+        display: none;
     }
 
     .header__filters {
