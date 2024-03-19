@@ -26,9 +26,14 @@ const {
     src,
 } = Astro.props;
 ---
+
 <template id="card-mobile">
     <li class="card">
-        <article class="card__contain" itemid="id" id={id.replace(/\s+/g, "-").toLowerCase()}>
+        <article
+            class="card__contain"
+            itemid="id"
+            id={id.replace(/\s+/g, "-").toLowerCase()}
+        >
             <div class="card__left">
                 <picture class="card__picture" id="phonePicture">
                     <img
@@ -39,8 +44,12 @@ const {
                 </picture>
             </div>
             <footer class="card__footer">
-                <button class="card__button-compaire" itemtype="comparar">Comparar</button>
-                <button class="card__button-details" itemtype="detalles">Detalles</button>
+                <button class="card__button-compaire" itemtype="comparar"
+                    >Comparar</button
+                >
+                <button class="card__button-details" itemtype="detalles"
+                    >Detalles</button
+                >
             </footer>
             <main class="card__contain-main">
                 <div class="card__contain-tittle">
@@ -60,7 +69,9 @@ const {
                             <span class="card__item-title"
                                 >Resolución de Cámara Principal</span
                             >
-                            <span class="card__item-value" itemprop="rearCamera">{cameraResolution}</span>
+                            <span class="card__item-value" itemprop="rearCamera"
+                                >{cameraResolution}</span
+                            >
                         </div>
                     </li>
                     <li class="card__tech-list-item">
@@ -72,8 +83,11 @@ const {
                             />
                         </figure>
                         <div class="card__item-info">
-                            <span class="card__item-title">Memoria interna</span>
-                            <span class="card__item-value" itemprop="storage">{internalMemory}</span>
+                            <span class="card__item-title">Memoria interna</span
+                            >
+                            <span class="card__item-value" itemprop="storage"
+                                >{internalMemory}</span
+                            >
                         </div>
                     </li>
                     <li class="card__tech-list-item">
@@ -86,7 +100,9 @@ const {
                         </figure>
                         <div class="card__item-info">
                             <span class="card__item-title">Memoria RAM</span>
-                            <span class="card__item-value" itemprop="ram">{ramMemory}</span>
+                            <span class="card__item-value" itemprop="ram"
+                                >{ramMemory}</span
+                            >
                         </div>
                     </li>
                     <li class="card__tech-list-item">
@@ -101,7 +117,9 @@ const {
                             <span class="card__item-title"
                                 >Capacidad de la Bateria</span
                             >
-                            <span class="card__item-value" itemprop="battery" >{batteryCapacity}</span>
+                            <span class="card__item-value" itemprop="battery"
+                                >{batteryCapacity}</span
+                            >
                         </div>
                     </li>
                 </ul>
@@ -130,9 +148,6 @@ const {
         const imageElement = pictureElement.querySelector(
             ".card__picture-img",
         ) as HTMLImageElement;
-        /*const figureButton = document.querySelector(
-            `#${cardId} .card__nav-color`,
-        ) as HTMLDivElement;*/
         if (imageElement) {
             imageElement.style.opacity = "0";
             setTimeout(() => {
@@ -147,20 +162,13 @@ const {
                     "-12px 12px 20px 0px rgba(0, 0, 0, 0.48)";
             }, 300);
         }
-        /*if (figureButton) {
-            figureButton.style.boxShadow = "none"; // Eliminar el efecto de sombra del figure
-            setTimeout(() => {
-                figureButton.style.boxShadow =
-                    "inset 0px -3px 3px 0px";
-            }, 300);
-        } */
     }
 
     document.addEventListener("DOMContentLoaded", () => {
         const colorButtons = document.querySelectorAll(
             ".card__nav-button",
         ) as NodeListOf<HTMLElement>;
-       
+
         colorButtons.forEach((button) => {
             button.addEventListener("click", () => {
                 const imageSrc = button.dataset.imageSrc;
@@ -321,7 +329,6 @@ const {
         gap: 0.5rem;
     }
 
-
     @media (max-width: 576px) {
         .card__contain-main {
             scroll-snap-align: center; /* Ajusta el tamaño de la fuente para pantallas aún más pequeñas */
@@ -333,7 +340,7 @@ const {
             border-right: 2px solid #868686;
         }
 
-        .card__picture{
+        .card__picture {
             width: 250px;
         }
 
@@ -345,15 +352,17 @@ const {
             font-size: 1.8rem;
         }
 
-        .card__item-title, .card__item-value {
+        .card__item-title,
+        .card__item-value {
             font-size: 0.8rem;
         }
 
-        .card__button-details, .card__button-compaire{
+        .card__button-details,
+        .card__button-compaire {
             padding: 0.5rem 1rem;
         }
 
-        .card__item-icon{
+        .card__item-icon {
             width: 1.5rem;
             height: 2.5rem;
         }
@@ -362,5 +371,4 @@ const {
             gap: 0.5rem;
         }
     }
-
 </style>

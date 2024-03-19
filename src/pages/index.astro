@@ -6,332 +6,353 @@ import Slide from "../components/button/ui/slide.component.astro";
 import Button from "../components/button/ui/Button.component.astro";
 
 const brand = [
-    "/icons-brands/icon-Apple.svg",
-    "/icons-brands/blackview.png",
-    "/icons-brands/Cubot_Logo.png",
-    "/icons-brands/icon-asus.svg",
-    "/icons-brands/icon-Balckberry.svg",
-    "/icons-brands/icon-Cat.svg",
-    "/icons-brands/icon-Google.svg",
-    "/icons-brands/icon-honor.svg",
-    "/icons-brands/icon-HTC.png",
-    "/icons-brands/icon-Huawei.svg",
-    "/icons-brands/icon-Lenovo.svg",
-    "/icons-brands/icon-LG.svg",
-    "/icons-brands/meizuo.png",
-    "/icons-brands/icon-microsoft.svg",
-    "/icons-brands/icon-Motorola.svg",
-    "/icons-brands/nokia.png",
-    "/icons-brands/icon-oneplus.svg",
-    "/icons-brands/icon-realme.svg",
-    "/icons-brands/icon-Samsung.svg",
-    "/icons-brands/icon-sony.svg",
-    "/icons-brands/icon-vivo.svg",
-    "/icons-brands/icon-vodafone.svg",
-    "/icons-brands/icon-Xiaomi.svg",
-    "/icons-brands/iocn-Energizer.png",
-    "/icons-brands/iocon-oppo.svg",
-    "/icons-brands/Itel_Mobile_logo.png",
-    "/icons-brands/Logo-Alcatel.png",
-    "/icons-brands/logo-doodgee.png",
-    "/icons-brands/MEIZU.png",
-    "/icons-brands/micromax.png",
-    "/icons-brands/oukitel.png",
-    "/icons-brands/SHARP.png",
-    "/icons-brands/tecno.PNG",
-    "/icons-brands/Tlc.png",
-    "/icons-brands/ulefone.png",
-    "/icons-brands/ZTE-logo.svg.png",
+	"/icons-brands/icon-Apple.svg",
+	"/icons-brands/blackview.png",
+	"/icons-brands/Cubot_Logo.png",
+	"/icons-brands/icon-asus.svg",
+	"/icons-brands/icon-Balckberry.svg",
+	"/icons-brands/icon-Cat.svg",
+	"/icons-brands/icon-Google.svg",
+	"/icons-brands/icon-honor.svg",
+	"/icons-brands/icon-HTC.png",
+	"/icons-brands/icon-Huawei.svg",
+	"/icons-brands/icon-Lenovo.svg",
+	"/icons-brands/icon-LG.svg",
+	"/icons-brands/meizuo.png",
+	"/icons-brands/icon-microsoft.svg",
+	"/icons-brands/icon-Motorola.svg",
+	"/icons-brands/nokia.png",
+	"/icons-brands/icon-oneplus.svg",
+	"/icons-brands/icon-realme.svg",
+	"/icons-brands/icon-Samsung.svg",
+	"/icons-brands/icon-sony.svg",
+	"/icons-brands/icon-vivo.svg",
+	"/icons-brands/icon-vodafone.svg",
+	"/icons-brands/icon-Xiaomi.svg",
+	"/icons-brands/iocn-Energizer.png",
+	"/icons-brands/iocon-oppo.svg",
+	"/icons-brands/Itel_Mobile_logo.png",
+	"/icons-brands/Logo-Alcatel.png",
+	"/icons-brands/logo-doodgee.png",
+	"/icons-brands/MEIZU.png",
+	"/icons-brands/micromax.png",
+	"/icons-brands/oukitel.png",
+	"/icons-brands/SHARP.png",
+	"/icons-brands/tecno.PNG",
+	"/icons-brands/Tlc.png",
+	"/icons-brands/ulefone.png",
+	"/icons-brands/ZTE-logo.svg.png",
 ];
 ---
 
 <Layout title="ENTER.CO MOBILE">
-    <main>
-        <Header />
-        <nav class="brands_container">
-            <Slide>
-                {
-                    brand.map((icon, index) => (
-                        <li class="brand-self-container">
-                            <Button
-                                type="brands-navigation"
-                                icon={icon}
-                                id={`brand-${index}`}
-                            />
-                        </li>
-                    ))
-                }
-            </Slide>
-        </nav>
-        <section class="container-price">
-            <div class="price-filter-container">
-                <input
-                    id="min-price-input"
-                    type="text"
-                    class="price-input"
-                    name="price-filter-min"
-                    placeholder="Mínimo"
-                    min="39000"
-                    max="1200000"
-                    step="1000"
-                />
+	<main>
+		<Header />
+		<nav class="brands_container">
+			<Slide>
+				{
+					brand.map((icon, index) => (
+						<li class="brand-self-container">
+							<Button
+								type="brands-navigation"
+								icon={icon}
+								id={`brand-${index}`}
+							/>
+						</li>
+					))
+				}
+			</Slide>
+		</nav>
+		<section class="container-price">
+			<div class="price-filter-container">
+				<input
+					id="min-price-input"
+					type="text"
+					class="price-input"
+					name="price-filter-min"
+					placeholder="Mínimo"
+					min="39000"
+					max="1200000"
+					step="1000"
+				/>
 
-                <span class="separator">-</span>
+				<span class="separator">-</span>
 
-                <input
-                    id="max-price-input"
-                    type="text"
-                    class="price-input"
-                    name="price-filter-max"
-                    placeholder="Máximo"
-                    min="39000"
-                    max="1200000"
-                    step="1000"
-                />
-            </div>
-        </section>
-        <!--
+				<input
+					id="max-price-input"
+					type="text"
+					class="price-input"
+					name="price-filter-max"
+					placeholder="Máximo"
+					min="39000"
+					max="1200000"
+					step="1000"
+				/>
+			</div>
+		</section>
+		<!--
 			<MainFilters/>
 				 -->
-        <section class="slide-section">
-            <div class="slide-container">
-                <Slide cellphone={true}>
-                    <Card
-                        id="Iphoneone"
-                        title="Iphone 15 Pro Max"
-                        cameraResolution="48MP"
-                        internalMemory="256GB | 512GB | 1TB"
-                        ramMemory="8GB"
-                        batteryCapacity="4441mAh"
-                        colors={[
-                            {
-                                color: "#f7f4ed",
-                                src: "/phone_images/Apple/iphone15ProMax-White.png",
-                            },
-                            {
-                                color: "#97968d",
-                                src: "/phone_images/Apple/Iphone15ProMax-Natural.png",
-                            },
-                            {
-                                color: "#585f6f",
-                                src: "/phone_images/Apple/iphone15ProMax-Blue.png",
-                            },
-                            {
-                                color: "#545454",
-                                src: "/phone_images/Apple/iphone15ProMax-Black.png",
-                            },
-                        ]}
-                        src="/phone_images/Apple/iphone15ProMax-White.png"
-                    />
-                    <Card
-                        id="Xiaomione"
-                        title=" Xiaomi 14 Ultra"
-                        cameraResolution="50MP"
-                        internalMemory="256GB | 512GB | 1TB"
-                        ramMemory="12GB | 16GB "
-                        batteryCapacity="5000mAh"
-                        colors={[
-                            {
-                                color: "#DEDEE0",
-                                src: "/phone_images/Xiaomi/Xiaomi14Ultra-White.png",
-                            },
-                            {
-                                color: "#2A2A2C",
-                                src: "/phone_images/Xiaomi/Xiaomi14Ultra-Black.png",
-                            },
-                        ]}
-                        src="/phone_images/Xiaomi/Xiaomi14Ultra-White.png"
-                    />
-                    <Card
-                        id="Samnsungone"
-                        title="Samsung Galaxy S23 Ultra"
-                        cameraResolution="200MP"
-                        internalMemory="256GB | 512GB | 1TB"
-                        ramMemory="8GB | 12GB "
-                        batteryCapacity="5000mAh"
-                        colors={[
-                            {
-                                color: "#F1EAE0",
-                                src: "/phone_images/samsung/SamsungS23Ultra-White.png",
-                            },
-                            {
-                                color: "#D4C7D9",
-                                src: "/phone_images/samsung/SamsungS23Ultra-Pink.png",
-                            },
-                            {
-                                color: "#5E645A",
-                                src: "/phone_images/samsung/SamsungS23Ultra-Green.png",
-                            },
-                            {
-                                color: "#211E15",
-                                src: "/phone_images/samsung/SamsungS23Ultra-Black.png",
-                            },
-                        ]}
-                        src="/phone_images/samsung/SamsungS23Ultra-White.png"
-                    />
-                    <Card
-                        id="Huaweione"
-                        title="Huawei P60 Pro"
-                        cameraResolution="50MP"
-                        internalMemory="256GB | 512GB | 1TB"
-                        ramMemory="12GB "
-                        batteryCapacity="5000mAh"
-                        colors={[
-                            {
-                                color: "#EAE8E9",
-                                src: "/phone_images/Huawei/HuaweiP60Pro-White.png",
-                            },
-                            {
-                                color: "#BFB2D6",
-                                src: "/phone_images/Huawei/HuaweiP60Pro-Pink.png",
-                            },
-                            {
-                                color: "#2D3E34",
-                                src: "/phone_images/Huawei/HuaweiP60Pro-Green.png",
-                            },
-                            {
-                                color: "#1E1E20",
-                                src: "/phone_images/Huawei/HuaweiP60Pro-Black.png",
-                            },
-                        ]}
-                        src="/phone_images/Huawei/HuaweiP60Pro-White.png"
-                    />
-                </Slide>
-            </div>
-        </section>
-    </main>
+		<section class="slide-section">
+			<div class="slide-container">
+				<Slide cellphone={true}>
+					<Card
+						id="Iphoneone"
+						title="Iphone 15 Pro Max"
+						cameraResolution="48MP"
+						internalMemory="256GB | 512GB | 1TB"
+						ramMemory="8GB"
+						batteryCapacity="4441mAh"
+						colors={[
+							{
+								color: "#f7f4ed",
+								src: "/phone_images/Apple/iphone15ProMax-White.png",
+							},
+							{
+								color: "#97968d",
+								src: "/phone_images/Apple/Iphone15ProMax-Natural.png",
+							},
+							{
+								color: "#585f6f",
+								src: "/phone_images/Apple/iphone15ProMax-Blue.png",
+							},
+							{
+								color: "#545454",
+								src: "/phone_images/Apple/iphone15ProMax-Black.png",
+							},
+						]}
+						src="/phone_images/Apple/iphone15ProMax-White.png"
+					/>
+					<Card
+						id="Xiaomione"
+						title=" Xiaomi 14 Ultra"
+						cameraResolution="50MP"
+						internalMemory="256GB | 512GB | 1TB"
+						ramMemory="12GB | 16GB "
+						batteryCapacity="5000mAh"
+						colors={[
+							{
+								color: "#DEDEE0",
+								src: "/phone_images/Xiaomi/Xiaomi14Ultra-White.png",
+							},
+							{
+								color: "#2A2A2C",
+								src: "/phone_images/Xiaomi/Xiaomi14Ultra-Black.png",
+							},
+						]}
+						src="/phone_images/Xiaomi/Xiaomi14Ultra-White.png"
+					/>
+					<Card
+						id="Samnsungone"
+						title="Samsung Galaxy S23 Ultra"
+						cameraResolution="200MP"
+						internalMemory="256GB | 512GB | 1TB"
+						ramMemory="8GB | 12GB "
+						batteryCapacity="5000mAh"
+						colors={[
+							{
+								color: "#F1EAE0",
+								src: "/phone_images/samsung/SamsungS23Ultra-White.png",
+							},
+							{
+								color: "#D4C7D9",
+								src: "/phone_images/samsung/SamsungS23Ultra-Pink.png",
+							},
+							{
+								color: "#5E645A",
+								src: "/phone_images/samsung/SamsungS23Ultra-Green.png",
+							},
+							{
+								color: "#211E15",
+								src: "/phone_images/samsung/SamsungS23Ultra-Black.png",
+							},
+						]}
+						src="/phone_images/samsung/SamsungS23Ultra-White.png"
+					/>
+					<Card
+						id="Huaweione"
+						title="Huawei P60 Pro"
+						cameraResolution="50MP"
+						internalMemory="256GB | 512GB | 1TB"
+						ramMemory="12GB "
+						batteryCapacity="5000mAh"
+						colors={[
+							{
+								color: "#EAE8E9",
+								src: "/phone_images/Huawei/HuaweiP60Pro-White.png",
+							},
+							{
+								color: "#BFB2D6",
+								src: "/phone_images/Huawei/HuaweiP60Pro-Pink.png",
+							},
+							{
+								color: "#2D3E34",
+								src: "/phone_images/Huawei/HuaweiP60Pro-Green.png",
+							},
+							{
+								color: "#1E1E20",
+								src: "/phone_images/Huawei/HuaweiP60Pro-Black.png",
+							},
+						]}
+						src="/phone_images/Huawei/HuaweiP60Pro-White.png"
+					/>
+				</Slide>
+			</div>
+		</section>
+	</main>
 </Layout>
 
 <script>
-    const getMobiles = async () => {
-        const response = await fetch(
-            `${location.origin}/api/v1/phone-search.endpoint?src=`,
-        );
-        const data = await response.json();
-        if (data.error) return console.error(data.error);
-        return data as Record<string, string>[];
-    };
+	const getMobiles = async () => {
+		const response = await fetch(
+			`${location.origin}/api/v1/phone-search.endpoint?src=`,
+		);
+		const data = await response.json();
+		if (data.error) return console.error(data.error);
+		return data as Record<string, string>[];
+	};
 
-    const getDetails = async (id: string) => {
-        const response = await fetch(
-            `${location.origin}/api/v1/phone-details.endpoint?mobile=${id}`,
-        );
-        const data = await response.json();
-        if (data.error) return console.error(data.error);
-        return data;
-    };
-    document.addEventListener("DOMContentLoaded", async () => {
-        const template = document.querySelector(
-            "#card-mobile",
-        ) as HTMLTemplateElement;
-        const container = Array.from(
-            document.querySelectorAll(".slide__cards"),
-        ).at(-1) as HTMLElement;
-        const cardContainer = document.importNode(template.content, true);
-        const bubble = document.querySelector(
-            ".bubble__counter",
-        ) as HTMLElement;
-        const comparations = JSON.parse(
-            localStorage.getItem("comparar") ?? "[]",
-        ) as Array<string>;
+	const getDetails = async (id: string) => {
+		const response = await fetch(
+			`${location.origin}/api/v1/phone-details.endpoint?mobile=${id}`,
+		);
+		const data = await response.json();
+		if (data.error) return console.error(data.error);
+		return data;
+	};
+	document.addEventListener("DOMContentLoaded", async () => {
+		const template = document.querySelector(
+			"#card-mobile",
+		) as HTMLTemplateElement;
+		const container = Array.from(
+			document.querySelectorAll(".slide__cards"),
+		).at(-1) as HTMLElement;
+		const cardContainer = document.importNode(template.content, true);
+		const bubble = document.querySelector(
+			".bubble__counter",
+		) as HTMLElement;
+		const comparations = JSON.parse(
+			localStorage.getItem("comparar") ?? "[]",
+		) as Array<string>;
 
-        bubble!.innerText = comparations.length.toString();
-        // clear container
-        container.innerHTML = "";
+		bubble!.innerText = comparations.length.toString();
+		// clear container
+		container.innerHTML = "";
 
-        const cellphones = await getMobiles();
-        if (!cellphones) return;
+		const cellphones = await getMobiles();
+		if (!cellphones) return;
 
-        cellphones.forEach((cellphone) => {
-            const currentCard = cardContainer.cloneNode(true) as HTMLElement;
-            currentCard
-                .querySelector('[itemid="id"]')!
-                .setAttribute("id", cellphone.id);
-            currentCard.querySelector('[itemprop="name"]')!.textContent =
-                cellphone.name;
-            currentCard.querySelector('[itemprop="rearCamera"]')!.textContent =
-                cellphone.rearCamera;
-            currentCard.querySelector('[itemprop="storage"]')!.textContent =
-                cellphone.storage;
-            currentCard.querySelector('[itemprop="ram"]')!.textContent =
-                cellphone.ram;
-            currentCard.querySelector('[itemprop="battery"]')!.textContent =
-                cellphone.battery;
-            currentCard
-                .querySelector('[itemtype="detalles"]')!
-                .addEventListener("click", async () => {
-                    const detalle = await getDetails(cellphone.id);
-                    console.log(detalle);
-                });
-            currentCard
-                .querySelector('[itemtype="comparar"]')!
-                .addEventListener("click", async () => {
-                    const comparations = JSON.parse(
-                        localStorage.getItem("comparar") ?? "[]",
-                    ) as Array<string>;
-                    comparations.push(cellphone.id);
-                    const toSave = Array.from(new Set(comparations).values());
-                    bubble!.innerText = toSave.length.toString();
-                    localStorage.setItem("comparar", JSON.stringify(toSave));
-                });
-            container?.append(currentCard);
-        });
-    });
+		cellphones.forEach((cellphone) => {
+			const currentCard = cardContainer.cloneNode(true) as HTMLElement;
+			currentCard
+				.querySelector('[itemid="id"]')!
+				.setAttribute("id", cellphone.id);
+			currentCard.querySelector('[itemprop="name"]')!.textContent =
+				cellphone.name;
+			currentCard.querySelector('[itemprop="rearCamera"]')!.textContent =
+				cellphone.rearCamera;
+			currentCard.querySelector('[itemprop="storage"]')!.textContent =
+				cellphone.storage;
+			currentCard.querySelector('[itemprop="ram"]')!.textContent =
+				cellphone.ram;
+			currentCard.querySelector('[itemprop="battery"]')!.textContent =
+				cellphone.battery;
+			currentCard
+				.querySelector('[itemtype="detalles"]')!
+				.addEventListener("click", async () => {
+					const detalle = await getDetails(cellphone.id);
+					console.log(detalle);
+				});
+			currentCard
+				.querySelector('[itemtype="comparar"]')!
+				.addEventListener("click", async () => {
+					const comparations = JSON.parse(
+						localStorage.getItem("comparar") ?? "[]",
+					) as Array<string>;
+					comparations.push(cellphone.name);
+					const toSave = Array.from(new Set(comparations).values());
+					bubble!.innerText = toSave.length.toString();
+					localStorage.setItem("comparar", JSON.stringify(toSave));
+
+					const mobileList = document.querySelector(
+						".comparison-list",
+					) as HTMLTemplateElement;
+					mobileList.innerHTML = "";
+
+					toSave.forEach((newMobileListAdd) => {
+						const newMobileList = document.createElement("li");
+						newMobileList.textContent = newMobileListAdd;
+						mobileList.appendChild(newMobileList);
+
+						const cleanList = document.querySelector(
+							".list-button-clean",
+						) as HTMLElement;
+						cleanList.addEventListener("click", async () => {
+							if (!mobileList) return;
+							mobileList.innerHTML = "";
+							localStorage.removeItem("comparar");
+							bubble.innerText = "0";
+						});
+					});
+				});
+			container?.append(currentCard);
+		});
+	});
 </script>
 
 <style>
-    main {
-        margin: auto;
-        padding: unset;
-        width: unset;
-        max-width: unset;
-        .price-filter {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-    }
+	main {
+		margin: auto;
+		padding: unset;
+		width: unset;
+		max-width: unset;
+		.price-filter {
+			display: flex;
+			align-items: center;
+			margin-bottom: 10px;
+		}
+	}
 
-    .container-price {
-        margin-top: 20px;
-        display: flex;
-        justify-content: center; /* Centrar horizontalmente */
-        align-items: center; /* Centrar verticalmente */
-    }
+	.container-price {
+		margin-top: 20px;
+		display: flex;
+		justify-content: center; /* Centrar horizontalmente */
+		align-items: center; /* Centrar verticalmente */
+	}
 
-    .price-filter-container {
-        display: flex;
-        align-items: center;
-    }
+	.price-filter-container {
+		display: flex;
+		align-items: center;
+	}
 
-    .price-input {
-        padding: 10px;
-        font-size: 16px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        width: 150px;
-    }
+	.price-input {
+		padding: 10px;
+		font-size: 16px;
+		border: 1px solid #ccc;
+		border-radius: 5px;
+		width: 150px;
+	}
 
-    .separator {
-        margin: 0 10px;
-        font-size: 20px;
-    }
+	.separator {
+		margin: 0 10px;
+		font-size: 20px;
+	}
 
-    .slide-section {
-        height: 580px;
-        overflow: hidden;
-        position: relative;
-        margin-top: 80px;
-    }
+	.slide-section {
+		height: 580px;
+		overflow: hidden;
+		position: relative;
+		margin-top: 80px;
+	}
 
-    .slide-container {
-        height: 100%;
-        width: 100%;
-    }
+	.slide-container {
+		height: 100%;
+		width: 100%;
+	}
 
-    @media (max-width: 576px) {
-        .slide-section {
-            height: 420px;
-        }
-    }
+	@media (max-width: 576px) {
+		.slide-section {
+			height: 420px;
+		}
+	}
 </style>

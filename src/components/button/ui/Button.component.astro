@@ -10,7 +10,7 @@ interface Props {
         | "brands-navigation"
         | "price-filter";
     detail?: string;
-    brand?: {src: string}[];
+    brand?: { src: string }[];
 }
 
 const { text, id, icon, detail, type, brand } = Astro.props;
@@ -49,11 +49,7 @@ const { text, id, icon, detail, type, brand } = Astro.props;
 
 {
     type === "bubble-comparation" && (
-        <button
-            id={id}
-            type="button"
-            class="button button--bubble-comparation header__comparition-section"
-        >
+        <button id={id} type="button" class="button--bubble-comparation">
             <span class="bubble__counter">{text}</span>
             <figure class="button__icon-bubble">
                 <img class="button__icon-bubble-image" src={icon} alt="" />
@@ -82,8 +78,9 @@ const { text, id, icon, detail, type, brand } = Astro.props;
     )
 }
 
+<script>
 
-
+</script>
 
 <style>
     .button--fake-input {
@@ -276,4 +273,3 @@ const { text, id, icon, detail, type, brand } = Astro.props;
         border-radius: 50%;
     }
 </style>
-
