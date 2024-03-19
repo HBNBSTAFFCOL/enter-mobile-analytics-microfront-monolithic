@@ -27,104 +27,105 @@ const {
     src,
 } = Astro.props;
 ---
-<template id="card-mobile">
-    <li class="card" itemid="card-mobile">
+
+<template id="compaire_card-mobile">
+    <li class="card-compaire" itemid="compaire_card-mobile">
         <article
-            class="card__contain"
+            class="compaire_card__contain"
             itemid="id"
             id={id.replace(/\s+/g, "-").toLowerCase()}
         >
-            <div class="card__left">
-                <picture class="card__picture" id="phonePicture">
+            <div class="compaire_card__left">
+                <div class="compaire_card__contain-tittle">
+                    <h2 class="compaire_card__title" itemprop="name">{title}</h2>
+                </div>
+                <picture class="compaire_card__picture" id="phonePicture">
                     <img
-                        class="card__picture-img"
+                        class="compaire_card__picture-img"
                         src={src}
                         alt="Imagen del movil"
                     />
                 </picture>
             </div>
-            <footer class="card__footer">
-                <button class="card__button-compaire" itemtype="comparar"
-                    >Comparar</button
+            <footer class="compaire_card__footer">
+                <button class="compaire_card__button-compaire" itemtype="comparar"
+                    >Lo quiero</button
                 >
-                <button class="card__button-details" itemtype="detalles"
-                    >Detalles</button
+                <button class="compaire_card__button-details" itemtype="detalles"
+                    >Lo quiero</button
                 >
             </footer>
-            <main class="card__contain-main">
-                <div class="card__contain-tittle">
-                    <h2 class="card__title" itemprop="name">{title}</h2>
-                </div>
-                <ul class="card__tech-list">
-                    <li class="card__tech-list-item">
-                        <figure class="card__item-icon">
+            <main class="compaire_card__contain-main">
+                <ul class="compaire_card__tech-list">
+                    <li class="compaire_card__tech-list-item">
+                        <figure class="compaire_card__item-icon">
                             <img
-                                class="card__item-icon-img"
+                                class="compaire_card__item-icon-img"
                                 src="public/icons/icons_items/icon-camera.svg"
                                 alt="Icono de camara"
                                 itemprop=""
                             />
                         </figure>
-                        <div class="card__item-info">
-                            <span class="card__item-title"
+                        <div class="compaire_card__item-info">
+                            <span class="compaire_card__item-title"
                                 >Resolución de Cámara Principal</span
                             >
-                            <span class="card__item-value" itemprop="rearCamera"
+                            <span class="compaire_card__item-value" itemprop="rearCamera"
                                 >{cameraResolution}</span
                             >
                         </div>
                     </li>
-                    <li class="card__tech-list-item">
+                    <li class="compaire_card__tech-list-item">
                         <figure class="card__item-icon">
                             <img
-                                class="card__item-icon-img"
+                                class="compaire_card__item-icon-img"
                                 src="public/icons/icons_items/icon-memory-internal.svg"
                                 alt="Icono de memoria interna"
                             />
                         </figure>
-                        <div class="card__item-info">
+                        <div class="compaire_card__item-info">
                             <span class="card__item-title">Memoria interna</span
                             >
-                            <span class="card__item-value" itemprop="storage"
+                            <span class="compaire_card__item-value" itemprop="storage"
                                 >{internalMemory}</span
                             >
                         </div>
                     </li>
-                    <li class="card__tech-list-item">
-                        <figure class="card__item-icon">
+                    <li class="compaire_card__tech-list-item">
+                        <figure class="compaire_card__item-icon">
                             <img
-                                class="card__item-icon-img"
+                                class="compaire_card__item-icon-img"
                                 src="public/icons/icons_items/icon-memory-ram.svg"
                                 alt="Icono de memoria ram"
                             />
                         </figure>
-                        <div class="card__item-info">
-                            <span class="card__item-title">Memoria RAM</span>
-                            <span class="card__item-value" itemprop="ram"
+                        <div class="compaire_card__item-info">
+                            <span class="compaire_card__item-title">Memoria RAM</span>
+                            <span class="compaire_card__item-value" itemprop="ram"
                                 >{ramMemory}</span
                             >
                         </div>
                     </li>
-                    <li class="card__tech-list-item">
-                        <figure class="card__item-icon">
+                    <li class="compaire_card__tech-list-item">
+                        <figure class="compaire_card__item-icon">
                             <img
-                                class="card__item-icon-img"
+                                class="compaire_card__item-icon-img"
                                 src="public/icons/icons_items/icon-battery.svg"
                                 alt="Icono de bateria"
                             />
                         </figure>
-                        <div class="card__item-info">
+                        <div class="ccompaire_ard__item-info">
                             <span class="card__item-title"
                                 >Capacidad de la Bateria</span
                             >
-                            <span class="card__item-value" itemprop="battery"
+                            <span class="compaire_card__item-value" itemprop="battery"
                                 >{batteryCapacity}</span
                             >
                         </div>
                     </li>
                 </ul>
             </main>
-            <nav class="card__nav">
+            <nav class="compaire_card__nav">
                 {
                     colors &&
                         colors.map((colorItem) => (
@@ -139,9 +140,7 @@ const {
             </nav>
         </article>
     </li>
-
 </template>
-
 
 <script>
     export function changeImage(imageSrc: string, cardId: string) {
@@ -185,37 +184,48 @@ const {
 </script>
 
 <style>
-    /*styles for simple card*/
-
-    .card {
+    /*styles for comparation card */
+    .compaire_card {
         display: inline-block;
         /*aspect-ratio: 5 / 2.5; */
         scroll-snap-align: center;
-        margin-right: 20%;
+        margin-right: 10%;
     }
 
-    .card__contain {
-        display: grid;
+    .compaire_card__contain {
+        display: flex;
         height: 100%;
         width: 100%;
-        grid-template-columns: auto auto;
-        grid-template-rows: 82% 14%;
         padding: 20px;
         gap: 1rem;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        justify-items: center;
     }
 
-    .card__left {
-        display: grid;
-        grid-column: 1 / 2;
-        grid-row: 1 / 2;
+    .compaire_card__left {
+        display: flex;
         align-content: flex-end;
         justify-content: center;
         position: relative;
-        width: 333px;
-        height: 100%;
+        flex-direction: column;
+
     }
 
-    .card__picture {
+    .compaire_card__contain-tittle {
+        padding: 10px;
+        text-align: center;
+    }
+
+    .compaire_card__title {
+        font-size: 2rem;
+        font-weight: bold;
+        text-wrap: wrap;
+        text-align: center;
+    }
+
+    .compaire_card__picture {
         width: 100%;
         height: 100%;
         position: relative;
@@ -224,22 +234,22 @@ const {
         box-shadow: -27px 18px 20px 0px rgba(0, 0, 0, 0.48);
     }
 
-    .card__picture-img {
+    .compaire_card__picture-img {
         width: 100%;
         height: auto;
         transition: opacity 500ms ease 0s;
         background-color: transparent;
     }
 
-    .card__footer {
+    .compaire_card__footer {
         display: flex;
-        grid-row: 2 / 3;
-        grid-column: 2 / 3;
         justify-content: space-around;
         align-items: center;
+        flex-direction: row;
+        width: 100%;
     }
 
-    .card__button-compaire {
+    .compaire_card__button-compaire {
         padding: 1rem 2rem;
         background-color: var(--color-action--success);
         color: #ffffff;
@@ -252,7 +262,7 @@ const {
         box-shadow: -12px 12px 20px 0px rgba(0, 0, 0, 0.48);
     }
 
-    .card__button-details {
+    .compaire_card__button-details {
         padding: 1rem 2rem;
         background-color: var(--color-action--log);
         color: #ffffff;
@@ -265,30 +275,16 @@ const {
         box-shadow: -12px 12px 20px 0px rgba(0, 0, 0, 0.48);
     }
 
-    .card__contain-main {
-        display: grid;
-        grid-row: 1 / 2;
-        grid-template-rows: 30% auto;
+    .compaire_card__contain-main {
+        display: flex;
         gap: 1rem;
         width: 100%;
         align-items: center;
+        flex-direction: column;
+        padding: 10px;
     }
 
-    .card__contain-tittle {
-        display: flex;
-        height: 100%;
-        width: 100%;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .card__title {
-        font-size: 2rem;
-        font-weight: bold;
-        text-wrap: wrap;
-    }
-
-    .card__tech-list {
+    .compaire_card__tech-list {
         display: flex;
         height: 100%;
         align-items: flex-start;
@@ -296,38 +292,38 @@ const {
         flex-direction: column;
     }
 
-    .card__tech-list-item {
+    .compaire_card__tech-list-item {
         display: flex;
         flex-direction: row;
     }
 
-    .card__item-icon {
+    .compaire_card__item-icon {
         margin-right: 10px;
         width: 2.5rem;
         height: 2.5em;
     }
 
-    .card__item-info {
+    .compaire_card__item-info {
         display: flex;
         flex-direction: column;
     }
 
-    .card__item-title {
+    .compaire_card__item-title {
         font-weight: bold;
         margin-bottom: 5px;
         text-wrap: nowrap;
     }
 
-    .card__item-value {
+    .compaire_card__item-value {
         font-size: 0.9rem;
     }
 
-    .card__item-icon-img {
+    .compaire_card__item-icon-img {
         width: 100%;
         height: 100%;
     }
 
-    .card__nav {
+    .compaire_card__nav {
         display: flex;
         justify-content: center;
         flex-wrap: nowrap;
@@ -335,47 +331,46 @@ const {
     }
 
     @media (max-width: 576px) {
-        .card__contain-main {
+        .compaire_card__contain-main {
             scroll-snap-align: center; /* Ajusta el tamaño de la fuente para pantallas aún más pequeñas */
         }
 
-        .card__left {
+        .compaire_card__left {
             scroll-snap-align: center;
             width: 390px;
             border-right: 2px solid #868686;
         }
 
-        .card__picture {
+        .compaire_card__picture {
             width: 250px;
         }
 
-        .card {
+        .compaire_card {
             scroll-snap-align: none;
         }
 
-        .card__title {
+        .compaire_card__title {
             font-size: 1.8rem;
         }
 
-        .card__item-title,
-        .card__item-value {
+        .compaire_card__item-title,
+        .compaire_card__item-value {
             font-size: 0.8rem;
         }
 
-        .card__button-details,
-        .card__button-compaire {
+        .compaire_card__button-details,
+        .compaire_card__button-compaire {
             padding: 0.5rem 1rem;
         }
 
-        .card__item-icon {
+        .compaire_card__item-icon {
             width: 1.5rem;
             height: 2.5rem;
         }
 
-        .card__contain-main {
+        .compaire_card__contain-main {
             gap: 0.5rem;
         }
     }
-
 
 </style>

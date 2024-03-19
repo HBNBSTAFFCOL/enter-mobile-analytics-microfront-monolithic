@@ -81,7 +81,7 @@ export const filterMobiles = (filterOptions: Mobile): Mobile[] => {
         value !== undefined
     );        
     const filteredMobiles = mobiles.filter(mobile => {
-        return validParams.every(([param, optionValue]) => {
+        return validParams.some(([param, optionValue]) => {
             // @ts-ignore
             if (Array.isArray((mobile as Mobile)[param])) {
                 // @ts-ignore
@@ -89,7 +89,7 @@ export const filterMobiles = (filterOptions: Mobile): Mobile[] => {
             } else {
                 // @ts-ignore
                 const mobileValue = (mobile as Mobile)[param];
-                return mobileValue !== undefined && mobileValue.toString().toLowerCase() === optionValue.toString().toLowerCase();
+                return mobileValue !== undefined && mobileValue.toString().toLowerCase().includes(optionValue.toString().toLowerCase().trim());
             }
         });
     });

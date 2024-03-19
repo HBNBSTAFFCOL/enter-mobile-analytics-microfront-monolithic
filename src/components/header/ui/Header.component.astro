@@ -86,7 +86,7 @@ import ListComparation from "../../phone-comparison/ui/component.astro";
                 data-for="button-filters-navigation-camara"
             >
                 <Range
-                    name="mpxRangeSelf"
+                    name="rearCamera"
                     title="Selfie MPX Range"
                     unit="MP"
                     start={8}
@@ -97,7 +97,7 @@ import ListComparation from "../../phone-comparison/ui/component.astro";
                     id="filters__camara-back--mpx-range"
                 />
                 <Range
-                    name="mpxRangePrimary"
+                    name="rearCamera"
                     title="Principal MPX Range"
                     unit="MP"
                     start={8}
@@ -115,7 +115,7 @@ import ListComparation from "../../phone-comparison/ui/component.astro";
                 data-for="button-filters-navigation-battery"
             >
                 <Range
-                    name="mAhRange"
+                    name="battery"
                     title="Bateria"
                     unit="mAh"
                     start={2}
@@ -133,7 +133,7 @@ import ListComparation from "../../phone-comparison/ui/component.astro";
                 data-for="button-filters-navigation-screen"
             >
                 <Range
-                    name="inchesRange"
+                    name="screenSize"
                     title="Pantalla"
                     unit="inches"
                     start={2}
@@ -151,7 +151,7 @@ import ListComparation from "../../phone-comparison/ui/component.astro";
                 data-for="button-filters-navigation-memory"
             >
                 <Range
-                    name="gbRange"
+                    name="ram"
                     title="Memoria RAM"
                     unit="GB"
                     start={2}
@@ -162,7 +162,7 @@ import ListComparation from "../../phone-comparison/ui/component.astro";
                     id="filters__memory--gb-range"
                 />
                 <Range
-                    name="gbRange"
+                    name="storage"
                     title="Almacenamiento"
                     unit="GB"
                     start={2}
@@ -306,7 +306,7 @@ import ListComparation from "../../phone-comparison/ui/component.astro";
 
             document.addEventListener("click", (event) => {
                 if (event.target instanceof Node) {
-                    if (!containerList!.contains(event.target) && event.target !== $bubbleList) {
+                    if (!containerList!.contains(event.target) && (event.target as HTMLElement).closest(".button--bubble-comparation") !== $bubbleList) {
                         containerList!.classList.remove("header__container-show");
                     }
                 }

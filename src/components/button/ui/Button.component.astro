@@ -60,7 +60,7 @@ const { text, id, icon, detail, type, brand } = Astro.props;
 
 {
     type === "price-filter" && (
-        <button id={id} type="button" class="button button--brands-navigation">
+        <button id={id} type="button" class="button button--price-filter">
             <figure class="button__icon-nav">
                 <img class="button__icon-image-nav" src={icon} alt={text} />
             </figure>
@@ -70,7 +70,7 @@ const { text, id, icon, detail, type, brand } = Astro.props;
 
 {
     type === "brands-navigation" && (
-        <button id={id} type="button" class="button button--brands-navigation">
+        <button id={id} type="button" class="button button--brands-navigation" >
             <figure class="button__icon-nav">
                 <img class="button__icon-image-nav" src={icon} alt={text} />
             </figure>
