@@ -292,6 +292,38 @@ const brand = [
         }
     }
 
+    .brands_container {
+        overflow-x: auto;
+        white-space: nowrap;
+        display: flex;
+        justify-content: center; /* Centrar horizontalmente los elementos */
+        align-items: center; /* Centrar verticalmente los elementos */
+    }
+
+    .brands_slider {
+        display: flex;
+        align-items: center; /* Centrar verticalmente los elementos */
+        overflow-x: auto; /* Deslizador horizontal */
+        scrollbar-width: none; /* Ocultar la barra de desplazamiento */
+        -ms-overflow-style: none; /* Ocultar la barra de desplazamiento (IE y Edge) */
+    }
+
+    .brands_list {
+        display: flex;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        justify-content: center; /* Centrar horizontalmente los elementos */
+    }
+
+    .brand-self-container {
+        margin-right: 10px;
+    }
+
+    .brands_slider::-webkit-scrollbar {
+        display: none; /* Para navegadores basados en WebKit */
+    }
+
     .container-price {
         margin-top: 20px;
         display: flex;
