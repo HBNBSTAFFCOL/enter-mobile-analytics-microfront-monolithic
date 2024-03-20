@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ---
 import Button from "../../button/ui/Button.component.astro";
 import Range from "../../range/ui/Range.component.astro";
@@ -713,3 +714,720 @@ import ListComparation from "../../phone-comparison/ui/component.astro";
     @media (max-width: ;) {
     }
 </style>
+=======
+---
+import Button from "../../button/ui/Button.component.astro";
+import Range from "../../range/ui/Range.component.astro";
+import ListComparation from "../../phone-comparison/ui/component.astro";
+---
+
+<header class="header">
+    <section class="header__logo">
+        <figure class="header__logo-icon">
+            <img
+                class="header__icon-image"
+                src="/images_Enter/logoEnter.png"
+                alt=""
+            />
+        </figure>
+    </section>
+    <section class="header__search-section">
+        <Button
+            type="fake-input"
+            id="button-fake-input"
+            icon="/search-svgrepo-com.svg"
+            text="Buscar"
+        />
+    </section>
+
+    <section class="search header__search-real" id="search-container">
+        <input
+            type="text"
+            name=""
+            class="search__serachbar-input"
+            id="filters__search-input"
+            placeholder="Buscar"
+        />
+
+        <figure class="search__serachbar-icon">
+            <img
+                class="search__serachbar-icon-image"
+                src="/search-svgrepo-com.svg"
+                alt=""
+            />
+        </figure>
+    </section>
+    <section class="filters header__filters" id="filters-container">
+        <nav class="filters__navigation">
+            <article class="filters__navigation-contain">
+                <Button
+                    type="filters-navigation"
+                    id="button-filters-navigation-camara"
+                    icon="/icons/icon-camera.svg"
+                    text="Camara"
+                    detail="Selfie 100 MPX / Main Camara 200 MPX"
+                />
+            </article>
+            <article class="filter_navigation-container">
+                <Button
+                    type="filters-navigation"
+                    id="button-filters-navigation-screen"
+                    icon="/icons/icon-screen.svg"
+                    text="Pantalla"
+                    detail="7 Pulgadas"
+                />
+            </article>
+            <article class="filter_navigation-container">
+                <Button
+                    type="filters-navigation"
+                    id="button-filters-navigation-memory"
+                    icon="/icons/icon-memory-ram.svg"
+                    text="Memoria"
+                    detail="8 RAM / 256 GB ALMACENAMIENTO"
+                />
+            </article>
+            <article class="filter_navigation-container">
+                <Button
+                    type="filters-navigation"
+                    id="button-filters-navigation-battery"
+                    icon="/icons/icon-battery.svg"
+                    text="Bateria"
+                    detail="1000 MHP"
+                />
+            </article>
+        </nav>
+        <section class="filters__modal">
+            <article
+                class="filters__camara-modal"
+                id="camara-modal"
+                data-for="button-filters-navigation-camara"
+            >
+                <Range
+                    name="rearCamera"
+                    title="Selfie MPX Range"
+                    unit="MP"
+                    start={8}
+                    step={4}
+                    type="single"
+                    end={150}
+                    initial={60}
+                    id="filters__camara-back--mpx-range"
+                />
+                <Range
+                    name="rearCamera"
+                    title="Principal MPX Range"
+                    unit="MP"
+                    start={8}
+                    step={4}
+                    type="single"
+                    end={150}
+                    initial={60}
+                    id="filters__camara-main--mpx-range"
+                />
+            </article>
+
+            <article
+                class="filters__battery-modal"
+                id="battery-modal"
+                data-for="button-filters-navigation-battery"
+            >
+                <Range
+                    name="battery"
+                    title="Bateria"
+                    unit="mAh"
+                    start={2}
+                    step={1}
+                    type="single"
+                    end={150}
+                    initial={60}
+                    id="filters__battery--mAh-range"
+                />
+            </article>
+
+            <article
+                class="filters__screen-modal"
+                id="camara-modal"
+                data-for="button-filters-navigation-screen"
+            >
+                <Range
+                    name="screenSize"
+                    title="Pantalla"
+                    unit="inches"
+                    start={2}
+                    step={1}
+                    type="single"
+                    end={150}
+                    initial={50}
+                    id="filters__screen--inches-range"
+                />
+            </article>
+
+            <article
+                class="filters__memory-modal"
+                id="memory-modal"
+                data-for="button-filters-navigation-memory"
+            >
+                <Range
+                    name="ram"
+                    title="Memoria RAM"
+                    unit="GB"
+                    start={2}
+                    step={1}
+                    type="single"
+                    end={150}
+                    initial={50}
+                    id="filters__memory--gb-range"
+                />
+                <Range
+                    name="storage"
+                    title="Almacenamiento"
+                    unit="GB"
+                    start={2}
+                    step={2}
+                    type="single"
+                    end={300}
+                    initial={50}
+                    id="filters__memory--gb-range"
+                />
+            </article>
+        </section>
+    </section>
+    <section class="header__comparation-section">
+        <Button
+            type="bubble-comparation"
+            id="button-bubble-comparition"
+            icon="/bubble-cart-com.svg"
+            text="3"
+        />
+    </section>
+    <section class="header__container-list">
+        <div class="contain-list-tittle">
+            <span class="list-tittle-text">Lista de comparasion</span>
+        </div>
+        <div class="contain-list">
+            <ListComparation class="contain-list-items" />
+            <div class="contain-list-buttons">
+                <button class="list-button-compaire">Comparar</button>
+                <button class="list-button-clean">Limpiar</button>
+            </div>
+        </div>
+    </section>
+</header>
+
+<script>
+    const DOMService = {
+        listenerDocumentClick(event: MouseEvent) {
+            const $filtersContainer =
+                document.getElementById("filters-container");
+            const $searchButton = document.getElementById("button-fake-input");
+            const $searchContainer =
+                document.getElementById("search-container");
+            const modals = Array.from(
+                document.querySelectorAll("[data-for]"),
+            ) as HTMLElement[];
+            modals.push(
+                document.querySelector("filters__modal") as HTMLElement,
+            );
+
+            if (
+                !($filtersContainer instanceof HTMLElement) ||
+                !($searchButton instanceof HTMLElement) ||
+                !($searchContainer instanceof HTMLElement)
+            )
+                return;
+
+            const targetElement = event.target as HTMLElement;
+
+            // Verifica si el clic ocurrió fuera del contenedor de filtros y si los filtros están visibles
+            if (
+                !targetElement.closest(".header") &&
+                $filtersContainer.classList.contains("show-filters")
+            ) {
+                $filtersContainer.classList.remove("show-filters");
+                $searchButton.classList.remove("hidden-button-fake-search");
+                $searchContainer.classList.remove("show-button-search");
+                modals.forEach((modal) =>
+                    modal.classList.remove("show-filters_modal"),
+                );
+
+                // Elimina el manejador de clic al documento cuando el menú de filtros está inactivo
+                document.removeEventListener(
+                    "click",
+                    DOMService.listenerDocumentClick,
+                );
+            }
+        },
+
+        listenerFilterShowButton() {
+            const modals = Array.from(
+                document.querySelectorAll("[data-for]"),
+            ) as HTMLElement[];
+
+            modals.forEach(($modal) => {
+                const $button = document.querySelector(
+                    `#${$modal.dataset.for!}`,
+                ) as HTMLButtonElement;
+
+                $button.addEventListener("click", () => {
+                    const modals = Array.from(
+                        document.querySelectorAll("[data-for]"),
+                    ) as HTMLElement[];
+                    modals.forEach((modal) =>
+                        modal.classList.remove("show-filters_modal"),
+                    );
+
+                    const $contenedor = $modal.closest(".filters__modal");
+                    $contenedor?.classList.add("show-filters_modal");
+                    $modal.classList.add("show-filters_modal");
+                });
+            });
+        },
+
+        listenerSearchButtonActive() {
+            const $searchButton = 
+                document.getElementById("button-fake-input");
+            const $filtersContainer =
+                document.getElementById("filters-container");
+            const $searchContainer =
+                document.getElementById("search-container");
+            const $bubbleList =
+                document.querySelector(".button--bubble-comparation");
+
+            if (
+                !($searchButton instanceof HTMLElement) ||
+                !($filtersContainer instanceof HTMLElement) ||
+                !($searchContainer instanceof HTMLElement) ||
+                !($bubbleList instanceof HTMLElement)
+            )
+                return;
+
+            $searchButton.addEventListener("click", (event) => {
+                event.stopPropagation(); // Evita que el clic llegue al documento y active listenerDocumentClick
+                $searchButton.classList.add("hidden-button-fake-search");
+                $filtersContainer.classList.add("show-filters");
+                $searchContainer.classList.add("show-button-search");
+                $searchContainer.querySelector("input")?.focus();
+
+                // Agrega el manejador de clic al documento cuando se muestra el menú de filtros
+                document.addEventListener(
+                    "click",
+                    DOMService.listenerDocumentClick,
+                );
+            });
+
+            const containerList = document.querySelector(".header__container-list");
+            $bubbleList.addEventListener("click", async() =>{
+                containerList!.classList.add("header__container-show");
+
+            });
+
+            document.addEventListener("click", (event) => {
+                if (event.target instanceof Node) {
+                    if (!containerList!.contains(event.target) && (event.target as HTMLElement).closest(".button--bubble-comparation") !== $bubbleList) {
+                        containerList!.classList.remove("header__container-show");
+                    }
+                }
+            });
+
+            // Verifica el llamado a listenersSearchButtonInactive al desmontar el componente
+            window.addEventListener("beforeunload", () => {
+                document.removeEventListener(
+                    "mouseenter",
+                    DOMService.listenerDocumentClick,
+                );
+            });
+        },
+
+        rangeUpdate() {
+            const rages = Array.from(
+                document.querySelectorAll(".range__container"),
+            );
+
+            rages.forEach(($element) => {
+                const $label = $element.querySelector("label");
+                if (!$label) return;
+                const id = $label.getAttribute("for") ?? "";
+
+                const $input = $element.querySelector(
+                    `input#${id}`,
+                ) as HTMLInputElement;
+                const $i = $label.querySelector("i");
+                if (!$input || !$i) return;
+
+                const { step, end, start } = $label.dataset;
+
+                const less = (Number(start) * 100) / Number(end);
+                const position = (Number($input.value) * 100) / Number(end);
+                $label.style.setProperty("--value", `${position - less}%`);
+
+                $input.addEventListener("mousemove", () => {
+                    const less = (Number(start) * 100) / Number(end);
+                    const position = (Number($input.value) * 100) / Number(end);
+                    $label.style.setProperty("--value", `${position - less}%`);
+                    $i.textContent = `${$input.value}${$label.dataset.unit}`;
+                });
+            });
+        },
+    };
+
+    window.addEventListener("DOMContentLoaded", () => {
+        DOMService.listenerSearchButtonActive();
+        DOMService.listenerFilterShowButton();
+        DOMService.rangeUpdate();
+    });
+</script>
+
+<style>
+    .header {
+        background-color: var(--color-brand--secondary);
+        width: 100%;
+        height: 100px;
+        box-shadow: inset 0px -5px 0px 0px var(--color-brand--primary);
+        display: grid;
+        grid-template-columns: 180px 1fr 180px;
+        grid-template-rows: 100px 60px 300px;
+        gap: 1rem;
+        position: relative;
+        align-items: center;
+    }
+
+    .header__logo-icon {
+        grid-column: 1 / 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    header__icon-image {
+        width: 100%;
+        max-width: unset;
+        margin-left: 1rem;
+    }
+
+    .header__search-section {
+        grid-column: 2 / 3;
+        grid-row: 1 / 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .header__search-real {
+        grid-column: 2 / 3;
+        grid-row: 1 / 2;
+        background-color: transparent;
+        color: var(--color-brand--text);
+        background-color: aliceblue;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        height: 2rem;
+        border-radius: 1rem;
+        display: none;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        box-sizing: border-box;
+        flex-direction: row;
+    }
+
+    .search__serachbar-input {
+        margin: unset;
+        padding: unset;
+        line-height: 1rem;
+        width: calc(100% - 2rem);
+        background-color: transparent;
+    }
+
+    .search__serachbar-icon {
+        background-color: var(--color-action--success);
+        width: 2rem;
+        height: 2rem;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        position: relative;
+        right: -1rem;
+    }
+
+    .search__serachbar-icon img {
+        width: 50%;
+        filter: invert(1);
+    }
+
+    .button--fake-input:hover {
+        width: 70%;
+    }
+
+    .header__comparition-section {
+        justify-content: center;
+        display: flex;
+        margin-inline-end: 1rem;
+    }
+
+    .header__comparation-section {
+        grid-column: 3 / 4;
+        grid-row: 1 / 2;
+        align-self: center;
+        justify-self: flex-end;
+        padding: 10px;
+    }
+
+    .search-visible {
+        display: grid;
+    }
+
+    .search--show {
+        display: none;
+    }
+
+    .header__filters {
+        grid-column: 2 / 3;
+        grid-row: 3 / 4;
+        display: grid;
+        justify-content: center;
+        align-self: start;
+    }
+
+    #filters-container {
+        display: none;
+    }
+
+    .filters {
+        z-index: 10;
+    }
+
+    .filters__navigation {
+        background-color: white;
+        border-radius: 1rem;
+        box-shadow: 1px 1px 3px -2.5px var(--color-brand--secondary);
+        position: fixed;
+        left: 0%;
+        top: 80px; /* Ajusta la posición según la altura de tu barra de búsqueda */
+        right: 10px; /* Ajusta la posición según la posición deseada */
+        padding: 18px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 10px;
+        z-index: 1; /* Se asegura que esté por encima de otros elementos */
+        width: 80%; /* Ajusta el ancho según tus necesidades */
+        max-width: 800px; /* Asegura que no sea más ancho que la pantalla */
+        box-sizing: border-box;
+        justify-self: center;
+    }
+
+    .filters__navigation Button {
+        display: grid;
+        grid-template-areas:
+            "icon title"
+            "icon description";
+        grid-template-columns: auto 1fr;
+        align-items: center;
+        background-color: #4caf50;
+        color: #fff;
+        padding: 8px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-align: left;
+    }
+
+    .filters__navigation Button .button-icon {
+        grid-area: icon;
+        margin-right: 8px;
+        align-items: center;
+    }
+
+    .filters__navigation Button .button-icon img {
+        width: 20px;
+    }
+
+    .filters__navigation Button .button-title {
+        grid-area: title;
+        font-weight: bold;
+    }
+
+    .filters__navigation Button .button-description {
+        grid-area: description;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    #filters-container.show-filters {
+        display: block;
+    }
+
+    .filters__modal {
+        grid-column: 2 / 3;
+        grid-row: 4 / 5;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        margin-block-start: 1rem;
+        background-color: white;
+        border-radius: 1rem;
+        box-shadow: 1px 1px 3px -2.5px var(--color-brand--secondary);
+
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 10px;
+        z-index: 1; /* Se asegura que esté por encima de otros elementos */
+        box-sizing: border-box;
+        justify-self: center;
+    }
+
+    .filters__modal > article {
+        padding: 15px;
+        border-radius: 8px;
+        display: none;
+    }
+
+    .filters__modal h3 {
+        margin-bottom: 10px;
+        font-size: 18px;
+    }
+
+    .filters__modal input[type="range"] {
+        width: 100%;
+    }
+
+    .search-visible {
+        display: grid;
+    }
+
+    .search--show {
+        display: none;
+    }
+
+    .header__icon-image {
+        width: 170px;
+        max-width: unset;
+        margin-left: 1rem;
+    }
+    .hidden-button-fake-search {
+        display: none !important;
+    }
+
+    .show-button-search {
+        display: flex !important;
+    }
+
+    .show-filters_modal {
+        display: grid !important;
+    }
+
+    .filter_vavigation-container {
+        grid-template-columns: 50% 50%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        height: 80px;
+    }
+
+    /* Styles for the comparison list */
+    .header__container-list {
+        display: none;
+        grid-column: 2 / 3;
+        grid-row: 2 / 4;
+        gap: 1rem;
+        grid-template-rows: 15% 80%;
+        width: 100%;
+        height: 100%;
+        background-color: aliceblue;
+        position: relative;
+        z-index: 10;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        border: none;
+        border-radius: 25px;
+        padding: 5%;
+        align-items: center;
+    }
+
+    .header__container-show {
+        display: grid;
+    }
+
+    .contain-list-tittle {
+        display: grid;
+        background-color: aliceblue;
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        display: grid;
+        align-items: center;
+        border-radius: 10px;
+    }
+
+    .list-tittle-text {
+        font-weight: bold;
+        font-size: 1.5rem;
+        color: #888888;
+    }
+
+    .contain-list {
+        display: grid;
+        grid-row: 2 / 3;
+        grid-template-rows: 80% auto;
+        gap: 1rem;
+        background-color: #f0f8ff;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+        border-radius: 10px;
+        align-content: center;
+        justify-content: center;
+    }
+
+    .custom-li-style {
+        width: auto;
+        text-align: center;
+        background-color: var(--color-action--success);
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        font-weight: 500;
+    }
+
+    .contain-list-buttons {
+        display: flex;
+        grid-row: 2 / 3;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+    }
+
+    .list-button-compaire {
+        background-color: var(--color-action--success);
+        height: 100%;
+        padding: 6px;
+        color: #ffff;
+        border: none;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    .list-button-clean {
+        background-color: var(--color-action--log);
+        height: 100%;
+        padding: 6px;
+        color: #ffff;
+        border: none;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    @media screen (max-width: 835px) {
+        .filters__modal {
+            margin-block-start: 30rem !important;
+        }
+    }
+    .header__search-real {
+        z-index: 10;
+    }
+
+    @media (max-width: ;) {
+    }
+</style>
+>>>>>>> 12342ba6a29ebe01144378636ad2aa963ee26239

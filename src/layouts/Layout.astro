@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ---
 // server
 interface Props {
@@ -152,4 +153,160 @@ const { title } = Astro.props;
 		inherits: true;
 		initial-value: #ccc;
 	}
+=======
+---
+// server
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Enter.co Mobile" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/images_Enter/bitmap2.png" />
+		<!-- <meta name="generator" content={Astro.generator} /> -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+		<title>{title}</title>
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
+
+
+<style is:global>
+	:root {
+		/* Brand Colors */
+		--color-brand--primary: #d9bf41;
+		--color-brand--secondary: #1c2e5c;
+		--color-brand--text: #333; /* Text color for brand elements */
+
+		/* Action Colors */
+		--color-action--log: #497af5;
+		--color-action--log--dark: #4862a5;
+		--color-action--success: #41d94e;
+		--color-action--text: #fff; /* Text color for action elements */
+
+		/* Additional Colors for Harmony */
+		--color-harmony--lighter: #8ab7e5; /* Lighter shade of brand secondary */
+		--color-harmony--darker: #9e871f; /* Darker shade of brand primary */
+
+		/* Text Colors */
+		--color-text--primary: #333;
+		--color-text--secondary: #666;
+
+		/* Background Colors */
+		--color-background--light: #f5f5f5;
+		--color-background--dark: #e0e0e0;
+
+		--color-border--default: #ccc;
+	}
+	html {
+		background: var(--color-background--light);
+		
+		/*
+		font-family: "Oswald", sans-serif;
+		font-optical-sizing: auto;
+		font-style: normal;
+		*/
+		font-family: "Montserrat", sans-serif;
+		font-optical-sizing: auto;
+		font-style: normal;
+	}
+
+	/* Brand Colors */
+	@property --color-brand--primary {
+		syntax: "<color>";
+		inherits: true;
+		initial-value: #d9bf41;
+	}
+
+	@property --color-brand--secondary {
+		syntax: "<color>";
+		inherits: true;
+		initial-value: #1c2e5c;
+	}
+
+	@property --color-brand--text {
+		syntax: "<color>";
+		inherits: true;
+		initial-value: #333;
+	}
+
+	/* Action Colors */
+	@property --color-action--log {
+		syntax: "<color>";
+		inherits: true;
+		initial-value: #497af5;
+	}
+
+	@property --color-action--success {
+		syntax: "<color>";
+		inherits: true;
+		initial-value: #41d94e;
+	}
+
+	@property --color-action--text {
+		syntax: "<color>";
+		inherits: true;
+		initial-value: #fff;
+	}
+
+	/* Additional Colors for Harmony */
+	@property --color-harmony--lighter {
+		syntax: "<color>";
+		inherits: true;
+		initial-value: #8ab7e5;
+	}
+
+	@property --color-harmony--darker {
+		syntax: "<color>";
+		inherits: true;
+		initial-value: #9e871f;
+	}
+
+	/* Text Colors */
+	@property --color-text--primary {
+		syntax: "<color>";
+		inherits: true;
+		initial-value: #333;
+	}
+
+	@property --color-text--secondary {
+		syntax: "<color>";
+		inherits: true;
+		initial-value: #666;
+	}
+
+	/* Background Colors */
+	@property --color-background--light {
+		syntax: "<color>";
+		inherits: true;
+		initial-value: #f5f5f5;
+	}
+
+	@property --color-background--dark {
+		syntax: "<color>";
+		inherits: true;
+		initial-value: #e0e0e0;
+	}
+
+	/* Border Colors */
+	@property --color-border--default {
+		syntax: "<color>";
+		inherits: true;
+		initial-value: #ccc;
+	}
+>>>>>>> 12342ba6a29ebe01144378636ad2aa963ee26239
 </style>
