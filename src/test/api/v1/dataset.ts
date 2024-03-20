@@ -15,7 +15,7 @@ export interface Mobile {
     frontCamera: string; 
     rearCamera: string; 
     features: string[]; 
-    price: number; 
+    price: number | string; 
     screenType: string; 
     rearCameraResolution: string; 
     frontCameraResolution: string; 
@@ -101,7 +101,7 @@ export const mobiles: Mobile[] = [
         frontCamera: "10MP",
         rearCamera: "12MP (Wide) + 12MP (Ultra Wide) + 12MP (Telephoto)",
         features: ["Foldable display", "S Pen support", "Water resistance"],
-        price: 1799,
+        price: "1799",
         screenType: "AMOLED",
         rearCameraResolution: "12MP + 12MP + 12MP",
         frontCameraResolution: "10MP",

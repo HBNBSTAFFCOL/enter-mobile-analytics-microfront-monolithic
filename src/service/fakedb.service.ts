@@ -75,23 +75,32 @@ export const searchMobiles = async (searchTerm: string): Promise<Mobile[]> => {
 
 // Filtra la lista de teléfonos móviles según los criterios especificados en el objeto FilterOptions.
 // Retorna una lista de móviles que cumplen con todos los criterios de filtrado.
+export interface FilterOptions {
+    priceMin?: number;
+    priceMax?: number;
+    screenSize?: string;
+    battery?: string;
+    ram?: string;
+    storage?: string;
+    os?: string;
+    brand?: string;
+}
 
-export const filterMobiles = (filterOptions: Mobile): Mobile[] => {
-    const validParams = Object.entries(filterOptions).filter(([param, value]) =>
-        value !== undefined
-    );        
-    const filteredMobiles = mobiles.filter(mobile => {
-        return validParams.some(([param, optionValue]) => {
-            // @ts-ignore
-            if (Array.isArray((mobile as Mobile)[param])) {
-                // @ts-ignore
-                return (mobile as Mobile)[param].includes(optionValue);
-            } else {
-                // @ts-ignore
-                const mobileValue = (mobile as Mobile)[param];
-                return mobileValue !== undefined && mobileValue.toString().toLowerCase().includes(optionValue.toString().toLowerCase().trim());
-            }
-        });
+
+
+export const filterMobiles = async (filterOptions: FilterOptions): Promise<Mobile[]> => {
+    return mobiles.filter(mobile => {
+        return (
+            (filterOptions.priceMin === undefined || mobile.price >= filterOptions.priceMin) &&
+            (filterOptions.priceMax === undefined || mobile.price <= filterOptions.priceMax) &&
+            (filterOptions.screenSize === undefined || mobile.screenSize.toLowerCase() === filterOptions.screenSize.toLowerCase()) &&
+            (filterOptions.battery === undefined || mobile.battery.toLowerCase() === filterOptions.battery.toLowerCase()) &&
+            (filterOptions.ram === undefined || mobile.ram.toLowerCase() === filterOptions.ram.toLowerCase()) &&
+            (filterOptions.storage === undefined || mobile.storage.toLowerCase() === filterOptions.storage.toLowerCase()) &&
+            (filterOptions.os === undefined || mobile.os.toLowerCase() === filterOptions.os.toLowerCase()) &&
+            (filterOptions.brand === undefined || mobile.brand.toLowerCase() === filterOptions.brand.toLowerCase())
+        );
     });
-    return filteredMobiles;
 };
+
+

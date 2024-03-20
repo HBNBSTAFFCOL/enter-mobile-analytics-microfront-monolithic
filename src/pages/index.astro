@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/header/ui/Header.component.astro";
 import Card from "../components/phone-card/ui/Card.component.astro";
+import CardComparation from "../components/phone-comparison/ui/Card.comparison.astro";
 import Slide from "../components/button/ui/slide.component.astro";
 import Button from "../components/button/ui/Button.component.astro";
 
@@ -196,6 +197,7 @@ const brand = [
     <section class="slide-section">
       <div class="slide-container">
         <Slide cellphone={true}>
+          <CardComparation />
           <Card
             id="Iphoneone"
             title="Iphone 15 Pro Max"
@@ -372,9 +374,9 @@ const brand = [
         .querySelector('[itemid="id"]')!
         .setAttribute("id", cellphone.id);
       currentCard
-      .querySelector('[itemprop="image"]')!
-      .setAttribute("src", cellphone.image)
-        currentCard.querySelector('[itemprop="name"]')!.textContent =
+        .querySelector('[itemprop="image"]')!
+        .setAttribute("src", cellphone.image);
+      currentCard.querySelector('[itemprop="name"]')!.textContent =
         cellphone.name;
       currentCard.querySelector('[itemprop="rearCamera"]')!.textContent =
         cellphone.rearCamera;
@@ -384,31 +386,76 @@ const brand = [
         cellphone.ram;
       currentCard.querySelector('[itemprop="battery"]')!.textContent =
         cellphone.battery;
-      currentCard
-        .querySelector('[itemtype="detalles"]')!
-        .addEventListener("click", async () => {
-          const detalle = await getDetails(cellphone.id);
-          open(
-            `https://www.falabella.com.co/falabella-co/search?Ntt=${cellphone.name.toLowerCase()}`,
-            "Detalles del producto"
-          )
-          /*  
-          open(
-            `https://www.ktronix.com/search/?text=${cellphone.name}`,
-            "Detalles del producto"
-          );
-          */
-          console.log(detalle);
-        });
-      currentCard
-        .querySelector('[itemtype="comparar"]')!
-        .addEventListener("click", async () => {
+
+      const ShowComparar = currentCard.querySelector('[itemtype="detalles"]');
+
+      ShowComparar &&
+        ShowComparar.addEventListener("click", async () => {
           const comparations = JSON.parse(
             localStorage.getItem("comparar") ?? "[]"
           ) as Array<string>;
           comparations.push(cellphone.name);
           const toSave = Array.from(new Set(comparations).values());
           bubble!.innerText = toSave.length.toString();
+          if (toSave.length === 0 || comparations.length === 0) {
+            bubble.style.display = "none";
+          } else {
+            bubble.style.display = "block";
+          }
+          localStorage.setItem("comparar", JSON.stringify(toSave));
+          const mobileList = document.querySelector(
+            ".comparison-list"
+          ) as HTMLTemplateElement;
+          toSave.forEach((newMobileListAdd) => {
+            const newMobileList = document.createElement("li");
+            newMobileList.textContent = newMobileListAdd;
+            mobileList.appendChild(newMobileList);
+          });
+
+          const $buttonComparison = document.getElementById(
+            "button-comparison"
+          ) as HTMLButtonElement;
+
+          if ($buttonComparison) $buttonComparison.click();
+        });
+
+      const fallabelaButton = currentCard.querySelector(
+        '[itemtype="falabella"]'
+      );
+      fallabelaButton &&
+        fallabelaButton.addEventListener("click", async () => {
+          open(
+            `https://www.falabella.com.co/falabella-co/search?Ntt=${cellphone.name.toLowerCase()}`,
+            "Detalles del producto"
+          );
+        });
+
+      const ktronixButton = currentCard.querySelector('[itemtype="ktronix"]');
+      ktronixButton &&
+        ktronixButton.addEventListener("click", async () => {
+          open(
+            `https://www.ktronix.com/search/?text=${cellphone.name}`,
+            "Detalles del producto"
+          );
+        });
+
+      const addToComparationButton = currentCard.querySelector(
+        '[itemtype="comparar"]'
+      );
+      addToComparationButton &&
+        addToComparationButton.addEventListener("click", async () => {
+          const comparations = JSON.parse(
+            localStorage.getItem("comparar") ?? "[]"
+          ) as Array<string>;
+          comparations.push(cellphone.name);
+          const toSave = Array.from(new Set(comparations).values());
+          bubble!.innerText = toSave.length.toString();
+          if (toSave.length === 0 || comparations.length === 0) {
+            bubble.style.display = "none";
+          } else {
+            bubble.style.display = "block";
+          }
+
           localStorage.setItem("comparar", JSON.stringify(toSave));
 
           const mobileList = document.querySelector(
@@ -420,16 +467,6 @@ const brand = [
             const newMobileList = document.createElement("li");
             newMobileList.textContent = newMobileListAdd;
             mobileList.appendChild(newMobileList);
-
-            const cleanList = document.querySelector(
-              ".list-button-clean"
-            ) as HTMLElement;
-            cleanList.addEventListener("click", async () => {
-              if (!mobileList) return;
-              mobileList.innerHTML = "";
-              localStorage.setItem("comparar", "[]");
-              bubble.innerText = "0";
-            });
           });
         });
       container?.append(currentCard);
@@ -444,13 +481,27 @@ const brand = [
     ) as HTMLElement;
 
     const cardContainer = document.importNode(template.content, true);
+
+    const templateComparation = document.querySelector(
+      "#compaire_card-mobile"
+    ) as HTMLTemplateElement;
+
+    const cardContainerComparation = document.importNode(
+      templateComparation.content,
+      true
+    );
+
     const bubble = document.querySelector(".bubble__counter") as HTMLElement;
     const comparations = JSON.parse(
       localStorage.getItem("comparar") ?? "[]"
     ) as Array<string>;
-
+    const toSave = Array.from(new Set(comparations).values());
     bubble!.innerText = comparations.length.toString();
-    // clear container
+    if (toSave.length === 0 || comparations.length === 0) {
+      bubble.style.display = "none";
+    } else {
+      bubble.style.display = "block";
+    }
 
     const cellphones = await getMobiles();
     if (!cellphones) return;
@@ -493,9 +544,6 @@ const brand = [
 
         const filterData = await filterMobile("brand", nameBrand!);
         if (!filterData) return;
-        if(filterData.length === 0) return;
-
-        console.log("resultado:", filterData)
 
         container.innerHTML = "";
         filterData.forEach(createMobileUI(cardContainer, bubble, container));
@@ -512,6 +560,51 @@ const brand = [
       container.innerHTML = "";
 
       cellphones.forEach(createMobileUI(cardContainer, bubble, container));
+    });
+
+    const $buttonComparison = document.getElementById(
+      "button-comparison"
+    ) as HTMLButtonElement;
+
+    if (!$buttonComparison) return;
+
+    $buttonComparison.addEventListener("click", async (event: Event) => {
+      event.preventDefault();
+      const ceelComparations = JSON.parse(
+        localStorage.getItem("comparar") || "[]"
+      );
+
+      const filterData = (
+        await Promise.all(ceelComparations.map(getMobiles))
+      ).flat();
+      if (!filterData) return;
+
+      container.innerHTML = "";
+      filterData.forEach(
+        createMobileUI(cardContainerComparation, bubble, container)
+      );
+      document.body.click();
+    });
+
+    const cleanList = document.querySelector(
+      ".list-button-clean"
+    ) as HTMLElement;
+    const mobileList = document.querySelector(
+            ".comparison-list"
+          ) as HTMLTemplateElement;
+
+    cleanList.addEventListener("click", async () => {
+      mobileList.innerHTML = "";
+      localStorage.setItem("comparar", "[]");
+      document.body.click();
+
+      const comparations = JSON.parse(
+        localStorage.getItem("comparar") ?? "[]"
+      ) as Array<string>;
+      const toSave = Array.from(new Set(comparations).values());
+      if (toSave.length === 0 || comparations.length === 0) {
+        bubble.style.display = "none";
+      }
     });
   });
 </script>
