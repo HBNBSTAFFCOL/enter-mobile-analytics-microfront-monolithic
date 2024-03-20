@@ -27,6 +27,7 @@ export interface Mobile {
     simCapacity: string; 
     ports: string[]; 
     sensors: string[];
+    image?: string;
 }
 
 export const mobiles: Mobile[] = [
@@ -58,6 +59,34 @@ export const mobiles: Mobile[] = [
         ports: ["Lightning"],
         sensors: ["Face ID", "Accelerometer", "Gyroscope", "Barometer"]
     },
+    {
+        id: "1b039074-71f8-4986-bfe3-5d765c3acfb0",
+        name: "Galaxy A55",
+        brand: "SAMSUNG",
+        processor: "Octa-core (4x2.75 GHz Cortex-A78 & 4x2.0 GHz Cortex-A55)",
+        ram: "8GB RAM",
+        storage: "128GB 256GB",
+        battery: "5000 mAh, non-removable",
+        screenSize: "6.6 inches, 106.9 cm2 (~85.8% screen-to-body ratio)",
+        screenResolution: "1080 x 2340 pixels, 19.5:9 ratio (~390 ppi density)",
+        os: "Android 14, One UI 6.1",
+        frontCamera: "32 MP",
+        rearCamera: "50 MP, f/1.8, (wide), 1/1.56\", 1.0µm, PDAF, OIS",
+        price: 2116000,
+        screenType: "Super AMOLED, 120Hz, HDR10+, 1000 nits (HBM)",
+        frontCameraResolution: "32MP",
+        rearCameraResolution: "50 MP, f/1.8, (wide), 1/1.56\", 1.0µm, PDAF, OIS",
+        features: ["ProMotion display", "Ceramic Shield", "LiDAR scanner"],
+        batteryType: "Non-Remov",
+        connectivity: ["GSM / HSPA / LTE / 5G"],
+        dimensions: {height: 161.1, width:77.4, thickness:8.2},
+        weight: 213,
+        colors: ["Iceblue"],
+        simCapacity: "Single SIM (Nano-SIM",
+        image: "https://fdn2.gsmarena.com/vv/bigpic/samsung-galaxy-a55.jpg",
+        sensors: ["Fingerprint (under display"],
+        ports: ["USB-C"]
+      },
     {
         id: "80629a36-4b83-4d27-9cd3-dbf4e569f748",
         name: "Samsung Galaxy Z Fold 3",
