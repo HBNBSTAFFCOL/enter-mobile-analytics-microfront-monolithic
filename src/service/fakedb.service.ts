@@ -54,9 +54,9 @@ export const getMobileById = (id: string): Mobile | undefined => {
 
 // Busca teléfonos móviles que coincidan con el término de búsqueda especificado.
 // Retorna una lista de móviles que contienen el término de búsqueda en cualquier propiedad o característica.
-export const searchMobiles = async (searchTerm: string): Promise<Mobile[]> => {
+export const searchMobiles = async (searchTerm: string, limit?: number): Promise<Mobile[]> => {
     const normalizedSearchTerm = searchTerm.toLowerCase().trim().replace(/\s/g, '');
-    return mobiles.filter(mobile =>
+    let filteredMobiles = mobiles.filter(mobile =>
         Object.values(mobile).some(value => {
             if (Array.isArray(value)) {
                 return value.some(val => typeof val === 'string' && val.toLowerCase().replace(/\s/g, '').includes(normalizedSearchTerm));
@@ -66,6 +66,13 @@ export const searchMobiles = async (searchTerm: string): Promise<Mobile[]> => {
             return false;
         })
     );
+
+    // Aplicar el límite si se proporciona
+    if (limit && limit > 0) {
+        filteredMobiles = filteredMobiles.slice(0, limit);
+    }
+
+    return filteredMobiles;
 }
 
 

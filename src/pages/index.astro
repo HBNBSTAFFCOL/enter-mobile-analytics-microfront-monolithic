@@ -335,14 +335,19 @@ const brand = [
     image: string;
   }
 
-  const getMobiles = async (serach = "") => {
-    const response = await fetch(
-      `${location.origin}/api/v1/phone-search.endpoint?src=${serach}`
-    );
+  const getMobiles = async (search = "", limit) => {
+    // Añade el límite a la URL si se proporciona
+    const url = limit ? `${location.origin}/api/v1/phone-search.endpoint?src=${search}&limit=${limit}` : `${location.origin}/api/v1/phone-search.endpoint?src=${search}`;
+    
+    const response = await fetch(url);
     const data = await response.json();
-    if (data.error) return console.error(data.error);
-    return data as Mobile[];
-  };
+    if (data.error) {
+        console.error(data.error);
+        return null;
+    }
+    return data;
+};
+
 
   const getDetails = async (id: string) => {
     const response = await fetch(
@@ -503,18 +508,22 @@ const brand = [
       bubble.style.display = "block";
     }
 
-    const cellphones = await getMobiles();
-if (!cellphones) return;
+    const cellphones = await getMobiles("", 5); // Pasar el límite como segundo argumento
+
+// Verifica si se obtuvieron resultados
+if (!cellphones) {
+    return;
+}
+
+// Limpia el contenedor antes de agregar los celulares
 container.innerHTML = "";
 
-const limit = 3; // Define el límite de iteraciones
-let count = 0; // Inicializa el contador
-cellphones.forEach((mobile) => {
-    if (count < limit) { // Verifica si se ha alcanzado el límite
-        createMobileUI(cardContainer, bubble, container)(mobile);
-        count++; // Incrementa el contador después de procesar un elemento
-    }
+// Itera sobre los celulares y crea la interfaz de usuario para cada uno
+cellphones.forEach((mobile: Mobile) => {
+    createMobileUI(cardContainer, bubble, container)(mobile);
 });
+
+console.log(cellphones);
 
     const containers = Array.from(
       document.querySelectorAll(".range__container")
@@ -532,7 +541,7 @@ cellphones.forEach((mobile) => {
 
         console.log(param);
         console.log(value);
-        const filterData = await getMobiles(searchReal);
+        const filterData = await getMobiles(searchReal, undefined);
 
         console.log(filterData);
         if (!filterData) return;
@@ -567,7 +576,7 @@ cellphones.forEach((mobile) => {
     ) as HTMLInputElement;
 
     filterSearch.addEventListener("change", async () => {
-      const cellphones = await getMobiles(filterSearch.value);
+      const cellphones = await getMobiles(filterSearch.value, undefined);
       if (!cellphones) return;
       container.innerHTML = "";
 
