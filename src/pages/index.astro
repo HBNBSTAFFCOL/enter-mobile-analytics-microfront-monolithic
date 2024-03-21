@@ -337,21 +337,22 @@ const brand = [
 
   const getMobiles = async (search = "", limit) => {
     // Añade el límite a la URL si se proporciona
-    const url = limit ? `${location.origin}/api/v1/phone-search.endpoint?src=${search}&limit=${limit}` : `${location.origin}/api/v1/phone-search.endpoint?src=${search}`;
-    
+    const url = limit
+      ? `${location.origin}/api/v1/phone-search.endpoint?src=${search}&limit=${limit}`
+      : `${location.origin}/api/v1/phone-search.endpoint?src=${search}`;
+
     const response = await fetch(url);
     const data = await response.json();
     if (data.error) {
-        console.error(data.error);
-        return null;
+      console.error(data.error);
+      return null;
     }
     return data;
-};
-
+  };
 
   const getDetails = async (id: string) => {
     const response = await fetch(
-      `${location.origin}/api/v1/phone-details.endpoint?mobile=${id}`
+      `${location.origin}/api/v1/phone-details.endpoint?mobile=${id}`,
     );
     const data = await response.json();
     if (data.error) return console.error(data.error);
@@ -360,7 +361,7 @@ const brand = [
 
   const filterMobile = async (param: string, value: string) => {
     const filter = await fetch(
-      `${location.origin}/api/v1/phone-filter.endpoint?${param}=${value}`
+      `${location.origin}/api/v1/phone-filter.endpoint?${param}=${value}`,
     );
     const data = await filter.json();
     if (data.error) return console.error(data.error);
@@ -371,7 +372,7 @@ const brand = [
     (
       cardContainer: HTMLElement | DocumentFragment,
       bubble: HTMLElement,
-      container: HTMLElement
+      container: HTMLElement,
     ) =>
     (cellphone: Mobile) => {
       const currentCard = cardContainer.cloneNode(true) as HTMLElement;
@@ -397,7 +398,7 @@ const brand = [
       ShowComparar &&
         ShowComparar.addEventListener("click", async () => {
           const comparations = JSON.parse(
-            localStorage.getItem("comparar") ?? "[]"
+            localStorage.getItem("comparar") ?? "[]",
           ) as Array<string>;
           comparations.push(cellphone.name);
           const toSave = Array.from(new Set(comparations).values());
@@ -409,7 +410,7 @@ const brand = [
           }
           localStorage.setItem("comparar", JSON.stringify(toSave));
           const mobileList = document.querySelector(
-            ".comparison-list"
+            ".comparison-list",
           ) as HTMLTemplateElement;
           toSave.forEach((newMobileListAdd) => {
             const newMobileList = document.createElement("li");
@@ -418,20 +419,20 @@ const brand = [
           });
 
           const $buttonComparison = document.getElementById(
-            "button-comparison"
+            "button-comparison",
           ) as HTMLButtonElement;
 
           if ($buttonComparison) $buttonComparison.click();
         });
 
       const fallabelaButton = currentCard.querySelector(
-        '[itemtype="falabella"]'
+        '[itemtype="falabella"]',
       );
       fallabelaButton &&
         fallabelaButton.addEventListener("click", async () => {
           open(
             `https://www.falabella.com.co/falabella-co/search?Ntt=${cellphone.name.toLowerCase()}`,
-            "Detalles del producto"
+            "Detalles del producto",
           );
         });
 
@@ -440,17 +441,17 @@ const brand = [
         ktronixButton.addEventListener("click", async () => {
           open(
             `https://www.ktronix.com/search/?text=${cellphone.name}`,
-            "Detalles del producto"
+            "Detalles del producto",
           );
         });
 
       const addToComparationButton = currentCard.querySelector(
-        '[itemtype="comparar"]'
+        '[itemtype="comparar"]',
       );
       addToComparationButton &&
         addToComparationButton.addEventListener("click", async () => {
           const comparations = JSON.parse(
-            localStorage.getItem("comparar") ?? "[]"
+            localStorage.getItem("comparar") ?? "[]",
           ) as Array<string>;
           comparations.push(cellphone.name);
           const toSave = Array.from(new Set(comparations).values());
@@ -464,7 +465,7 @@ const brand = [
           localStorage.setItem("comparar", JSON.stringify(toSave));
 
           const mobileList = document.querySelector(
-            ".comparison-list"
+            ".comparison-list",
           ) as HTMLTemplateElement;
           mobileList.innerHTML = "";
 
@@ -479,26 +480,26 @@ const brand = [
 
   document.addEventListener("DOMContentLoaded", async () => {
     const template = document.querySelector(
-      "#card-mobile"
+      "#card-mobile",
     ) as HTMLTemplateElement;
     const container = Array.from(document.querySelectorAll(".slide__cards")).at(
-      -1
+      -1,
     ) as HTMLElement;
 
     const cardContainer = document.importNode(template.content, true);
 
     const templateComparation = document.querySelector(
-      "#compaire_card-mobile"
+      "#compaire_card-mobile",
     ) as HTMLTemplateElement;
 
     const cardContainerComparation = document.importNode(
       templateComparation.content,
-      true
+      true,
     );
 
     const bubble = document.querySelector(".bubble__counter") as HTMLElement;
     const comparations = JSON.parse(
-      localStorage.getItem("comparar") ?? "[]"
+      localStorage.getItem("comparar") ?? "[]",
     ) as Array<string>;
     const toSave = Array.from(new Set(comparations).values());
     bubble!.innerText = comparations.length.toString();
@@ -510,28 +511,28 @@ const brand = [
 
     const cellphones = await getMobiles("", 5); // Pasar el límite como segundo argumento
 
-// Verifica si se obtuvieron resultados
-if (!cellphones) {
-    return;
-}
+    // Verifica si se obtuvieron resultados
+    if (!cellphones) {
+      return;
+    }
 
-// Limpia el contenedor antes de agregar los celulares
-container.innerHTML = "";
+    // Limpia el contenedor antes de agregar los celulares
+    container.innerHTML = "";
 
-// Itera sobre los celulares y crea la interfaz de usuario para cada uno
-cellphones.forEach((mobile: Mobile) => {
-    createMobileUI(cardContainer, bubble, container)(mobile);
-});
+    // Itera sobre los celulares y crea la interfaz de usuario para cada uno
+    cellphones.forEach((mobile: Mobile) => {
+      createMobileUI(cardContainer, bubble, container)(mobile);
+    });
 
-console.log(cellphones);
+    console.log(cellphones);
 
     const containers = Array.from(
-      document.querySelectorAll(".range__container")
+      document.querySelectorAll(".range__container"),
     ) as HTMLElement[];
 
     containers.forEach(($filterContainer: HTMLElement) => {
       const $range = $filterContainer.querySelector(
-        'input[type="range"]'
+        'input[type="range"]',
       ) as HTMLInputElement;
 
       $range.addEventListener("change", async () => {
@@ -552,12 +553,12 @@ console.log(cellphones);
     });
 
     const containsBrands = Array.from(
-      document.querySelectorAll(".brand-self-container")
+      document.querySelectorAll(".brand-self-container"),
     ) as HTMLElement[];
 
     containsBrands.forEach(($brandcontainer: HTMLElement) => {
       const $brand = $brandcontainer.querySelector(
-        ".button.button--brands-navigation"
+        ".button.button--brands-navigation",
       ) as HTMLButtonElement;
 
       $brand.addEventListener("click", async () => {
@@ -572,7 +573,7 @@ console.log(cellphones);
     });
 
     const filterSearch = document.getElementById(
-      "filters__search-input"
+      "filters__search-input",
     ) as HTMLInputElement;
 
     filterSearch.addEventListener("change", async () => {
@@ -584,7 +585,7 @@ console.log(cellphones);
     });
 
     const $buttonComparison = document.getElementById(
-      "button-comparison"
+      "button-comparison",
     ) as HTMLButtonElement;
 
     if (!$buttonComparison) return;
@@ -592,7 +593,7 @@ console.log(cellphones);
     $buttonComparison.addEventListener("click", async (event: Event) => {
       event.preventDefault();
       const ceelComparations = JSON.parse(
-        localStorage.getItem("comparar") || "[]"
+        localStorage.getItem("comparar") || "[]",
       );
 
       const filterData = (
@@ -602,17 +603,17 @@ console.log(cellphones);
 
       container.innerHTML = "";
       filterData.forEach(
-        createMobileUI(cardContainerComparation, bubble, container)
+        createMobileUI(cardContainerComparation, bubble, container),
       );
       document.body.click();
     });
 
     const cleanList = document.querySelector(
-      ".list-button-clean"
+      ".list-button-clean",
     ) as HTMLElement;
     const mobileList = document.querySelector(
-            ".comparison-list"
-          ) as HTMLTemplateElement;
+      ".comparison-list",
+    ) as HTMLTemplateElement;
 
     cleanList.addEventListener("click", async () => {
       mobileList.innerHTML = "";
@@ -620,13 +621,40 @@ console.log(cellphones);
       document.body.click();
 
       const comparations = JSON.parse(
-        localStorage.getItem("comparar") ?? "[]"
+        localStorage.getItem("comparar") ?? "[]",
       ) as Array<string>;
       const toSave = Array.from(new Set(comparations).values());
       if (toSave.length === 0 || comparations.length === 0) {
         bubble.style.display = "none";
       }
     });
+
+    const minPriceInput = document.getElementById(
+      "min-price-input",
+    ) as HTMLInputElement;
+    const maxPriceInput = document.getElementById(
+      "max-price-input",
+    ) as HTMLInputElement;
+
+    minPriceInput.addEventListener("keypress", handlePriceInputKeyPress);
+    maxPriceInput.addEventListener("keypress", handlePriceInputKeyPress);
+
+    async function handlePriceInputKeyPress(event: KeyboardEvent) {
+      if (event.key === "Enter") {
+        const target = event.target as HTMLInputElement;
+        const priceType = target.id.includes("min") ? "priceMin" : "priceMax";
+        const priceValue = target.value;
+
+        console.log(`${priceType}: ${priceValue}`);
+        const cellphones = await filterMobile(priceType, priceValue);
+
+        if (!cellphones) return;
+
+        container.innerHTML = "";
+
+        cellphones.forEach(createMobileUI(cardContainer, bubble, container));
+      }
+    }
   });
 </script>
 
