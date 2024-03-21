@@ -5,14 +5,15 @@ function changeImage(src: string): void {
 
 import ColorNavButton from "../../button/ui/ColorButton.astro";
 interface Props {
-    id: string;
-    title: string;
-    cameraResolution: string;
-    internalMemory: string;
-    ramMemory: string;
-    batteryCapacity: string;
-    colors: { color: string; src: string }[];
-    src: string;
+    id?: string;
+    title?: string;
+    cameraResolution?: string;
+    internalMemory?: string;
+    ramMemory?: string;
+    batteryCapacity?: string;
+    colors?: { color: string; src: string }[];
+    src?: string;
+    price?: number | string;
 
 }
 
@@ -23,6 +24,7 @@ const {
     internalMemory,
     ramMemory,
     batteryCapacity,
+    price,
     colors,
     src,
 } = Astro.props;
@@ -32,7 +34,7 @@ const {
         <article
             class="card__contain"
             itemid="id"
-            id={id.replace(/\s+/g, "-").toLowerCase()}
+            id={id}
         >
             <div class="card__left">
                 <picture class="card__picture" id="phonePicture">
@@ -123,8 +125,26 @@ const {
                             >
                         </div>
                     </li>
+                    <li class="card__tech-list-item">
+                        <figure class="card__item-icon">
+                            <img
+                                class="card__item-icon-img"
+                                src="public/icons/icons_items/icon-price.svg"
+                                alt="Icono de bateria"
+                            />
+                        </figure>
+                        <div class="card__item-info">
+                            <span class="card__item-title"
+                                >Precio Aprox</span
+                            >
+                            <span class="card__item-value" itemprop="price"
+                                >{price}</span
+                            >
+                        </div>
+                    </li>
                 </ul>
             </main>
+            <!--
             <nav class="card__nav">
                 {
                     colors &&
@@ -138,6 +158,7 @@ const {
                         ))
                 }
             </nav>
+        -->
         </article>
     </li>
 
@@ -197,7 +218,7 @@ const {
 
     .card__contain {
         display: grid;
-        height: 100%;
+        height: auto;
         width: 100%;
         grid-template-columns: auto auto;
         grid-template-rows: 82% 14%;
@@ -217,12 +238,10 @@ const {
     }
 
     .card__picture {
-        width: 100%;
-        height: 100%;
+        width: 260px;
         position: relative;
-        border-radius: 9% 0 9% 9%;
         background-color: transparent;
-        box-shadow: -27px 18px 20px 0px rgba(0, 0, 0, 0.48);
+        box-shadow: -27px 18px 20px 0px rgba(0,0,0,0.48);
     }
 
     .card__picture-img {
@@ -230,18 +249,24 @@ const {
         height: auto;
         transition: opacity 500ms ease 0s;
         background-color: transparent;
+        border-radius: 9% 0 9% 9%;
     }
 
     .card__footer {
-        display: flex;
+        width: 100%;
         grid-row: 2 / 3;
-        grid-column: 2 / 3;
+        display: flex;
+        height: auto;
+        transition: opacity 500ms ease 0s;
         justify-content: space-around;
+        background-color: transparent;
+        border-radius: 9% 0 9% 9%;
         align-items: center;
     }
 
     .card__button-compaire {
-        padding: 1rem 2rem;
+        height: 90%;
+        padding: 0rem 2rem;
         background-color: var(--color-action--success);
         color: #ffffff;
         border: none;
@@ -250,7 +275,9 @@ const {
         font-size: 1rem;
         display: inline-block;
         text-align: center;
-        box-shadow: -12px 12px 20px 0px rgba(0, 0, 0, 0.48);
+        -moz-text-align-last: center;
+        text-align-last: center;
+        box-shadow: -12px 12px 20px 0px rgba(0,0,0,0.48);
     }
 
     .card__button-details {
@@ -347,7 +374,7 @@ const {
         }
 
         .card__picture {
-            width: 250px;
+            width: 230px;
         }
 
         .card {

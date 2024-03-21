@@ -15,7 +15,7 @@ export interface Mobile {
     frontCamera: string; 
     rearCamera: string; 
     features: string[]; 
-    price: number | string; 
+    price: number; 
     screenType: string; 
     rearCameraResolution: string; 
     frontCameraResolution: string; 
