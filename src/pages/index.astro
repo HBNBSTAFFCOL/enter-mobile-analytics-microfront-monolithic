@@ -312,35 +312,34 @@ const brand = [
 </Layout>
 
 <script>
-  interface Mobile {
-    id: string;
-    name: string;
-    brand: string;
-    processor: string;
-    // prueba: string;
-    ram: string;
-    storage: string;
-    battery: string;
-    screenSize: string;
-    screenResolution: string;
-    os: string;
-    frontCamera: string;
-    rearCamera: string;
-    features: string[];
-    price: number;
-    screenType: string;
-    rearCameraResolution: string;
-    frontCameraResolution: string;
-    batteryType: string;
-    connectivity: string[];
-    dimensions: { height: number; width: number; thickness: number };
-    weight: number;
-    colors: string[];
-    simCapacity: string;
-    ports: string[];
-    sensors: string[];
-    image: string;
-  }
+ interface Mobile { 
+    id?: string | null;
+    name?: string | null; 
+    brand?: string| null; 
+    processor?: string | null;
+    ram?: string | null; 
+    storage?: string | null; 
+    battery?: string | null; 
+    screenSize?: string | null; 
+    screenResolution?:string | null; 
+    os?:string | null; 
+    frontCamera?: string | null; 
+    rearCamera?: string | null; 
+    features?: string | null; 
+    price?: number | string | null; 
+    screenType?: string | null; 
+    rearCameraResolution?: string | null; 
+    frontCameraResolution?: string | null; 
+    batteryType?: string | null; 
+    connectivity?: string | null; 
+    dimensions?: string | null; 
+    weight?: string | null; 
+    colors?: string | null; 
+    simCapacity?: string | null; 
+    ports?: string | null; 
+    sensors?: string | null;
+    image?: string | null;
+}
 
   const getMobiles = async (search = "", limit: Number | undefined) => {
     // Añade el límite a la URL si se proporciona
@@ -383,25 +382,44 @@ const brand = [
     ) =>
     (cellphone: Mobile) => {
       const currentCard = cardContainer.cloneNode(true) as HTMLElement;
+
+
+      const mandatoryKeys = ["id", "image", "name", "rearCamera", "storage", "ram", "battery"]
+      if (!mandatoryKeys.every((prop) => Object.keys(cellphone).includes(prop))) {
+        return;
+      }
+
       currentCard
         .querySelector('[itemid="id"]')!
-        .setAttribute("id", cellphone.id);
+        .setAttribute("id", cellphone.id!);
       currentCard
         .querySelector('[itemprop="image"]')!
-        .setAttribute("src", cellphone.image);
+        .setAttribute("src", cellphone.image!);
       currentCard.querySelector('[itemprop="name"]')!.textContent =
-        cellphone.name;
+        cellphone.name!;
       currentCard.querySelector('[itemprop="rearCamera"]')!.textContent =
-        cellphone.rearCamera;
+        cellphone.rearCamera!;
       currentCard.querySelector('[itemprop="storage"]')!.textContent =
-        cellphone.storage;
+        cellphone.storage!;
       currentCard.querySelector('[itemprop="ram"]')!.textContent =
-        cellphone.ram;
+        cellphone.ram!;
       currentCard.querySelector('[itemprop="battery"]')!.textContent =
-        cellphone.battery;
-      currentCard.querySelector('[itemprop="price"]')!.textContent =
-        cellphone.price.toString();
+        cellphone.battery!;
 
+
+
+      currentCard.querySelector('[itemprop="price"]')!.textContent =
+        `${
+          new Intl.NumberFormat('co-CO', { style: 'currency', currency: 'COP' }).format(
+            Number(cellphone.price),
+          )
+          
+        }`;
+
+
+        if (!cellphone.price || cellphone.price === "null") {
+          currentCard.querySelector('[itemprop="price"]')!.closest("li")!.remove();
+        }
       const ShowComparar = currentCard.querySelector('[itemtype="detalles"]');
 
       ShowComparar &&
@@ -409,7 +427,7 @@ const brand = [
           const comparations = JSON.parse(
             localStorage.getItem("comparar") ?? "[]",
           ) as Array<string>;
-          comparations.push(cellphone.name);
+          comparations.push(cellphone.name!);
           const toSave = Array.from(new Set(comparations).values());
           bubble!.innerText = toSave.length.toString();
           if (toSave.length === 0 || comparations.length === 0) {
@@ -440,7 +458,7 @@ const brand = [
       fallabelaButton &&
         fallabelaButton.addEventListener("click", async () => {
           open(
-            `https://www.falabella.com.co/falabella-co/search?Ntt=${cellphone.name.toLowerCase()}`,
+            `https://www.falabella.com.co/falabella-co/search?Ntt=${cellphone.name!.toLowerCase()}`,
             "Detalles del producto",
           );
         });
@@ -462,7 +480,7 @@ const brand = [
           const comparations = JSON.parse(
             localStorage.getItem("comparar") ?? "[]",
           ) as Array<string>;
-          comparations.push(cellphone.name);
+          comparations.push(cellphone.name!);
           const toSave = Array.from(new Set(comparations).values());
           bubble!.innerText = toSave.length.toString();
           if (toSave.length === 0 || comparations.length === 0) {
@@ -518,7 +536,7 @@ const brand = [
       bubble.style.display = "block";
     }
 
-    const cellphones = await getMobiles("", 5); // Pasar el límite como segundo argumento
+    const cellphones = await getMobiles("", 20); // Pasar el límite como segundo argumento
 
     // Verifica si se obtuvieron resultados
     if (!cellphones) {
@@ -586,7 +604,7 @@ const brand = [
     ) as HTMLInputElement;
 
     filterSearch.addEventListener("change", async () => {
-      const cellphones = await getMobiles(filterSearch.value, undefined);
+      const cellphones = await getMobiles(filterSearch.value, 20);
       if (!cellphones) return;
       container.innerHTML = "";
 
@@ -599,7 +617,7 @@ const brand = [
 
     if (!$buttonComparison) return;
       $buttonComparison.addEventListener("click", async (event: Event) => {
-  const ceelComparations = JSON.parse(localStorage.getItem("comparar") || "[]");
+  const ceelComparations = JSON.parse(localStorage.getItem("comparar") || "[]") as string[];
 
   const limit = undefined; 
 

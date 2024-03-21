@@ -229,9 +229,10 @@ import ListComparation from "../../phone-comparison/ui/component.astro";
                 $filtersContainer.classList.remove("show-filters");
                 $searchButton.classList.remove("hidden-button-fake-search");
                 $searchContainer.classList.remove("show-button-search");
-                modals.forEach((modal) =>
-                    modal.classList.remove("show-filters_modal"),
-                );
+                modals.forEach((modal) => {
+                    if (!modal) return;
+                   modal.classList.remove("show-filters_modal");
+                });
 
                 // Elimina el manejador de clic al documento cuando el menú de filtros está inactivo
                 document.removeEventListener(

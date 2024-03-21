@@ -1,33 +1,33 @@
-export interface Phone { 
-    id?: string;
-    name?: string; 
-    brand?: string; 
-    processor?: string;
-    ram?: string; 
-    storage?: string; 
-    battery?: string; 
-    screenSize?: string; 
-    screenResolution?:string; 
-    os?:string; 
-    frontCamera?: string; 
-    rearCamera?: string; 
-    features?: string; 
-    price?: number | string | null; 
-    screenType?: string; 
-    rearCameraResolution?: string; 
-    frontCameraResolution?: string; 
-    batteryType?: string; 
-    connectivity?: string; 
-    dimensions?: string; 
-    weight?: string; 
-    colors?: string; 
-    simCapacity?: string; 
-    ports?: string; 
-    sensors?: string;
-    image?: string;
+export interface Mobile { 
+  id?: string | null;
+  name?: string | null; 
+  brand?: string| null; 
+  processor?: string | null;
+  ram?: string | null; 
+  storage?: string | null; 
+  battery?: string | null; 
+  screenSize?: string | null; 
+  screenResolution?:string | null; 
+  os?:string | null; 
+  frontCamera?: string | null; 
+  rearCamera?: string | null; 
+  features?: string | null; 
+  price?: number | null; 
+  screenType?: string | null; 
+  rearCameraResolution?: string | null; 
+  frontCameraResolution?: string | null; 
+  batteryType?: string | null; 
+  connectivity?: string | null; 
+  dimensions?: string | null; 
+  weight?: string | null; 
+  colors?: string | null; 
+  simCapacity?: string | null; 
+  ports?: string | null; 
+  sensors?: string | null;
+  image?: string | null;
 }
 
-export const phones: Phone[] = [
+export const mobiles: Mobile[] = [
   {
     id: "1b039074-71f8-4986-bfe3-5d765c3acfb0",
     name: "Galaxy A55",

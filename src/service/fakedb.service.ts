@@ -1,5 +1,5 @@
 
-import { mobiles, type Mobile } from "../test/api/v1/dataset";
+import { mobiles, type Mobile } from "../test/api/v1/DataBaseFinal";
 
 
 /*
@@ -95,17 +95,32 @@ export interface FilterOptions {
 
 
 
+const isMobileValid = (mobile: Required<Mobile>, filterOptions: FilterOptions) => {
+    const conditions = {
+        price: [() => filterOptions.priceMin === undefined || mobile.price! >= filterOptions.priceMin, () => filterOptions.priceMax === undefined || mobile.price! <= filterOptions.priceMax],
+        screenSize: () => filterOptions.screenSize === undefined || mobile.screenSize!.toLowerCase() === filterOptions.screenSize.toLowerCase(),
+        battery: () => filterOptions.battery === undefined || mobile.battery!.toLowerCase() === filterOptions.battery.toLowerCase(),
+        ram: () => filterOptions.ram === undefined || mobile.ram!.toLowerCase() === filterOptions.ram.toLowerCase(),
+        storage: () => filterOptions.storage === undefined || mobile.storage!.toLowerCase() === filterOptions.storage.toLowerCase(),
+        os: () => filterOptions.os === undefined || mobile.os!.toLowerCase() === filterOptions.os.toLowerCase(),
+        brand: () => filterOptions.brand === undefined || mobile.brand!.toLowerCase() === filterOptions.brand.toLowerCase()
+    };
+
+    const validConditions = Object.entries(conditions)
+        .filter(([key]) => mobile[key as keyof Mobile] !== undefined && mobile[key as keyof Mobile] !== null)
+        .map(([_, condition]) => condition)
+        .flat();
+        
+    return validConditions.every((condition) => condition());
+};
+
+
+
+
 export const filterMobiles = async (filterOptions: FilterOptions): Promise<Mobile[]> => {
-    return mobiles.filter(mobile => {
+    return mobiles.filter((mobile: Mobile) => {
         return (
-            (filterOptions.priceMin === undefined || mobile.price >= filterOptions.priceMin) &&
-            (filterOptions.priceMax === undefined || mobile.price <= filterOptions.priceMax) &&
-            (filterOptions.screenSize === undefined || mobile.screenSize.toLowerCase() === filterOptions.screenSize.toLowerCase()) &&
-            (filterOptions.battery === undefined || mobile.battery.toLowerCase() === filterOptions.battery.toLowerCase()) &&
-            (filterOptions.ram === undefined || mobile.ram.toLowerCase() === filterOptions.ram.toLowerCase()) &&
-            (filterOptions.storage === undefined || mobile.storage.toLowerCase() === filterOptions.storage.toLowerCase()) &&
-            (filterOptions.os === undefined || mobile.os.toLowerCase() === filterOptions.os.toLowerCase()) &&
-            (filterOptions.brand === undefined || mobile.brand.toLowerCase() === filterOptions.brand.toLowerCase())
+            isMobileValid(mobile as Required<Mobile>, filterOptions)
         );
     });
 };

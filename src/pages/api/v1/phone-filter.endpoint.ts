@@ -7,7 +7,7 @@
 
 import type { APIRoute } from "astro";
 import { filterMobiles } from "../../../service/fakedb.service";
-import type { Mobile } from "../../../test/api/v1/dataset";
+import type { Mobile } from "../../../test/api/v1/DataBaseFinal";
 import { errorCodes } from "./errorCodes";
 
 export const GET: APIRoute = async ({ url }) => {
