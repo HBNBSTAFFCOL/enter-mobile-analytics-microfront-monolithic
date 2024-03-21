@@ -2,7 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/header/ui/Header.component.astro";
 import Card from "../components/phone-card/ui/Card.component.astro";
-import CardComparation from "../components/phone-comparison/ui/Card.comparison.astro";
+import CardComparation from "../components/phone-comparison/ui/card.comparison.astro";
 import Slide from "../components/button/ui/slide.component.astro";
 import Button from "../components/button/ui/Button.component.astro";
 
@@ -504,10 +504,17 @@ const brand = [
     }
 
     const cellphones = await getMobiles();
-    if (!cellphones) return;
-    container.innerHTML = "";
+if (!cellphones) return;
+container.innerHTML = "";
 
-    cellphones.forEach(createMobileUI(cardContainer, bubble, container));
+const limit = 3; // Define el límite de iteraciones
+let count = 0; // Inicializa el contador
+cellphones.forEach((mobile) => {
+    if (count < limit) { // Verifica si se ha alcanzado el límite
+        createMobileUI(cardContainer, bubble, container)(mobile);
+        count++; // Incrementa el contador después de procesar un elemento
+    }
+});
 
     const containers = Array.from(
       document.querySelectorAll(".range__container")
@@ -519,10 +526,15 @@ const brand = [
       ) as HTMLInputElement;
 
       $range.addEventListener("change", async () => {
-        const param = $range.getAttribute("name")!;
+        const param = $range.getAttribute("data-unit")!;
         const value = $range.value;
+        const searchReal = value + param;
 
-        const filterData = await filterMobile(param, value);
+        console.log(param);
+        console.log(value);
+        const filterData = await getMobiles(searchReal);
+
+        console.log(filterData);
         if (!filterData) return;
 
         container.innerHTML = "";

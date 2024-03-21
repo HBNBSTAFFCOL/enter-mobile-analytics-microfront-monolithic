@@ -39,7 +39,7 @@ export const mobiles: Mobile[] = [
         processor: "A15 Bionic",
         ram: "6GB",
         storage: "128GB, 256GB, 512GB, 1TB",
-        battery: "4352mAh",
+        battery: "4352 mAh",
         screenSize: "6.7 inches",
         screenResolution: "1284 x 2778 pixels",
         os: "iOS 15",
