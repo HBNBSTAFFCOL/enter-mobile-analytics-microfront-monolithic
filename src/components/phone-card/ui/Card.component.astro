@@ -152,7 +152,7 @@ const {
                                 backgroundColor={colorItem.color}
                                 dataImageSrc={colorItem.src}
                                 onClick={() => changeImage(colorItem.src)}
-                                cardTitle={id}
+                                cardTitle={id!}
                             />
                         ))
                 }
@@ -209,7 +209,6 @@ const {
 
     .card {
         display: inline-block;
-        /*aspect-ratio: 5 / 2.5; */
         scroll-snap-align: center;
         margin-right: 20%;
     }
@@ -363,7 +362,7 @@ const {
 
     @media (max-width: 576px) {
         .card__contain-main {
-            scroll-snap-align: center; /* Ajusta el tamaño de la fuente para pantallas aún más pequeñas */
+            scroll-snap-align: center;
         }
 
         .card__left {
