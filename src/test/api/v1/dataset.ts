@@ -1,6 +1,6 @@
 import { randomUUID } from "node:crypto";
 
-export interface Mobile { 
+export interface Mobiles { 
     id: string;
     name: string; 
     brand: string; 
@@ -21,7 +21,7 @@ export interface Mobile {
     frontCameraResolution: string; 
     batteryType: string; 
     connectivity: string[]; 
-    dimensions: { height: number; width: number; thickness: number }; 
+    dimensions: { height: number; width: number; thickness: number };
     weight: number; 
     colors: string[]; 
     simCapacity: string; 
@@ -30,7 +30,7 @@ export interface Mobile {
     image?: string;
 }
 
-export const mobiles: Mobile[] = [
+export const mobiles: Mobiles[] = [
     {
         id: "7a1917ca-a94b-47c9-a726-cd43b7cb9d94",
         name: "iPhone 13 Pro Max",
@@ -39,7 +39,7 @@ export const mobiles: Mobile[] = [
         processor: "A15 Bionic",
         ram: "6GB",
         storage: "128GB, 256GB, 512GB, 1TB",
-        battery: "4352mAh",
+        battery: "4352 mAh",
         screenSize: "6.7 inches",
         screenResolution: "1284 x 2778 pixels",
         os: "iOS 15",

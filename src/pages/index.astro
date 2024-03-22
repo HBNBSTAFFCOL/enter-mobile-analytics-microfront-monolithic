@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/header/ui/Header.component.astro";
 import Card from "../components/phone-card/ui/Card.component.astro";
+import CardComparation from "../components/phone-comparison/ui/Card.comparison.astro";
 import Slide from "../components/button/ui/slide.component.astro";
 import Button from "../components/button/ui/Button.component.astro";
 
@@ -12,7 +13,7 @@ const brand = [
   },
   {
     src: "/icons-brands/blackview.png",
-    name: "Blackview",
+    name: "BLACKVIEW",
   },
   {
     src: "/icons-brands/Cubot_Logo.png",
@@ -24,7 +25,7 @@ const brand = [
   },
   {
     src: "/icons-brands/icon-Balckberry.svg",
-    name: "BlackBerry",
+    name: "BLACKBERRY",
   },
   {
     src: "/icons-brands/icon-Cat.svg",
@@ -92,7 +93,7 @@ const brand = [
   },
   {
     src: "/icons-brands/icon-vodafone.svg",
-    name: "Vodafone",
+    name: "VODAFONE",
   },
   {
     src: "/icons-brands/icon-Xiaomi.svg",
@@ -100,7 +101,7 @@ const brand = [
   },
   {
     src: "/icons-brands/iocn-Energizer.png",
-    name: "Energizer",
+    name: "ENERGIZER",
   },
   {
     src: "/icons-brands/iocon-oppo.svg",
@@ -196,6 +197,9 @@ const brand = [
     <section class="slide-section">
       <div class="slide-container">
         <Slide cellphone={true}>
+          <CardComparation />
+          <Card />
+          <!--
           <Card
             id="Iphoneone"
             title="Iphone 15 Pro Max"
@@ -203,6 +207,7 @@ const brand = [
             internalMemory="256GB | 512GB | 1TB"
             ramMemory="8GB"
             batteryCapacity="4441mAh"
+            price="";
             colors={[
               {
                 color: "#f7f4ed",
@@ -230,6 +235,7 @@ const brand = [
             internalMemory="256GB | 512GB | 1TB"
             ramMemory="12GB | 16GB "
             batteryCapacity="5000mAh"
+            price="";
             colors={[
               {
                 color: "#DEDEE0",
@@ -249,6 +255,7 @@ const brand = [
             internalMemory="256GB | 512GB | 1TB"
             ramMemory="8GB | 12GB "
             batteryCapacity="5000mAh"
+            price="";
             colors={[
               {
                 color: "#F1EAE0",
@@ -276,6 +283,7 @@ const brand = [
             internalMemory="256GB | 512GB | 1TB"
             ramMemory="12GB "
             batteryCapacity="5000mAh"
+            price="";
             colors={[
               {
                 color: "#EAE8E9",
@@ -296,6 +304,7 @@ const brand = [
             ]}
             src="/phone_images/Huawei/HuaweiP60Pro-White.png"
           />
+        -->
         </Slide>
       </div>
     </section>
@@ -303,48 +312,53 @@ const brand = [
 </Layout>
 
 <script>
-  interface Mobile {
-    id: string;
-    name: string;
-    brand: string;
-    processor: string;
-    // prueba: string;
-    ram: string;
-    storage: string;
-    battery: string;
-    screenSize: string;
-    screenResolution: string;
-    os: string;
-    frontCamera: string;
-    rearCamera: string;
-    features: string[];
-    price: number;
-    screenType: string;
-    rearCameraResolution: string;
-    frontCameraResolution: string;
-    batteryType: string;
-    connectivity: string[];
-    dimensions: { height: number; width: number; thickness: number };
-    weight: number;
-    colors: string[];
-    simCapacity: string;
-    ports: string[];
-    sensors: string[];
-    image: string;
-  }
+ interface Mobile { 
+    id?: string | null;
+    name?: string | null; 
+    brand?: string| null; 
+    processor?: string | null;
+    ram?: string | null; 
+    storage?: string | null; 
+    battery?: string | null; 
+    screenSize?: string | null; 
+    screenResolution?:string | null; 
+    os?:string | null; 
+    frontCamera?: string | null; 
+    rearCamera?: string | null; 
+    features?: string | null; 
+    price?: number | string | null; 
+    screenType?: string | null; 
+    rearCameraResolution?: string | null; 
+    frontCameraResolution?: string | null; 
+    batteryType?: string | null; 
+    connectivity?: string | null; 
+    dimensions?: string | null; 
+    weight?: string | null; 
+    colors?: string | null; 
+    simCapacity?: string | null; 
+    ports?: string | null; 
+    sensors?: string | null;
+    image?: string | null;
+}
 
-  const getMobiles = async (serach = "") => {
-    const response = await fetch(
-      `${location.origin}/api/v1/phone-search.endpoint?src=${serach}`
-    );
+  const getMobiles = async (search = "", limit: Number | undefined) => {
+    // Añade el límite a la URL si se proporciona
+    const url = limit
+      ? `${location.origin}/api/v1/phone-search.endpoint?src=${search}&limit=${limit}`
+      : `${location.origin}/api/v1/phone-search.endpoint?src=${search}`;
+
+    const response = await fetch(url);
     const data = await response.json();
-    if (data.error) return console.error(data.error);
-    return data as Mobile[];
+    if (data.error) {
+      console.error(data.error);
+      return null;
+    }
+    return data;
   };
 
   const getDetails = async (id: string) => {
     const response = await fetch(
-      `${location.origin}/api/v1/phone-details.endpoint?mobile=${id}`
+      `${location.origin}/api/v1/phone-details.endpoint?mobile=${id}`,
     );
     const data = await response.json();
     if (data.error) return console.error(data.error);
@@ -353,7 +367,7 @@ const brand = [
 
   const filterMobile = async (param: string, value: string) => {
     const filter = await fetch(
-      `${location.origin}/api/v1/phone-filter.endpoint?${param}=${value}`
+      `${location.origin}/api/v1/phone-filter.endpoint?${param}=${value}`,
     );
     const data = await filter.json();
     if (data.error) return console.error(data.error);
@@ -364,55 +378,121 @@ const brand = [
     (
       cardContainer: HTMLElement | DocumentFragment,
       bubble: HTMLElement,
-      container: HTMLElement
+      container: HTMLElement,
     ) =>
     (cellphone: Mobile) => {
       const currentCard = cardContainer.cloneNode(true) as HTMLElement;
+
+
+      const mandatoryKeys = ["id", "image", "name", "rearCamera", "storage", "ram", "battery"]
+      if (!mandatoryKeys.every((prop) => Object.keys(cellphone).includes(prop))) {
+        return;
+      }
+
       currentCard
         .querySelector('[itemid="id"]')!
-        .setAttribute("id", cellphone.id);
+        .setAttribute("id", cellphone.id!);
       currentCard
-      .querySelector('[itemprop="image"]')!
-      .setAttribute("src", cellphone.image)
-        currentCard.querySelector('[itemprop="name"]')!.textContent =
-        cellphone.name;
+        .querySelector('[itemprop="image"]')!
+        .setAttribute("src", cellphone.image!);
+      currentCard.querySelector('[itemprop="name"]')!.textContent =
+        cellphone.name!;
       currentCard.querySelector('[itemprop="rearCamera"]')!.textContent =
-        cellphone.rearCamera;
+        cellphone.rearCamera!;
       currentCard.querySelector('[itemprop="storage"]')!.textContent =
-        cellphone.storage;
+        cellphone.storage!;
       currentCard.querySelector('[itemprop="ram"]')!.textContent =
-        cellphone.ram;
+        cellphone.ram!;
       currentCard.querySelector('[itemprop="battery"]')!.textContent =
-        cellphone.battery;
-      currentCard
-        .querySelector('[itemtype="detalles"]')!
-        .addEventListener("click", async () => {
-          const detalle = await getDetails(cellphone.id);
-          open(
-            `https://www.falabella.com.co/falabella-co/search?Ntt=${cellphone.name.toLowerCase()}`,
-            "Detalles del producto"
+        cellphone.battery!;
+
+
+
+      currentCard.querySelector('[itemprop="price"]')!.textContent =
+        `${
+          new Intl.NumberFormat('co-CO', { style: 'currency', currency: 'COP' }).format(
+            Number(cellphone.price),
           )
-          /*  
-          open(
-            `https://www.ktronix.com/search/?text=${cellphone.name}`,
-            "Detalles del producto"
-          );
-          */
-          console.log(detalle);
-        });
-      currentCard
-        .querySelector('[itemtype="comparar"]')!
-        .addEventListener("click", async () => {
+          
+        }`;
+
+
+        if (!cellphone.price || cellphone.price === "null") {
+          currentCard.querySelector('[itemprop="price"]')!.closest("li")!.remove();
+        }
+      const ShowComparar = currentCard.querySelector('[itemtype="detalles"]');
+
+      ShowComparar &&
+        ShowComparar.addEventListener("click", async () => {
           const comparations = JSON.parse(
-            localStorage.getItem("comparar") ?? "[]"
+            localStorage.getItem("comparar") ?? "[]",
           ) as Array<string>;
-          comparations.push(cellphone.name);
+          comparations.push(cellphone.name!);
           const toSave = Array.from(new Set(comparations).values());
           bubble!.innerText = toSave.length.toString();
+          if (toSave.length === 0 || comparations.length === 0) {
+            bubble.style.display = "none";
+          } else {
+            bubble.style.display = "block";
+          }
+          localStorage.setItem("comparar", JSON.stringify(toSave));
+          const mobileList = document.querySelector(
+            ".comparison-list",
+          ) as HTMLTemplateElement;
+          toSave.forEach((newMobileListAdd) => {
+            const newMobileList = document.createElement("li");
+            newMobileList.textContent = newMobileListAdd;
+            mobileList.appendChild(newMobileList);
+          });
+
+          const $buttonComparison = document.getElementById(
+            "button-comparison",
+          ) as HTMLButtonElement;
+
+          if ($buttonComparison) $buttonComparison.click();
+        });
+
+      const fallabelaButton = currentCard.querySelector(
+        '[itemtype="falabella"]',
+      );
+      fallabelaButton &&
+        fallabelaButton.addEventListener("click", async () => {
+          open(
+            `https://www.falabella.com.co/falabella-co/search?Ntt=${cellphone.name!.toLowerCase()}`,
+            "Detalles del producto",
+          );
+        });
+
+      const ktronixButton = currentCard.querySelector('[itemtype="ktronix"]');
+      ktronixButton &&
+        ktronixButton.addEventListener("click", async () => {
+          open(
+            `https://www.ktronix.com/search/?text=${cellphone.name}`,
+            "Detalles del producto",
+          );
+        });
+
+      const addToComparationButton = currentCard.querySelector(
+        '[itemtype="comparar"]',
+      );
+      addToComparationButton &&
+        addToComparationButton.addEventListener("click", async () => {
+          const comparations = JSON.parse(
+            localStorage.getItem("comparar") ?? "[]",
+          ) as Array<string>;
+          comparations.push(cellphone.name!);
+          const toSave = Array.from(new Set(comparations).values());
+          bubble!.innerText = toSave.length.toString();
+          if (toSave.length === 0 || comparations.length === 0) {
+            bubble.style.display = "none";
+          } else {
+            bubble.style.display = "block";
+          }
+
           localStorage.setItem("comparar", JSON.stringify(toSave));
 
           const mobileList = document.querySelector(
-            ".comparison-list"
+            ".comparison-list",
           ) as HTMLTemplateElement;
           mobileList.innerHTML = "";
 
@@ -420,16 +500,6 @@ const brand = [
             const newMobileList = document.createElement("li");
             newMobileList.textContent = newMobileListAdd;
             mobileList.appendChild(newMobileList);
-
-            const cleanList = document.querySelector(
-              ".list-button-clean"
-            ) as HTMLElement;
-            cleanList.addEventListener("click", async () => {
-              if (!mobileList) return;
-              mobileList.innerHTML = "";
-              localStorage.setItem("comparar", "[]");
-              bubble.innerText = "0";
-            });
           });
         });
       container?.append(currentCard);
@@ -437,41 +507,71 @@ const brand = [
 
   document.addEventListener("DOMContentLoaded", async () => {
     const template = document.querySelector(
-      "#card-mobile"
+      "#card-mobile",
     ) as HTMLTemplateElement;
     const container = Array.from(document.querySelectorAll(".slide__cards")).at(
-      -1
+      -1,
     ) as HTMLElement;
 
     const cardContainer = document.importNode(template.content, true);
+
+    const templateComparation = document.querySelector(
+      "#compaire_card-mobile",
+    ) as HTMLTemplateElement;
+
+    const cardContainerComparation = document.importNode(
+      templateComparation.content,
+      true,
+    );
+
     const bubble = document.querySelector(".bubble__counter") as HTMLElement;
     const comparations = JSON.parse(
-      localStorage.getItem("comparar") ?? "[]"
+      localStorage.getItem("comparar") ?? "[]",
     ) as Array<string>;
-
+    const toSave = Array.from(new Set(comparations).values());
     bubble!.innerText = comparations.length.toString();
-    // clear container
+    if (toSave.length === 0 || comparations.length === 0) {
+      bubble.style.display = "none";
+    } else {
+      bubble.style.display = "block";
+    }
 
-    const cellphones = await getMobiles();
-    if (!cellphones) return;
+    const cellphones = await getMobiles("", 20); // Pasar el límite como segundo argumento
+
+    // Verifica si se obtuvieron resultados
+    if (!cellphones) {
+      return;
+    }
+
+    // Limpia el contenedor antes de agregar los celulares
     container.innerHTML = "";
 
-    cellphones.forEach(createMobileUI(cardContainer, bubble, container));
+    // Itera sobre los celulares y crea la interfaz de usuario para cada uno
+    cellphones.forEach((mobile: Mobile) => {
+      createMobileUI(cardContainer, bubble, container)(mobile);
+    });
+
+    console.log(cellphones);
 
     const containers = Array.from(
-      document.querySelectorAll(".range__container")
+      document.querySelectorAll(".range__container"),
     ) as HTMLElement[];
 
     containers.forEach(($filterContainer: HTMLElement) => {
       const $range = $filterContainer.querySelector(
-        'input[type="range"]'
+        'input[type="range"]',
       ) as HTMLInputElement;
 
       $range.addEventListener("change", async () => {
-        const param = $range.getAttribute("name")!;
+        const param = $range.getAttribute("data-unit")!;
         const value = $range.value;
+        const searchReal = value + param;
 
-        const filterData = await filterMobile(param, value);
+        console.log(param);
+        console.log(value);
+        const filterData = await getMobiles(searchReal, undefined);
+
+        console.log(filterData);
         if (!filterData) return;
 
         container.innerHTML = "";
@@ -480,12 +580,12 @@ const brand = [
     });
 
     const containsBrands = Array.from(
-      document.querySelectorAll(".brand-self-container")
+      document.querySelectorAll(".brand-self-container"),
     ) as HTMLElement[];
 
     containsBrands.forEach(($brandcontainer: HTMLElement) => {
       const $brand = $brandcontainer.querySelector(
-        ".button.button--brands-navigation"
+        ".button.button--brands-navigation",
       ) as HTMLButtonElement;
 
       $brand.addEventListener("click", async () => {
@@ -493,9 +593,6 @@ const brand = [
 
         const filterData = await filterMobile("brand", nameBrand!);
         if (!filterData) return;
-        if(filterData.length === 0) return;
-
-        console.log("resultado:", filterData)
 
         container.innerHTML = "";
         filterData.forEach(createMobileUI(cardContainer, bubble, container));
@@ -503,16 +600,91 @@ const brand = [
     });
 
     const filterSearch = document.getElementById(
-      "filters__search-input"
+      "filters__search-input",
     ) as HTMLInputElement;
 
     filterSearch.addEventListener("change", async () => {
-      const cellphones = await getMobiles(filterSearch.value);
+      const cellphones = await getMobiles(filterSearch.value, 20);
       if (!cellphones) return;
       container.innerHTML = "";
 
       cellphones.forEach(createMobileUI(cardContainer, bubble, container));
     });
+
+    const $buttonComparison = document.getElementById(
+      "button-comparison",
+    ) as HTMLButtonElement;
+
+    if (!$buttonComparison) return;
+      $buttonComparison.addEventListener("click", async (event: Event) => {
+  const ceelComparations = JSON.parse(localStorage.getItem("comparar") || "[]") as string[];
+
+  const limit = undefined; 
+
+  const filterData = (
+    await Promise.all(
+      ceelComparations.map(search => getMobiles(search, limit))
+    )
+  ).flat();
+
+  console.log(filterData);
+  if (!filterData) return;
+
+  container.innerHTML = "";
+  filterData.forEach(
+    createMobileUI(cardContainerComparation, bubble, container)
+  );
+  document.body.click();
+});
+
+
+    const cleanList = document.querySelector(
+      ".list-button-clean",
+    ) as HTMLElement;
+    const mobileList = document.querySelector(
+      ".comparison-list",
+    ) as HTMLTemplateElement;
+
+    cleanList.addEventListener("click", async () => {
+      mobileList.innerHTML = "";
+      localStorage.setItem("comparar", "[]");
+      document.body.click();
+
+      const comparations = JSON.parse(
+        localStorage.getItem("comparar") ?? "[]",
+      ) as Array<string>;
+      const toSave = Array.from(new Set(comparations).values());
+      if (toSave.length === 0 || comparations.length === 0) {
+        bubble.style.display = "none";
+      }
+    });
+
+    const minPriceInput = document.getElementById(
+      "min-price-input",
+    ) as HTMLInputElement;
+    const maxPriceInput = document.getElementById(
+      "max-price-input",
+    ) as HTMLInputElement;
+
+    minPriceInput.addEventListener("keypress", handlePriceInputKeyPress);
+    maxPriceInput.addEventListener("keypress", handlePriceInputKeyPress);
+
+    async function handlePriceInputKeyPress(event: KeyboardEvent) {
+      if (event.key === "Enter") {
+        const target = event.target as HTMLInputElement;
+        const priceType = target.id.includes("min") ? "priceMin" : "priceMax";
+        const priceValue = target.value;
+
+        console.log(`${priceType}: ${priceValue}`);
+        const cellphones = await filterMobile(priceType, priceValue);
+
+        if (!cellphones) return;
+
+        container.innerHTML = "";
+
+        cellphones.forEach(createMobileUI(cardContainer, bubble, container));
+      }
+    }
   });
 </script>
 
@@ -539,13 +711,15 @@ const brand = [
   }
 
   .brand-self-container {
-    max-width: 70%; /* Ajusta el ancho máximo según tus necesidades */
-    height: auto;
-    filter: grayscale(150%) opacity(0.7); /* Convertir la imagen a escala de grises */
-    transition:
-      filter 100ms,
-      transform 150ms;
+    max-width: 70%;
+    height: 50px;
+    filter: grayscale(150%) opacity(0.7);
+    transition: filter 100ms, transform 150ms;
     transform-origin: center center;
+    padding: 0px 25px;
+    background-color: #dedcdc00;
+    margin-top: 5px;
+    border-radius: 7px;
   }
 
   .brand-self-container:hover {
@@ -580,14 +754,14 @@ const brand = [
   }
 
   .slide-section {
-    height: 580px;
+    height: auto;
     overflow: hidden;
     position: relative;
     margin-top: 80px;
   }
 
   .slide-container {
-    height: 100%;
+    height: auto;
     width: 100%;
   }
 

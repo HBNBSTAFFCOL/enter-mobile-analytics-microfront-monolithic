@@ -136,11 +136,11 @@ import ListComparation from "../../phone-comparison/ui/component.astro";
                     name="screenSize"
                     title="Pantalla"
                     unit="inches"
-                    start={2}
-                    step={1}
+                    start={5}
+                    step={0.1}
                     type="single"
-                    end={150}
-                    initial={50}
+                    end={8}
+                    initial={6}
                     id="filters__screen--inches-range"
                 />
             </article>
@@ -180,7 +180,7 @@ import ListComparation from "../../phone-comparison/ui/component.astro";
             type="bubble-comparation"
             id="button-bubble-comparition"
             icon="/bubble-cart-com.svg"
-            text="3"
+            text=""
         />
     </section>
     <section class="header__container-list">
@@ -190,7 +190,7 @@ import ListComparation from "../../phone-comparison/ui/component.astro";
         <div class="contain-list">
             <ListComparation class="contain-list-items" />
             <div class="contain-list-buttons">
-                <button class="list-button-compaire">Comparar</button>
+                <button class="list-button-compaire" id="button-comparison">Comparar</button>
                 <button class="list-button-clean">Limpiar</button>
             </div>
         </div>
@@ -229,9 +229,10 @@ import ListComparation from "../../phone-comparison/ui/component.astro";
                 $filtersContainer.classList.remove("show-filters");
                 $searchButton.classList.remove("hidden-button-fake-search");
                 $searchContainer.classList.remove("show-button-search");
-                modals.forEach((modal) =>
-                    modal.classList.remove("show-filters_modal"),
-                );
+                modals.forEach((modal) => {
+                    if (!modal) return;
+                   modal.classList.remove("show-filters_modal");
+                });
 
                 // Elimina el manejador de clic al documento cuando el menú de filtros está inactivo
                 document.removeEventListener(

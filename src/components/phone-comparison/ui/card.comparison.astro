@@ -1,18 +1,13 @@
 ---
-function changeImage(src: string): void {
-    throw new Error("Function not implemented.");
-}
-
-import ColorNavButton from "../../button/ui/ColorButton.astro";
 interface Props {
-    id: string;
-    title: string;
-    cameraResolution: string;
-    internalMemory: string;
-    ramMemory: string;
-    batteryCapacity: string;
-    colors: { color: string; src: string }[];
-    src: string;
+    id?: string;
+    title?: string;
+    cameraResolution?: string;
+    internalMemory?: string;
+    ramMemory?: string;
+    batteryCapacity?: string;
+    src?: string;
+    price?: number | string;
 
 }
 
@@ -23,7 +18,7 @@ const {
     internalMemory,
     ramMemory,
     batteryCapacity,
-    colors,
+    price,
     src,
 } = Astro.props;
 ---
@@ -33,7 +28,7 @@ const {
         <article
             class="compaire_card__contain"
             itemid="id"
-            id={id.replace(/\s+/g, "-").toLowerCase()}
+            id = {id}
         >
             <div class="compaire_card__left">
                 <div class="compaire_card__contain-tittle">
@@ -44,15 +39,16 @@ const {
                         class="compaire_card__picture-img"
                         src={src}
                         alt="Imagen del movil"
+                        itemprop="image"
                     />
                 </picture>
             </div>
             <footer class="compaire_card__footer">
-                <button class="compaire_card__button-compaire" itemtype="comparar"
-                    >Lo quiero</button
+                <button class="compaire_card__button-compaire" itemtype="falabella"
+                    >ir a fallabela</button
                 >
-                <button class="compaire_card__button-details" itemtype="detalles"
-                    >Lo quiero</button
+                <button class="compaire_card__button-details" itemtype="ktronix"
+                    >ir a ktronix</button
                 >
             </footer>
             <main class="compaire_card__contain-main">
@@ -76,7 +72,7 @@ const {
                         </div>
                     </li>
                     <li class="compaire_card__tech-list-item">
-                        <figure class="card__item-icon">
+                        <figure class="compaire_card__item-icon">
                             <img
                                 class="compaire_card__item-icon-img"
                                 src="public/icons/icons_items/icon-memory-internal.svg"
@@ -84,7 +80,7 @@ const {
                             />
                         </figure>
                         <div class="compaire_card__item-info">
-                            <span class="card__item-title">Memoria interna</span
+                            <span class="compaire_card__item-title">Memoria interna</span
                             >
                             <span class="compaire_card__item-value" itemprop="storage"
                                 >{internalMemory}</span
@@ -114,8 +110,8 @@ const {
                                 alt="Icono de bateria"
                             />
                         </figure>
-                        <div class="ccompaire_ard__item-info">
-                            <span class="card__item-title"
+                        <div class="compaire_card__item-info">
+                            <span class="compaire_card__item-title"
                                 >Capacidad de la Bateria</span
                             >
                             <span class="compaire_card__item-value" itemprop="battery"
@@ -123,65 +119,27 @@ const {
                             >
                         </div>
                     </li>
+                    <li class="compaire_card__tech-list-item">
+                        <figure class="compaire_card__item-icon">
+                            <img
+                                class="compaire_card__item-icon-img"
+                                src="public/icons/icons_items/icon-price.svg"
+                                alt="Icono de precio"
+                            />
+                        </figure>
+                        <div class="compaire_card__item-info">
+                            <span class="compaire_card__item-title"
+                                >Precio Aprox</span
+                            >
+                            <span class="compaire_card__item-value" itemprop="price"
+                                >{price}</span>
+                        </div>
+                    </li>
                 </ul>
             </main>
-            <nav class="compaire_card__nav">
-                {
-                    colors &&
-                        colors.map((colorItem) => (
-                            <ColorNavButton
-                                backgroundColor={colorItem.color}
-                                dataImageSrc={colorItem.src}
-                                onClick={() => changeImage(colorItem.src)}
-                                cardTitle={id}
-                            />
-                        ))
-                }
-            </nav>
         </article>
     </li>
 </template>
-
-<script>
-    export function changeImage(imageSrc: string, cardId: string) {
-        const pictureElement = document.querySelector(
-            `#${cardId} .card__picture`,
-        ) as HTMLElement;
-        const imageElement = pictureElement.querySelector(
-            ".card__picture-img",
-        ) as HTMLImageElement;
-        if (imageElement) {
-            imageElement.style.opacity = "0";
-            setTimeout(() => {
-                imageElement.src = imageSrc;
-                imageElement.style.opacity = "1";
-            }, 300);
-        }
-        if (pictureElement) {
-            pictureElement.style.boxShadow = "none";
-            setTimeout(() => {
-                pictureElement.style.boxShadow =
-                    "-12px 12px 20px 0px rgba(0, 0, 0, 0.48)";
-            }, 300);
-        }
-    }
-
-    document.addEventListener("DOMContentLoaded", () => {
-        const colorButtons = document.querySelectorAll(
-            ".card__nav-button",
-        ) as NodeListOf<HTMLElement>;
-
-        colorButtons.forEach((button) => {
-            button.addEventListener("click", () => {
-                const imageSrc = button.dataset.imageSrc;
-                const cardId = button.dataset.cardId;
-                if (imageSrc && cardId) {
-                    changeImage(imageSrc, cardId);
-                }
-            });
-        });
-    });
-</script>
 
 <style>
     /*styles for comparation card */
@@ -194,7 +152,7 @@ const {
 
     .compaire_card__contain {
         display: flex;
-        height: 100%;
+        height: auto;
         width: 100%;
         padding: 20px;
         gap: 1rem;
@@ -226,7 +184,7 @@ const {
     }
 
     .compaire_card__picture {
-        width: 100%;
+        width: 250px;
         height: 100%;
         position: relative;
         border-radius: 9% 0 9% 9%;
@@ -239,6 +197,7 @@ const {
         height: auto;
         transition: opacity 500ms ease 0s;
         background-color: transparent;
+        border-radius: 9% 0 9% 9%;
     }
 
     .compaire_card__footer {
@@ -342,7 +301,7 @@ const {
         }
 
         .compaire_card__picture {
-            width: 250px;
+            width: 230px;
         }
 
         .compaire_card {
