@@ -210,7 +210,7 @@ const brand = [
     processor?: string | null;
     ram?: string | null; 
     storage?: string | null; 
-    battery?: string | null; 
+    F?: string | null; 
     screenSize?: string | null; 
     screenResolution?:string | null; 
     os?:string | null; 
@@ -470,6 +470,8 @@ const brand = [
         const value = $range.value;
         const searchReal = value + param;
 
+        if(param.length === 0) return;
+
         console.log(param);
         console.log(value);
         const filterData = await getMobiles(searchReal, undefined);
@@ -588,6 +590,42 @@ const brand = [
         cellphones.forEach(createMobileUI(cardContainer, bubble, container));
       }
     }
+
+    function rangeUpdate() {
+            const rages = Array.from(
+                document.querySelectorAll("nav > .range__container"),
+            );
+
+            rages.forEach(($element) => {
+                const $label = $element.querySelector("label");
+                if (!$label) return;
+                const id = $label.getAttribute("for") ?? "";
+
+                const $input = $element.querySelector(
+                    `input#${id}`,
+                ) as HTMLInputElement;
+                const $i = $label.querySelector("i");
+                if (!$input || !$i) return;
+
+                const { step, end, start } = $label.dataset;
+
+                const less = (Number(start) * 100) / Number(end);
+                const position = (Number($input.value) * 100) / Number(end);
+                $label.closest(".card__contain")!.style.setProperty("--value", `${position - less}%`);
+                $label.closest(".card__contain")!.style.setProperty("--grade", `${position - less}`);
+
+
+                $input.addEventListener("mousemove", () => {
+                    const less = (Number(start) * 100) / Number(end);
+                    const position = (Number($input.value) * 100) / Number(end);
+                    $label.closest(".card__contain")!.style.setProperty("--value", `${position - less}%`);
+                $label.closest(".card__contain")!.style.setProperty("--grade", `${$input.value}`);
+
+                    $i.textContent = `${$input.value}${$label.dataset.unit}`;
+                });
+            });
+        }
+        rangeUpdate();
   });
 </script>
 
