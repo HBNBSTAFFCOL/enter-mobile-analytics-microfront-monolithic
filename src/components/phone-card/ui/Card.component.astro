@@ -1,4 +1,6 @@
 ---
+import Range from "../../range/ui/Range.component.astro";
+
 function changeImage(src: string): void {
     throw new Error("Function not implemented.");
 }
@@ -13,8 +15,7 @@ interface Props {
     batteryCapacity?: string;
     colors?: { color: string; src: string }[];
     src?: string;
-    price   ?: number | string;
-
+    price?: number | string;
 }
 
 const {
@@ -29,13 +30,10 @@ const {
     src,
 } = Astro.props;
 ---
+
 <template id="card-mobile">
     <li class="card" itemid="card-mobile">
-        <article
-            class="card__contain"
-            itemid="id"
-            id={id}
-        >
+        <article class="card__contain" itemid="id" id={id}>
             <div class="card__left">
                 <picture class="card__picture" id="phonePicture">
                     <img
@@ -134,9 +132,7 @@ const {
                             />
                         </figure>
                         <div class="card__item-info">
-                            <span class="card__item-title"
-                                >Precio Aprox</span
-                            >
+                            <span class="card__item-title">Precio Aprox</span>
                             <span class="card__item-value" itemprop="price"
                                 >{price}</span
                             >
@@ -145,23 +141,21 @@ const {
                 </ul>
             </main>
             <nav class="card__nav">
-                {
-                    colors &&
-                        colors.map((colorItem) => (
-                            <ColorNavButton
-                                backgroundColor={colorItem.color}
-                                dataImageSrc={colorItem.src}
-                                onClick={() => changeImage(colorItem.src)}
-                                cardTitle={id!}
-                            />
-                        ))
-                }
+                <Range
+                    name=""
+                    title="Colors"
+                    unit=""
+                    start={0}
+                    step={1}
+                    type="single"
+                    end={360}
+                    initial={0}
+                    id="color-phone__change"
+                />
             </nav>
         </article>
     </li>
-
 </template>
-
 
 <script>
     export function changeImage(imageSrc: string, cardId: string) {
@@ -238,8 +232,8 @@ const {
         width: 260px;
         position: relative;
         background-color: transparent;
-        box-shadow: -27px 18px 20px 0px rgba(0,0,0,0.48);
-        border-radius: 9% 0 9% 9%
+        box-shadow: -27px 18px 20px 0px rgba(0, 0, 0, 0.48);
+        border-radius: 9% 0 9% 9%;
     }
 
     .card__picture-img {
@@ -248,6 +242,7 @@ const {
         transition: opacity 500ms ease 0s;
         background-color: transparent;
         border-radius: 9% 0 9% 9%;
+        filter: hue-rotate(calc(var(--grade) * 1deg));
     }
 
     .card__footer {
@@ -275,7 +270,7 @@ const {
         text-align: center;
         -moz-text-align-last: center;
         text-align-last: center;
-        box-shadow: -12px 12px 20px 0px rgba(0,0,0,0.48);
+        box-shadow: -12px 12px 20px 0px rgba(0, 0, 0, 0.48);
     }
 
     .card__button-details {
@@ -354,7 +349,6 @@ const {
     }
 
     .card__nav {
-        display: flex;
         justify-content: center;
         flex-wrap: nowrap;
         gap: 0.5rem;
@@ -402,6 +396,4 @@ const {
             gap: 0.5rem;
         }
     }
-
-
 </style>
