@@ -70,7 +70,7 @@ const { text, id, icon, detail, type, brand } = Astro.props;
 
 {
     type === "brands-navigation" && (
-        <button id={id} type="button" class="button button--brands-navigation" >
+        <button id={id} type="button" class="button button--brands-navigation">
             <figure class="button__icon-nav">
                 <img class="button__icon-image-nav" src={icon} alt={text} />
             </figure>
@@ -78,9 +78,7 @@ const { text, id, icon, detail, type, brand } = Astro.props;
     )
 }
 
-<script>
-
-</script>
+<script></script>
 
 <style>
     .button--fake-input {
@@ -252,7 +250,9 @@ const { text, id, icon, detail, type, brand } = Astro.props;
         border-radius: 50%;
         width: 40px;
         height: 40px;
-        transition: background-color 0.3s, transform 0.3s;
+        transition:
+            background-color 0.3s,
+            transform 0.3s;
     }
 
     .button__icon-nav {
@@ -264,6 +264,22 @@ const { text, id, icon, detail, type, brand } = Astro.props;
         width: 100%;
         height: 100%;
         object-fit: contain;
-        border-radius: 50%;
+    }
+
+    @media (max-width: 475px) {
+        .button--filters-navigation .button__icon-nav {
+            opacity: 1;
+            transform: translate(1.5rem);
+        }
+
+        .button__text,
+        .button__details {
+            display: none;
+        }
+
+        .button--filters-navigation:hover .button__icon-nav {
+            transform: translate(-0.5rem);
+            opacity: 1;
+        }
     }
 </style>

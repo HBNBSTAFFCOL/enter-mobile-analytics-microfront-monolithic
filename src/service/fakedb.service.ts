@@ -103,7 +103,7 @@ const isMobileValid = (mobile: Required<Mobile>, filterOptions: FilterOptions) =
         ram: () => filterOptions.ram === undefined || mobile.ram!.toLowerCase() === filterOptions.ram.toLowerCase(),
         storage: () => filterOptions.storage === undefined || mobile.storage!.toLowerCase() === filterOptions.storage.toLowerCase(),
         os: () => filterOptions.os === undefined || mobile.os!.toLowerCase() === filterOptions.os.toLowerCase(),
-        brand: () => filterOptions.brand === undefined || mobile.brand!.toLowerCase() === filterOptions.brand.toLowerCase()
+        brand: () => filterOptions.brand === undefined || mobile.brand!.toLowerCase().includes(filterOptions.brand.toLowerCase())
     };
 
     const validConditions = Object.entries(conditions)

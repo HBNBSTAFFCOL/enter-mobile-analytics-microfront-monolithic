@@ -190,7 +190,9 @@ import ListComparation from "../../phone-comparison/ui/component.astro";
         <div class="contain-list">
             <ListComparation class="contain-list-items" />
             <div class="contain-list-buttons">
-                <button class="list-button-compaire" id="button-comparison">Comparar</button>
+                <button class="list-button-compaire" id="button-comparison"
+                    >Comparar</button
+                >
                 <button class="list-button-clean">Limpiar</button>
             </div>
         </div>
@@ -231,7 +233,7 @@ import ListComparation from "../../phone-comparison/ui/component.astro";
                 $searchContainer.classList.remove("show-button-search");
                 modals.forEach((modal) => {
                     if (!modal) return;
-                   modal.classList.remove("show-filters_modal");
+                    modal.classList.remove("show-filters_modal");
                 });
 
                 // Elimina el manejador de clic al documento cuando el menú de filtros está inactivo
@@ -268,14 +270,14 @@ import ListComparation from "../../phone-comparison/ui/component.astro";
         },
 
         listenerSearchButtonActive() {
-            const $searchButton = 
-                document.getElementById("button-fake-input");
+            const $searchButton = document.getElementById("button-fake-input");
             const $filtersContainer =
                 document.getElementById("filters-container");
             const $searchContainer =
                 document.getElementById("search-container");
-            const $bubbleList =
-                document.querySelector(".button--bubble-comparation");
+            const $bubbleList = document.querySelector(
+                ".button--bubble-comparation",
+            );
 
             if (
                 !($searchButton instanceof HTMLElement) ||
@@ -299,16 +301,24 @@ import ListComparation from "../../phone-comparison/ui/component.astro";
                 );
             });
 
-            const containerList = document.querySelector(".header__container-list");
-            $bubbleList.addEventListener("click", async() =>{
+            const containerList = document.querySelector(
+                ".header__container-list",
+            );
+            $bubbleList.addEventListener("click", async () => {
                 containerList!.classList.add("header__container-show");
-
             });
 
             document.addEventListener("click", (event) => {
                 if (event.target instanceof Node) {
-                    if (!containerList!.contains(event.target) && (event.target as HTMLElement).closest(".button--bubble-comparation") !== $bubbleList) {
-                        containerList!.classList.remove("header__container-show");
+                    if (
+                        !containerList!.contains(event.target) &&
+                        (event.target as HTMLElement).closest(
+                            ".button--bubble-comparation",
+                        ) !== $bubbleList
+                    ) {
+                        containerList!.classList.remove(
+                            "header__container-show",
+                        );
                     }
                 }
             });
@@ -368,7 +378,7 @@ import ListComparation from "../../phone-comparison/ui/component.astro";
         height: 100px;
         box-shadow: inset 0px -5px 0px 0px var(--color-brand--primary);
         display: grid;
-        grid-template-columns: 180px 1fr 180px;
+        grid-template-columns: 180px 1fr 60px;
         grid-template-rows: 100px 60px 300px;
         gap: 1rem;
         position: relative;
@@ -380,12 +390,6 @@ import ListComparation from "../../phone-comparison/ui/component.astro";
         display: flex;
         align-items: center;
         justify-content: center;
-    }
-
-    header__icon-image {
-        width: 100%;
-        max-width: unset;
-        margin-left: 1rem;
     }
 
     .header__search-section {
@@ -598,6 +602,9 @@ import ListComparation from "../../phone-comparison/ui/component.astro";
 
     .show-filters_modal {
         display: grid !important;
+        z-index: 10;
+        background: white;
+        box-shadow: 0px 0px 0px 1px var(--color-brand--secondary);
     }
 
     .filter_vavigation-container {
@@ -711,6 +718,19 @@ import ListComparation from "../../phone-comparison/ui/component.astro";
         z-index: 10;
     }
 
-    @media (max-width: ;) {
+    @media (max-width: 600px) {
+        .header{
+            grid-template-columns: 90px 1fr 60px;
+        }
+    
+        .header__icon-image {
+            width: 100px;
+        }
     }
+
+    @media (max-width: 435px) {
+
+
+    }
+
 </style>

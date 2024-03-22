@@ -275,7 +275,7 @@ const brand = [
       const currentCard = cardContainer.cloneNode(true) as HTMLElement;
 
 
-      const mandatoryKeys = ["id", "image", "name", "rearCamera", "storage", "ram", "battery"]
+      const mandatoryKeys = ["id", "image", "name"]
       if (!mandatoryKeys.every((prop) => Object.keys(cellphone).includes(prop))) {
         return;
       }
@@ -290,12 +290,24 @@ const brand = [
         cellphone.name!;
       currentCard.querySelector('[itemprop="rearCamera"]')!.textContent =
         cellphone.rearCamera!;
+        if (!cellphone.rearCamera || cellphone.rearCamera === "null") {
+          currentCard.querySelector('[itemprop="rearCamera"]')!.closest("li")!.remove();
+        }
       currentCard.querySelector('[itemprop="storage"]')!.textContent =
         cellphone.storage!;
+        if (!cellphone.storage || cellphone.storage === "null") {
+          currentCard.querySelector('[itemprop="storage"]')!.closest("li")!.remove();
+        }
       currentCard.querySelector('[itemprop="ram"]')!.textContent =
         cellphone.ram!;
+        if (!cellphone.ram || cellphone.ram === "null") {
+          currentCard.querySelector('[itemprop="ram"]')!.closest("li")!.remove();
+        }
       currentCard.querySelector('[itemprop="battery"]')!.textContent =
         cellphone.battery!;
+        if (!cellphone.battery || cellphone.battery === "null") {
+          currentCard.querySelector('[itemprop="battery"]')!.closest("li")!.remove();
+        }
 
 
 
@@ -595,7 +607,6 @@ const brand = [
   .brands_container {
     position: relative;
     width: 50%;
-    height: 8vh;
     padding-top: 30px;
     margin: auto;
     gap: 1rem;

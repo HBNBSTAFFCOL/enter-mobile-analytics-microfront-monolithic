@@ -13,7 +13,7 @@ interface Props {
     batteryCapacity?: string;
     colors?: { color: string; src: string }[];
     src?: string;
-    price?: number | string;
+    price   ?: number | string;
 
 }
 
@@ -63,7 +63,7 @@ const {
                         <figure class="card__item-icon">
                             <img
                                 class="card__item-icon-img"
-                                src="public/icons/icons_items/icon-camera.svg"
+                                src="/icons/icons_items/icon-camera.svg"
                                 alt="Icono de camara"
                                 itemprop=""
                             />
@@ -81,7 +81,7 @@ const {
                         <figure class="card__item-icon">
                             <img
                                 class="card__item-icon-img"
-                                src="public/icons/icons_items/icon-memory-internal.svg"
+                                src="/icons/icons_items/icon-memory-internal.svg"
                                 alt="Icono de memoria interna"
                             />
                         </figure>
@@ -97,7 +97,7 @@ const {
                         <figure class="card__item-icon">
                             <img
                                 class="card__item-icon-img"
-                                src="public/icons/icons_items/icon-memory-ram.svg"
+                                src="/icons/icons_items/icon-memory-ram.svg"
                                 alt="Icono de memoria ram"
                             />
                         </figure>
@@ -112,7 +112,7 @@ const {
                         <figure class="card__item-icon">
                             <img
                                 class="card__item-icon-img"
-                                src="public/icons/icons_items/icon-battery.svg"
+                                src="/icons/icons_items/icon-battery.svg"
                                 alt="Icono de bateria"
                             />
                         </figure>
@@ -129,7 +129,7 @@ const {
                         <figure class="card__item-icon">
                             <img
                                 class="card__item-icon-img"
-                                src="public/icons/icons_items/icon-price.svg"
+                                src="/icons/icons_items/icon-price.svg"
                                 alt="Icono de bateria"
                             />
                         </figure>
@@ -144,7 +144,6 @@ const {
                     </li>
                 </ul>
             </main>
-            <!--
             <nav class="card__nav">
                 {
                     colors &&
@@ -153,12 +152,11 @@ const {
                                 backgroundColor={colorItem.color}
                                 dataImageSrc={colorItem.src}
                                 onClick={() => changeImage(colorItem.src)}
-                                cardTitle={id}
+                                cardTitle={id!}
                             />
                         ))
                 }
             </nav>
-        -->
         </article>
     </li>
 
@@ -211,7 +209,6 @@ const {
 
     .card {
         display: inline-block;
-        /*aspect-ratio: 5 / 2.5; */
         scroll-snap-align: center;
         margin-right: 20%;
     }
@@ -365,7 +362,7 @@ const {
 
     @media (max-width: 576px) {
         .card__contain-main {
-            scroll-snap-align: center; /* Ajusta el tamaño de la fuente para pantallas aún más pequeñas */
+            scroll-snap-align: center;
         }
 
         .card__left {
